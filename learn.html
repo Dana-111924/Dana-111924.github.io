@@ -7,10 +7,59 @@
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
     <link rel="stylesheet" href="css/styles.css">
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=pub-6436981981397527" crossorigin="anonymous"></script>
+    <style>
+        .nav-link.active {
+            color: #DC2626;
+            font-weight: 600;
+            border-left: 3px solid #DC2626;
+            padding-left: 0.5rem;
+            background-color: #FEF2F2;
+        }
+        html {
+            scroll-behavior: smooth;
+        }
+        .left-nav {
+            position: sticky;
+            top: 2rem;
+            height: calc(100vh - 4rem);
+            overflow-y: auto;
+            padding: 1rem;
+            border-radius: 0.5rem;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+        }
+        .nav-link {
+            display: block;
+            padding: 0.5rem 0.75rem;
+            margin: 0.25rem 0;
+            border-radius: 0.375rem;
+            color: #4B5563;
+            transition: all 0.2s;
+        }
+        .nav-link:hover {
+            color: #DC2626;
+            background-color: #FEF2F2;
+        }
+        .content-section {
+            scroll-margin-top: 2rem;
+        }
+        .chinese-text {
+            font-size: 1.5rem;
+            line-height: 2;
+        }
+        .pinyin {
+            font-size: 0.875rem;
+            color: #6B7280;
+        }
+        .english {
+            font-size: 0.875rem;
+            color: #4B5563;
+            font-style: italic;
+        }
+    </style>
 </head>
 <body class="bg-gray-50">
     <!-- Navigation -->
-    <nav class="bg-white shadow-lg">
+    <nav class="bg-white shadow-lg sticky top-0 z-50">
         <div class="max-w-7xl mx-auto px-4">
             <div class="flex justify-between h-16">
                 <div class="flex">
@@ -37,162 +86,238 @@
     </nav>
 
     <!-- Main Content -->
-    <main class="max-w-7xl mx-auto py-6 sm:px-6 lg:px-8">
-        <div class="px-4 py-6 sm:px-0">
-            <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
-                <!-- Main Content Area -->
-                <div class="lg:col-span-2">
-                    <h1 class="text-3xl font-bold text-gray-900 mb-8">Learn Chinese</h1>
-                    
-                    <!-- Beginner's Guide -->
-                    <section class="bg-white rounded-lg shadow-md p-6 mb-8">
-                        <h2 class="text-2xl font-bold text-gray-900 mb-4">🌱 Beginner's Guide</h2>
-                        <p class="text-gray-600 mb-4">Perfect for absolute beginners who have never learned Chinese before.</p>
-                        <div class="space-y-4">
-                            <h3 class="text-xl font-semibold text-gray-800">Understanding Chinese</h3>
-                            <ul class="list-disc list-inside space-y-2 text-gray-600">
-                                <li>What are Chinese characters?</li>
-                                <li>What is Pinyin?</li>
-                                <li>Best way to learn Chinese</li>
-                            </ul>
-                            <div class="bg-gray-50 p-4 rounded-lg">
-                                <h4 class="font-semibold text-gray-800 mb-2">Learning Path Overview:</h4>
-                                <p class="text-gray-600">Pinyin (1-2 weeks) → Essential Vocabulary (1-3 months) → Sentence Building (6-12 months) → Reading (1-2 years)</p>
-                            </div>
-                        </div>
-                    </section>
-
-                    <!-- Essential Sentence Patterns -->
-                    <section class="bg-white rounded-lg shadow-md p-6 mb-8">
-                        <h2 class="text-2xl font-bold text-gray-900 mb-4">💬 Essential Sentence Patterns</h2>
-                        <p class="text-gray-600 mb-4">Learn the foundation of Chinese sentence structures.</p>
-                        <div class="space-y-4">
-                            <div class="bg-gray-50 p-4 rounded-lg">
-                                <h3 class="text-xl font-semibold text-gray-800 mb-2">Basic Sentence Structures</h3>
-                                <div class="space-y-4">
-                                    <div class="border-b pb-2">
-                                        <p class="text-lg font-medium text-gray-900">Subject-Verb-Object (SVO)</p>
-                                        <div class="mt-2">
-                                            <p class="text-gray-600">wǒ xué xí zhōng wén</p>
-                                            <p class="text-xl text-gray-900">我 学 习 中 文</p>
-                                            <p class="text-gray-600">I study Chinese</p>
-                                        </div>
-                                    </div>
-                                    <div class="border-b pb-2">
-                                        <p class="text-lg font-medium text-gray-900">Time Expressions</p>
-                                        <div class="mt-2">
-                                            <p class="text-gray-600">jīn tiān wǒ hěn máng</p>
-                                            <p class="text-xl text-gray-900">今 天 我 很 忙</p>
-                                            <p class="text-gray-600">I am very busy today</p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </section>
-
-                    <!-- Basic Conversations -->
-                    <section class="bg-white rounded-lg shadow-md p-6 mb-8">
-                        <h2 class="text-2xl font-bold text-gray-900 mb-4">🗣️ Basic Conversations</h2>
-                        <p class="text-gray-600 mb-4">Practice common daily conversations.</p>
-                        <div class="space-y-4">
-                            <div class="bg-gray-50 p-4 rounded-lg">
-                                <h3 class="text-xl font-semibold text-gray-800 mb-2">Greetings</h3>
-                                <div class="space-y-4">
-                                    <div class="border-b pb-2">
-                                        <p class="text-gray-600">zǎo shang hǎo！</p>
-                                        <p class="text-xl text-gray-900">早 上 好！</p>
-                                        <p class="text-gray-600">Good morning!</p>
-                                    </div>
-                                    <div class="border-b pb-2">
-                                        <p class="text-gray-600">nǐ hǎo ma？</p>
-                                        <p class="text-xl text-gray-900">你 好 吗？</p>
-                                        <p class="text-gray-600">How are you?</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </section>
-
-                    <!-- Reading Practice -->
-                    <section class="bg-white rounded-lg shadow-md p-6 mb-8">
-                        <h2 class="text-2xl font-bold text-gray-900 mb-4">📚 Reading Practice</h2>
-                        <p class="text-gray-600 mb-4">Improve your reading skills with simple stories.</p>
-                        <div class="space-y-4">
-                            <div class="bg-gray-50 p-4 rounded-lg">
-                                <h3 class="text-xl font-semibold text-gray-800 mb-2">The Little Red Riding Hood</h3>
-                                <div class="space-y-4">
-                                    <div class="border-b pb-2">
-                                        <p class="text-gray-600">cóng qián，yǒu yī gè xiǎo nǚ hái，tā hěn xǐ huān dài hóng sè de mào zi。</p>
-                                        <p class="text-xl text-gray-900">从 前，有 一 个 小 女 孩，她 很 喜 欢 戴 红 色 的 帽 子。</p>
-                                        <p class="text-gray-600">Once upon a time, there was a little girl who liked to wear a red hat.</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </section>
-
-                    <!-- Daily Dialogues -->
-                    <section class="bg-white rounded-lg shadow-md p-6 mb-8">
-                        <h2 class="text-2xl font-bold text-gray-900 mb-4">💭 Daily Dialogues</h2>
-                        <p class="text-gray-600 mb-4">Practice common daily situations.</p>
-                        <div class="space-y-4">
-                            <div class="bg-gray-50 p-4 rounded-lg">
-                                <h3 class="text-xl font-semibold text-gray-800 mb-2">At the Restaurant</h3>
-                                <div class="space-y-4">
-                                    <div class="border-b pb-2">
-                                        <p class="text-gray-600">fú wù yuán：huān yíng guāng lín！qǐng wèn jǐ wèi？</p>
-                                        <p class="text-xl text-gray-900">服 务 员：欢 迎 光 临！请 问 几 位？</p>
-                                        <p class="text-gray-600">Waiter: Welcome! How many people?</p>
-                                    </div>
-                                    <div class="border-b pb-2">
-                                        <p class="text-gray-600">gù kè：liǎng wèi。</p>
-                                        <p class="text-xl text-gray-900">顾 客：两 位。</p>
-                                        <p class="text-gray-600">Customer: Two.</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </section>
-                </div>
-
-                <!-- Sidebar -->
-                <div class="lg:col-span-1">
-                    <!-- Ad Space -->
-                    <div class="bg-white rounded-lg shadow-md p-6 mb-8">
-                        <ins class="adsbygoogle"
-                             style="display:block"
-                             data-ad-client="pub-6436981981397527"
-                             data-ad-slot="YOUR_AD_SLOT"
-                             data-ad-format="auto"
-                             data-full-width-responsive="true"></ins>
-                    </div>
-
-                    <!-- Quick Links -->
-                    <div class="bg-white rounded-lg shadow-md p-6">
-                        <h2 class="text-xl font-bold text-gray-900 mb-4">Quick Links</h2>
-                        <ul class="space-y-2">
-                            <li><a href="#sentences" class="text-red-600 hover:text-red-800">Sentence Patterns</a></li>
-                            <li><a href="#conversations" class="text-red-600 hover:text-red-800">Basic Conversations</a></li>
-                            <li><a href="#reading" class="text-red-600 hover:text-red-800">Reading Practice</a></li>
-                            <li><a href="#dialogues" class="text-red-600 hover:text-red-800">Daily Dialogues</a></li>
-                        </ul>
-                    </div>
-
-                    <!-- Practice Tips -->
-                    <div class="bg-white rounded-lg shadow-md p-6 mt-8">
-                        <h2 class="text-xl font-bold text-gray-900 mb-4">Practice Tips</h2>
-                        <ul class="space-y-2 text-gray-600">
-                            <li>• Read aloud daily</li>
-                            <li>• Record yourself</li>
-                            <li>• Practice with native speakers</li>
-                            <li>• Use language apps</li>
-                        </ul>
-                    </div>
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+        <div class="flex flex-col lg:flex-row gap-8">
+            <!-- Left Navigation Menu -->
+            <div class="lg:w-64 flex-shrink-0">
+                <div class="left-nav bg-white">
+                    <h2 class="text-lg font-bold text-gray-900 mb-4">Contents</h2>
+                    <ul class="space-y-1">
+                        <li>
+                            <a href="#pinyin" class="nav-link">
+                                Pinyin System
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#basic-characters" class="nav-link">
+                                Basic Characters
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#sentence-patterns" class="nav-link">
+                                Sentence Patterns
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#conversations" class="nav-link">
+                                Basic Conversations
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#reading" class="nav-link">
+                                Reading Practice
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#practice-tips" class="nav-link">
+                                Practice Tips
+                            </a>
+                        </li>
+                    </ul>
                 </div>
             </div>
+
+            <!-- Main Content Area -->
+            <div class="lg:flex-1">
+                <h1 class="text-3xl font-bold text-gray-900 mb-8">Learn Chinese</h1>
+                
+                <!-- Pinyin System -->
+                <section id="pinyin" class="content-section bg-white rounded-lg shadow-md p-6 mb-8">
+                    <h2 class="text-2xl font-bold text-gray-900 mb-4">拼音 - Pinyin System</h2>
+                    <div class="space-y-4">
+                        <p class="text-gray-600">Pinyin is the official romanization system for Standard Chinese. It helps you learn pronunciation.</p>
+                        
+                        <div class="bg-gray-50 p-4 rounded-lg">
+                            <h3 class="text-xl font-semibold text-gray-800 mb-4">Basic Rules</h3>
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                                <div class="space-y-2">
+                                    <h4 class="font-medium text-gray-900">Tones</h4>
+                                    <ul class="space-y-2">
+                                        <li>
+                                            <div class="pinyin">mā (First tone - high and level)</div>
+                                            <div class="chinese-text">妈</div>
+                                            <div class="english">mother</div>
+                                        </li>
+                                        <li>
+                                            <div class="pinyin">má (Second tone - rising)</div>
+                                            <div class="chinese-text">麻</div>
+                                            <div class="english">hemp</div>
+                                        </li>
+                                        <li>
+                                            <div class="pinyin">mǎ (Third tone - falling-rising)</div>
+                                            <div class="chinese-text">马</div>
+                                            <div class="english">horse</div>
+                                        </li>
+                                        <li>
+                                            <div class="pinyin">mà (Fourth tone - falling)</div>
+                                            <div class="chinese-text">骂</div>
+                                            <div class="english">scold</div>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Basic Characters -->
+                <section id="basic-characters" class="content-section bg-white rounded-lg shadow-md p-6 mb-8">
+                    <h2 class="text-2xl font-bold text-gray-900 mb-4">基础汉字 - Basic Characters</h2>
+                    <div class="space-y-4">
+                        <div class="bg-gray-50 p-4 rounded-lg">
+                            <h3 class="text-xl font-semibold text-gray-800 mb-4">Essential Characters</h3>
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                                <div class="space-y-3">
+                                    <div>
+                                        <div class="pinyin">wǒ</div>
+                                        <div class="chinese-text">我</div>
+                                        <div class="english">I, me</div>
+                                    </div>
+                                    <div>
+                                        <div class="pinyin">nǐ</div>
+                                        <div class="chinese-text">你</div>
+                                        <div class="english">you</div>
+                                    </div>
+                                    <div>
+                                        <div class="pinyin">hǎo</div>
+                                        <div class="chinese-text">好</div>
+                                        <div class="english">good</div>
+                                    </div>
+                                </div>
+                                <div class="space-y-3">
+                                    <div>
+                                        <div class="pinyin">xiè xiè</div>
+                                        <div class="chinese-text">谢谢</div>
+                                        <div class="english">thank you</div>
+                                    </div>
+                                    <div>
+                                        <div class="pinyin">zài jiàn</div>
+                                        <div class="chinese-text">再见</div>
+                                        <div class="english">goodbye</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Sentence Patterns -->
+                <section id="sentence-patterns" class="content-section bg-white rounded-lg shadow-md p-6 mb-8">
+                    <h2 class="text-2xl font-bold text-gray-900 mb-4">句型 - Sentence Patterns</h2>
+                    <div class="space-y-4">
+                        <div class="bg-gray-50 p-4 rounded-lg">
+                            <h3 class="text-xl font-semibold text-gray-800 mb-4">Basic Patterns</h3>
+                            <div class="space-y-6">
+                                <div>
+                                    <h4 class="font-medium text-gray-900 mb-2">Subject + Verb + Object</h4>
+                                    <div class="pinyin">Wǒ xué zhōngwén</div>
+                                    <div class="chinese-text">我学中文</div>
+                                    <div class="english">I study Chinese</div>
+                                </div>
+                                <div>
+                                    <h4 class="font-medium text-gray-900 mb-2">Question Formation</h4>
+                                    <div class="pinyin">Nǐ xǐhuan chī shénme?</div>
+                                    <div class="chinese-text">你喜欢吃什么？</div>
+                                    <div class="english">What do you like to eat?</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Basic Conversations -->
+                <section id="conversations" class="content-section bg-white rounded-lg shadow-md p-6 mb-8">
+                    <h2 class="text-2xl font-bold text-gray-900 mb-4">对话 - Conversations</h2>
+                    <div class="space-y-4">
+                        <div class="bg-gray-50 p-4 rounded-lg">
+                            <h3 class="text-xl font-semibold text-gray-800 mb-4">Daily Conversations</h3>
+                            <div class="space-y-6">
+                                <div>
+                                    <h4 class="font-medium text-gray-900 mb-2">Greeting</h4>
+                                    <div class="space-y-2">
+                                        <div>
+                                            <div class="pinyin">A: Nǐ hǎo!</div>
+                                            <div class="chinese-text">A: 你好！</div>
+                                            <div class="english">A: Hello!</div>
+                                        </div>
+                                        <div>
+                                            <div class="pinyin">B: Nǐ hǎo! Nǐ hǎo ma?</div>
+                                            <div class="chinese-text">B: 你好！你好吗？</div>
+                                            <div class="english">B: Hello! How are you?</div>
+                                        </div>
+                                        <div>
+                                            <div class="pinyin">A: Wǒ hěn hǎo, xièxie.</div>
+                                            <div class="chinese-text">A: 我很好，谢谢。</div>
+                                            <div class="english">A: I'm very well, thank you.</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Reading Practice -->
+                <section id="reading" class="content-section bg-white rounded-lg shadow-md p-6 mb-8">
+                    <h2 class="text-2xl font-bold text-gray-900 mb-4">阅读练习 - Reading Practice</h2>
+                    <div class="space-y-4">
+                        <div class="bg-gray-50 p-4 rounded-lg">
+                            <h3 class="text-xl font-semibold text-gray-800 mb-4">Simple Story</h3>
+                            <div class="space-y-4">
+                                <div>
+                                    <div class="pinyin">Zhè shì wǒ de jiā.</div>
+                                    <div class="chinese-text">这是我的家。</div>
+                                    <div class="english">This is my home.</div>
+                                </div>
+                                <div>
+                                    <div class="pinyin">Wǒ hé wǒ de jiārén zhù zài zhèlǐ.</div>
+                                    <div class="chinese-text">我和我的家人住在这里。</div>
+                                    <div class="english">I live here with my family.</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Practice Tips -->
+                <section id="practice-tips" class="content-section bg-white rounded-lg shadow-md p-6 mb-8">
+                    <h2 class="text-2xl font-bold text-gray-900 mb-4">学习建议 - Practice Tips</h2>
+                    <div class="space-y-4">
+                        <div class="bg-gray-50 p-4 rounded-lg">
+                            <ul class="space-y-3">
+                                <li class="flex items-start">
+                                    <span class="text-red-600 mr-2">•</span>
+                                    <span class="text-gray-700">Practice pronunciation with native speakers or language apps</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <span class="text-red-600 mr-2">•</span>
+                                    <span class="text-gray-700">Write characters repeatedly to memorize them</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <span class="text-red-600 mr-2">•</span>
+                                    <span class="text-gray-700">Listen to Chinese music and watch Chinese movies</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <span class="text-red-600 mr-2">•</span>
+                                    <span class="text-gray-700">Use flashcards for vocabulary practice</span>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </section>
+            </div>
         </div>
-    </main>
+    </div>
 
     <!-- Footer -->
     <footer class="bg-white border-t border-gray-200 mt-8">
@@ -203,9 +328,46 @@
         </div>
     </footer>
 
-    <script src="js/main.js"></script>
     <script>
-        (adsbygoogle = window.adsbygoogle || []).push({});
+        document.addEventListener('DOMContentLoaded', function() {
+            const sections = document.querySelectorAll('.content-section');
+            const navLinks = document.querySelectorAll('.nav-link');
+
+            function highlightNavigation() {
+                let scrollPosition = window.scrollY + 100;
+
+                sections.forEach(section => {
+                    const sectionTop = section.offsetTop;
+                    const sectionHeight = section.clientHeight;
+                    const sectionId = section.getAttribute('id');
+
+                    if (scrollPosition >= sectionTop && scrollPosition < sectionTop + sectionHeight) {
+                        navLinks.forEach(link => {
+                            link.classList.remove('active');
+                            if (link.getAttribute('href') === '#' + sectionId) {
+                                link.classList.add('active');
+                            }
+                        });
+                    }
+                });
+            }
+
+            // Highlight navigation on scroll
+            window.addEventListener('scroll', highlightNavigation);
+
+            // Initial highlight
+            highlightNavigation();
+
+            // Smooth scroll for navigation links
+            navLinks.forEach(link => {
+                link.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const targetId = this.getAttribute('href');
+                    const targetSection = document.querySelector(targetId);
+                    targetSection.scrollIntoView({ behavior: 'smooth' });
+                });
+            });
+        });
     </script>
 </body>
 </html> 
