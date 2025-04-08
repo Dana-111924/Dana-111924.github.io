@@ -43,17 +43,24 @@
             scroll-margin-top: 2rem;
         }
         .chinese-text {
-            font-size: 1.5rem;
-            line-height: 2;
+            font-size: 2.5rem;
+            font-weight: bold;
+            line-height: 1.5;
         }
         .pinyin {
-            font-size: 0.875rem;
+            font-size: 1.25rem;
             color: #6B7280;
         }
         .english {
-            font-size: 0.875rem;
+            font-size: 1.25rem;
             color: #4B5563;
-            font-style: italic;
+        }
+        .explanation-text {
+            font-size: 0.875rem;
+            color: #6B7280;
+        }
+        .highlight-char {
+            color: #1e40af;  /* dark blue */
         }
     </style>
 </head>
@@ -132,27 +139,27 @@
                         
                         <div class="bg-gray-50 p-6 rounded-lg">
                             <div class="space-y-6">
-                                <div class="space-y-2">
+                                <div class="space-y-4">
                                     <div class="flex items-baseline gap-2">
                                         <div class="pinyin">nǐ hǎo</div>
-                                        <div class="text-gray-600">---This is Pinyin: How we write the pronunciation using our alphabet</div>
+                                        <div class="explanation-text">---This is Pinyin: How we write the pronunciation using our alphabet</div>
                                     </div>
                                     <div class="flex items-baseline gap-2">
-                                        <div class="chinese-text">你好</div>
-                                        <div class="text-gray-600">---These are the actual Chinese writing</div>
+                                        <div class="chinese-text"><span class="highlight-char">你</span><span class="highlight-char">好</span></div>
+                                        <div class="explanation-text">---These are the actual Chinese writing</div>
                                     </div>
                                     <div class="flex items-baseline gap-2">
                                         <div class="english">hello</div>
-                                        <div class="text-gray-600">---Its meaning</div>
+                                        <div class="explanation-text">---Its meaning</div>
                                     </div>
                                 </div>
                                 
                                 <div class="mt-6">
-                                    <p class="text-gray-700 mb-4">"你好" looks like this in Chinese characters. When you learn Chinese, you'll see characters like this instead of letters. Pinyin helps with pronunciation and memory, but real Chinese is entirely made up of characters.</p>
+                                    <p class="text-gray-700 mb-4">"<span class="highlight-char">你</span><span class="highlight-char">好</span>" looks like this in Chinese characters. When you learn Chinese, you'll see characters like this instead of letters. Pinyin helps with pronunciation and memory, but real Chinese is entirely made up of characters.</p>
                                     
                                     <div class="bg-white p-4 rounded-lg border border-gray-200">
-                                        <p class="text-gray-700 mb-4">学习中文不仅是一种语言技能的提升，更是一场文化的探索之旅。在这门语言中，"你"代表着人与人之间的连接，而"好"则象征着美好的祝愿和正面的表达。</p>
-                                        <p class="text-gray-700">当你刚开始学习中文时，最常见的一个词就是"你好"。它不仅是打招呼的方式，也反映了中国文化中礼貌和友好的交流方式。而在更深入的学习中，你会发现"你好"中的每个字都有自己的含义，比如"你"表示对方，"好"表示美好、健康。当你能熟练运用这些词汇时，你就能够自信地和别人打招呼、表达自己的想法。</p>
+                                        <p class="text-gray-700 mb-4">学习中文不仅是一种语言技能的提升，更是一场文化的探索之旅。在这门语言中，"<span class="highlight-char">你</span>"代表着人与人之间的连接，而"<span class="highlight-char">好</span>"则象征着美好的祝愿和正面的表达。</p>
+                                        <p class="text-gray-700">当你刚开始学习中文时，最常见的一个词就是"<span class="highlight-char">你</span><span class="highlight-char">好</span>"。它不仅是打招呼的方式，也反映了中国文化中礼貌和友好的交流方式。而在更深入的学习中，你会发现"<span class="highlight-char">你</span><span class="highlight-char">好</span>"中的每个字都有自己的含义，比如"<span class="highlight-char">你</span>"表示对方，"<span class="highlight-char">好</span>"表示美好、健康。当你能熟练运用这些词汇时，你就能够自信地和别人打招呼、表达自己的想法。</p>
                                     </div>
                                 </div>
                             </div>
