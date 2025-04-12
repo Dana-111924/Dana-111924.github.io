@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Basic Characters - Learn Chinese</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="../css/styles.css">
+    <style>
+        .character-card {
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+        .character-card:hover {
+            transform: scale(1.02);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+        .character-card.playing {
+            background-color: #e3f2fd;
+            transform: scale(1.02);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+    </style>
+</head>
+<body class="bg-gray-50">
+    <!-- Navigation -->
+    <nav class="bg-white shadow">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-16">
+                <div class="flex">
+                    <div class="flex-shrink-0 flex items-center">
+                        <a href="../" class="text-red-600 text-2xl font-bold">学中文</a>
+                    </div>
+                    <div class="hidden sm:ml-6 sm:flex sm:space-x-8">
+                        <a href="../" class="text-gray-500 hover:text-gray-700 px-3 py-2 rounded-md">Home</a>
+                        <a href="../learn.html" class="text-red-600 border-red-600 border-b-2 px-3 py-2 rounded-md">Learn Chinese</a>
+                        <a href="../culture.html" class="text-gray-500 hover:text-gray-700 px-3 py-2 rounded-md">Culture</a>
+                        <a href="../travel.html" class="text-gray-500 hover:text-gray-700 px-3 py-2 rounded-md">Travel</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+        <div class="mb-8">
+            <a href="../learn.html" class="text-red-600 hover:text-red-700">← Back to Learn Chinese</a>
+        </div>
+
+        <h1 class="text-3xl font-bold text-gray-900 mb-8">Basic Chinese Characters</h1>
+
+        <div class="bg-white rounded-lg shadow-md p-6 mb-8">
+            <h2 class="text-2xl font-bold text-gray-900 mb-4">Essential Characters</h2>
+            <p class="text-gray-600 mb-6">
+                Start with these basic characters that are commonly used in everyday Chinese. 
+                Click on any character to hear its pronunciation.
+            </p>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <!-- Numbers -->
+                <div class="space-y-4">
+                    <h3 class="text-lg font-semibold text-gray-900">Numbers</h3>
+                    <div class="character-card p-4 bg-gray-50 rounded-lg" data-pinyin="yī" data-character="一">
+                        <div class="text-4xl mb-2">一</div>
+                        <div class="text-lg text-gray-600">yī</div>
+                        <p class="text-sm text-gray-500">one</p>
+                    </div>
+                    <div class="character-card p-4 bg-gray-50 rounded-lg" data-pinyin="èr" data-character="二">
+                        <div class="text-4xl mb-2">二</div>
+                        <div class="text-lg text-gray-600">èr</div>
+                        <p class="text-sm text-gray-500">two</p>
+                    </div>
+                    <div class="character-card p-4 bg-gray-50 rounded-lg" data-pinyin="sān" data-character="三">
+                        <div class="text-4xl mb-2">三</div>
+                        <div class="text-lg text-gray-600">sān</div>
+                        <p class="text-sm text-gray-500">three</p>
+                    </div>
+                </div>
+
+                <!-- Common Words -->
+                <div class="space-y-4">
+                    <h3 class="text-lg font-semibold text-gray-900">Common Words</h3>
+                    <div class="character-card p-4 bg-gray-50 rounded-lg" data-pinyin="rén" data-character="人">
+                        <div class="text-4xl mb-2">人</div>
+                        <div class="text-lg text-gray-600">rén</div>
+                        <p class="text-sm text-gray-500">person</p>
+                    </div>
+                    <div class="character-card p-4 bg-gray-50 rounded-lg" data-pinyin="dà" data-character="大">
+                        <div class="text-4xl mb-2">大</div>
+                        <div class="text-lg text-gray-600">dà</div>
+                        <p class="text-sm text-gray-500">big</p>
+                    </div>
+                    <div class="character-card p-4 bg-gray-50 rounded-lg" data-pinyin="xiǎo" data-character="小">
+                        <div class="text-4xl mb-2">小</div>
+                        <div class="text-lg text-gray-600">xiǎo</div>
+                        <p class="text-sm text-gray-500">small</p>
+                    </div>
+                </div>
+
+                <!-- Basic Verbs -->
+                <div class="space-y-4">
+                    <h3 class="text-lg font-semibold text-gray-900">Basic Verbs</h3>
+                    <div class="character-card p-4 bg-gray-50 rounded-lg" data-pinyin="shì" data-character="是">
+                        <div class="text-4xl mb-2">是</div>
+                        <div class="text-lg text-gray-600">shì</div>
+                        <p class="text-sm text-gray-500">to be</p>
+                    </div>
+                    <div class="character-card p-4 bg-gray-50 rounded-lg" data-pinyin="yǒu" data-character="有">
+                        <div class="text-4xl mb-2">有</div>
+                        <div class="text-lg text-gray-600">yǒu</div>
+                        <p class="text-sm text-gray-500">to have</p>
+                    </div>
+                    <div class="character-card p-4 bg-gray-50 rounded-lg" data-pinyin="qù" data-character="去">
+                        <div class="text-4xl mb-2">去</div>
+                        <div class="text-lg text-gray-600">qù</div>
+                        <p class="text-sm text-gray-500">to go</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Navigation Links -->
+        <div class="flex justify-between items-center mt-8">
+            <a href="pinyin-system.html" class="text-red-600 hover:text-red-700">← Pinyin System</a>
+            <a href="sentence-patterns.html" class="text-red-600 hover:text-red-700">Sentence Patterns →</a>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-white mt-12">
+        <div class="max-w-7xl mx-auto py-12 px-4 sm:px-6 md:flex md:items-center md:justify-between lg:px-8">
+            <div class="mt-8 md:mt-0 md:order-1">
+                <p class="text-center text-base text-gray-400">
+                    &copy; 2024 Learn Chinese. All rights reserved.
+                </p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const characterCards = document.querySelectorAll('.character-card');
+            let currentAudio = null;
+
+            characterCards.forEach(card => {
+                card.addEventListener('click', async function() {
+                    const character = this.dataset.character;
+                    if (!character) return;
+
+                    // Stop any currently playing audio
+                    if (currentAudio) {
+                        currentAudio.pause();
+                        currentAudio = null;
+                    }
+
+                    // Remove playing class from all cards
+                    document.querySelectorAll('.character-card.playing').forEach(card => {
+                        card.classList.remove('playing');
+                    });
+
+                    try {
+                        // Add playing class to current card
+                        this.classList.add('playing');
+
+                        const response = await fetch('/api/tts', {
+                            method: 'POST',
+                            headers: {
+                                'Content-Type': 'application/json'
+                            },
+                            body: JSON.stringify({ text: character })
+                        });
+                        
+                        if (!response.ok) {
+                            throw new Error(`HTTP error! status: ${response.status}`);
+                        }
+                        
+                        const audioBlob = await response.blob();
+                        const audioUrl = URL.createObjectURL(audioBlob);
+                        
+                        currentAudio = new Audio(audioUrl);
+                        currentAudio.addEventListener('ended', () => {
+                            URL.revokeObjectURL(audioUrl);
+                            this.classList.remove('playing');
+                        });
+                        
+                        await currentAudio.play();
+                    } catch (error) {
+                        console.error('Error playing audio:', error);
+                        this.classList.remove('playing');
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html> 

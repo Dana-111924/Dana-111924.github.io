@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chinese Tones - Learn Chinese</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="../css/styles.css">
+    <style>
+        .tone-example {
+            border: 1px solid #E5E7EB;
+            padding: 1rem;
+            margin: 0.5rem 0;
+            border-radius: 0.5rem;
+            background-color: #F9FAFB;
+        }
+    </style>
+</head>
+<body class="bg-gray-50">
+    <!-- Navigation -->
+    <nav class="bg-white shadow">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-16">
+                <div class="flex">
+                    <div class="flex-shrink-0 flex items-center">
+                        <a href="../" class="text-red-600 text-2xl font-bold">学中文</a>
+                    </div>
+                    <div class="hidden sm:ml-6 sm:flex sm:space-x-8">
+                        <a href="../" class="text-gray-500 hover:text-gray-700 px-3 py-2 rounded-md">Home</a>
+                        <a href="../learn.html" class="text-red-600 border-red-600 border-b-2 px-3 py-2 rounded-md">Learn Chinese</a>
+                        <a href="../culture.html" class="text-gray-500 hover:text-gray-700 px-3 py-2 rounded-md">Culture</a>
+                        <a href="../travel.html" class="text-gray-500 hover:text-gray-700 px-3 py-2 rounded-md">Travel</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+        <div class="mb-8">
+            <a href="pinyin-system.html" class="text-red-600 hover:text-red-700">← Back to Pinyin System</a>
+        </div>
+
+        <h1 class="text-3xl font-bold text-gray-900 mb-8">Chinese Tones (声调)</h1>
+
+        <!-- Tones Section -->
+        <div class="bg-white rounded-lg shadow-md p-6 mb-8">
+            <p class="text-gray-600 mb-6">
+                Mandarin Chinese is a tonal language with four main tones and one neutral tone. 
+                The tone of a syllable can change its meaning completely. Click on each example to hear the pronunciation.
+            </p>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div class="space-y-4">
+                    <div class="tone-example">
+                        <div class="text-lg font-medium">First Tone (ˉ)</div>
+                        <div class="text-3xl my-2">妈</div>
+                        <div class="text-gray-600">mā - mother</div>
+                        <div class="text-sm text-gray-500">High and level tone</div>
+                    </div>
+                    <div class="tone-example">
+                        <div class="text-lg font-medium">Second Tone (ˊ)</div>
+                        <div class="text-3xl my-2">麻</div>
+                        <div class="text-gray-600">má - hemp</div>
+                        <div class="text-sm text-gray-500">Rising tone</div>
+                    </div>
+                </div>
+                <div class="space-y-4">
+                    <div class="tone-example">
+                        <div class="text-lg font-medium">Third Tone (ˇ)</div>
+                        <div class="text-3xl my-2">马</div>
+                        <div class="text-gray-600">mǎ - horse</div>
+                        <div class="text-sm text-gray-500">Falling-rising tone</div>
+                    </div>
+                    <div class="tone-example">
+                        <div class="text-lg font-medium">Fourth Tone (ˋ)</div>
+                        <div class="text-3xl my-2">骂</div>
+                        <div class="text-gray-600">mà - scold</div>
+                        <div class="text-sm text-gray-500">Falling tone</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Navigation Links -->
+        <div class="flex justify-between items-center mt-8">
+            <a href="pinyin-system.html" class="text-red-600 hover:text-red-700">← Introduction</a>
+            <a href="pinyin-chart.html" class="text-red-600 hover:text-red-700">Interactive Chart →</a>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-white mt-12">
+        <div class="max-w-7xl mx-auto py-12 px-4 sm:px-6 md:flex md:items-center md:justify-between lg:px-8">
+            <div class="mt-8 md:mt-0 md:order-1">
+                <p class="text-center text-base text-gray-400">
+                    &copy; 2024 Learn Chinese. All rights reserved.
+                </p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const toneExamples = document.querySelectorAll('.tone-example');
+            let currentAudio = null;
+
+            toneExamples.forEach(example => {
+                example.addEventListener('click', async function() {
+                    const character = this.querySelector('.text-3xl').textContent;
+                    if (!character) return;
+
+                    // Stop any currently playing audio
+                    if (currentAudio) {
+                        currentAudio.pause();
+                        currentAudio = null;
+                    }
+
+                    try {
+                        const response = await fetch('/api/tts', {
+                            method: 'POST',
+                            headers: {
+                                'Content-Type': 'application/json'
+                            },
+                            body: JSON.stringify({ text: character })
+                        });
+                        
+                        if (!response.ok) {
+                            throw new Error(`HTTP error! status: ${response.status}`);
+                        }
+                        
+                        const audioBlob = await response.blob();
+                        const audioUrl = URL.createObjectURL(audioBlob);
+                        
+                        currentAudio = new Audio(audioUrl);
+                        currentAudio.addEventListener('ended', () => {
+                            URL.revokeObjectURL(audioUrl);
+                        });
+                        
+                        await currentAudio.play();
+                    } catch (error) {
+                        console.error('Error playing audio:', error);
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html> 

@@ -108,26 +108,18 @@
 </head>
 <body class="bg-gray-50">
     <!-- Navigation -->
-    <nav class="bg-white shadow-lg sticky top-0 z-50">
-        <div class="max-w-7xl mx-auto px-4">
+    <nav class="bg-white shadow">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex justify-between h-16">
                 <div class="flex">
                     <div class="flex-shrink-0 flex items-center">
-                        <a href="index.html" class="text-2xl font-bold text-red-600">学中文</a>
+                        <a href="/" class="text-red-600 text-2xl font-bold">学中文</a>
                     </div>
                     <div class="hidden sm:ml-6 sm:flex sm:space-x-8">
-                        <a href="index.html" class="border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700 inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium">
-                            Home
-                        </a>
-                        <a href="learn.html" class="border-red-500 text-gray-900 inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium">
-                            Learn Chinese
-                        </a>
-                        <a href="culture.html" class="border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700 inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium">
-                            Culture
-                        </a>
-                        <a href="travel.html" class="border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700 inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium">
-                            Travel
-                        </a>
+                        <a href="/" class="text-gray-500 hover:text-gray-700 px-3 py-2 rounded-md">Home</a>
+                        <a href="/learn.html" class="text-red-600 border-red-600 border-b-2 px-3 py-2 rounded-md">Learn Chinese</a>
+                        <a href="/culture.html" class="text-gray-500 hover:text-gray-700 px-3 py-2 rounded-md">Culture</a>
+                        <a href="/travel.html" class="text-gray-500 hover:text-gray-700 px-3 py-2 rounded-md">Travel</a>
                     </div>
                 </div>
             </div>
@@ -136,504 +128,75 @@
 
     <!-- Main Content -->
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-        <div class="flex flex-col lg:flex-row gap-8">
-            <!-- Left Navigation Menu -->
-            <div class="lg:w-64 flex-shrink-0">
-                <div class="left-nav bg-white">
-                    <h2 class="text-lg font-bold text-gray-900 mb-4">Contents</h2>
-                    <ul class="space-y-1">
-                        <li><a href="#beginners-guide" class="nav-link">Beginner's Guide (For Absolute Beginners)</a></li>
-                        <li><a href="#pinyin" class="nav-link">Pinyin System</a></li>
-                        <li><a href="#basic-characters" class="nav-link">Basic Characters</a></li>
-                        <li>
-                            <a href="#sentence-patterns" class="nav-link">
-                                Sentence Patterns
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#conversations" class="nav-link">
-                                Basic Conversations
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#reading" class="nav-link">
-                                Reading Practice
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#practice-tips" class="nav-link">
-                                Practice Tips
-                            </a>
-                        </li>
-                    </ul>
+        <h1 class="text-3xl font-bold text-gray-900 mb-8">Learn Chinese</h1>
+        
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <!-- Beginner's Guide Card -->
+            <a href="pages/beginners-guide.html" class="bg-white rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300">
+                <div class="p-6">
+                    <h2 class="text-xl font-semibold text-gray-900 mb-2">Beginner's Guide</h2>
+                    <p class="text-gray-600">Start your journey in learning Chinese with our comprehensive guide for absolute beginners.</p>
                 </div>
-            </div>
+            </a>
 
-            <!-- Main Content Area -->
-            <div class="lg:flex-1">
-                <h1 class="text-3xl font-bold text-gray-900 mb-8">Learn Chinese</h1>
-                
-                <!-- Beginner's Guide -->
-                <section id="beginners-guide" class="content-section bg-white rounded-lg shadow-md p-6 mb-8">
-                    <h2 class="text-2xl font-bold text-gray-900 mb-4">Beginner's Guide (For Absolute Beginners)</h2>
-                    <div class="space-y-4">
-                        <p class="text-gray-600">Welcome to your first step in learning Chinese! Let's start by understanding what Chinese characters look like.</p>
-                        
-                        <div class="bg-gray-50 p-6 rounded-lg">
-                            <div class="space-y-6">
-                                <div class="space-y-4">
-                                    <div class="flex items-baseline gap-2">
-                                        <div class="pinyin">nǐ hǎo</div>
-                                        <div class="explanation-text">---This is Pinyin: How we write the pronunciation using our alphabet</div>
-                                    </div>
-                                    <div class="flex items-baseline gap-2">
-                                        <div class="chinese-text"><span class="highlight-char">你</span><span class="highlight-char">好</span></div>
-                                        <div class="explanation-text">---These are the actual Chinese writing</div>
-                                    </div>
-                                    <div class="flex items-baseline gap-2">
-                                        <div class="english">hello</div>
-                                        <div class="explanation-text">---Its meaning</div>
-                                    </div>
-                                </div>
-                                
-                                <div class="mt-6">
-                                    <p class="text-gray-700 mb-4">"<span class="highlight-char">你</span><span class="highlight-char">好</span>" looks like this in Chinese characters. When you learn Chinese, you'll see characters like this instead of letters. Pinyin helps with pronunciation and memory, but real Chinese is entirely made up of characters.</p>
-                                    
-                                    <div class="bg-white p-4 rounded-lg border border-gray-200">
-                                        <p class="text-gray-700 mb-4">学习中文不仅是一种语言技能的提升，更是一场文化的探索之旅。在这门语言中，"<span class="highlight-char">你</span>"代表着人与人之间的连接，而"<span class="highlight-char">好</span>"则象征着美好的祝愿和正面的表达。</p>
-                                        <p class="text-gray-700">当你刚开始学习中文时，最常见的一个词就是"<span class="highlight-char">你</span><span class="highlight-char">好</span>"。它不仅是打招呼的方式，也反映了中国文化中礼貌和友好的交流方式。而在更深入的学习中，你会发现"<span class="highlight-char">你</span><span class="highlight-char">好</span>"中的每个字都有自己的含义，比如"<span class="highlight-char">你</span>"表示对方，"<span class="highlight-char">好</span>"表示美好、健康。当你能熟练运用这些词汇时，你就能够自信地和别人打招呼、表达自己的想法。</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </section>
+            <!-- Pinyin System Card -->
+            <a href="pages/pinyin-system.html" class="bg-white rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300">
+                <div class="p-6">
+                    <h2 class="text-xl font-semibold text-gray-900 mb-2">Pinyin System</h2>
+                    <p class="text-gray-600">Master the pronunciation system used for Standard Chinese.</p>
+                </div>
+            </a>
 
-                <!-- Pinyin System -->
-                <section id="pinyin" class="content-section bg-white rounded-lg shadow-md p-6 mb-8">
-                    <h2 class="text-2xl font-bold text-gray-900 mb-4">拼音 - Pinyin System</h2>
-                    <div class="space-y-4">
-                        <p class="text-gray-600">Pinyin is the official romanization system for Standard Chinese. It helps you learn pronunciation.</p>
-                        
-                        <div class="bg-gray-50 p-4 rounded-lg">
-                            <h3 class="text-xl font-semibold text-gray-800 mb-4">Basic Rules</h3>
-                            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                                <div class="space-y-2">
-                                    <h4 class="font-medium text-gray-900">Tones</h4>
-                                    <ul class="space-y-2">
-                                        <li>
-                                            <div class="pinyin">mā (First tone - high and level)</div>
-                                            <div class="chinese-text">妈</div>
-                                            <div class="english">mother</div>
-                                        </li>
-                                        <li>
-                                            <div class="pinyin">má (Second tone - rising)</div>
-                                            <div class="chinese-text">麻</div>
-                                            <div class="english">hemp</div>
-                                        </li>
-                                        <li>
-                                            <div class="pinyin">mǎ (Third tone - falling-rising)</div>
-                                            <div class="chinese-text">马</div>
-                                            <div class="english">horse</div>
-                                        </li>
-                                        <li>
-                                            <div class="pinyin">mà (Fourth tone - falling)</div>
-                                            <div class="chinese-text">骂</div>
-                                            <div class="english">scold</div>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
+            <!-- Basic Characters Card -->
+            <a href="pages/basic-characters.html" class="bg-white rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300">
+                <div class="p-6">
+                    <h2 class="text-xl font-semibold text-gray-900 mb-2">Basic Characters</h2>
+                    <p class="text-gray-600">Learn essential Chinese characters and their meanings.</p>
+                </div>
+            </a>
 
-                        <!-- After Basic Rules section -->
-                        <div class="mt-8">
-                            <h3 class="text-xl font-semibold text-gray-800 mb-4">Interactive Pinyin Chart</h3>
-                            <p class="text-gray-600 mb-4">Click on any Pinyin to hear its pronunciation. This chart shows all possible Pinyin combinations in Mandarin Chinese.</p>
-                            
-                            <div class="pinyin-chart">
-                                <table class="pinyin-table">
-                                    <thead>
-                                        <tr>
-                                            <th></th>
-                                            <th>b</th>
-                                            <th>p</th>
-                                            <th>m</th>
-                                            <th>f</th>
-                                            <th>d</th>
-                                            <th>t</th>
-                                            <th>n</th>
-                                            <th>l</th>
-                                            <th>g</th>
-                                            <th>k</th>
-                                            <th>h</th>
-                                            <th>j</th>
-                                            <th>q</th>
-                                            <th>x</th>
-                                            <th>z</th>
-                                            <th>c</th>
-                                            <th>s</th>
-                                            <th>zh</th>
-                                            <th>ch</th>
-                                            <th>sh</th>
-                                            <th>r</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <!-- a row -->
-                                        <tr>
-                                            <td class="row-header">a</td>
-                                            <td class="pinyin-cell" data-pinyin="ba">ba</td>
-                                            <td class="pinyin-cell" data-pinyin="pa">pa</td>
-                                            <td class="pinyin-cell" data-pinyin="ma">ma</td>
-                                            <td class="pinyin-cell" data-pinyin="fa">fa</td>
-                                            <td class="pinyin-cell" data-pinyin="da">da</td>
-                                            <td class="pinyin-cell" data-pinyin="ta">ta</td>
-                                            <td class="pinyin-cell" data-pinyin="na">na</td>
-                                            <td class="pinyin-cell" data-pinyin="la">la</td>
-                                            <td class="pinyin-cell" data-pinyin="ga">ga</td>
-                                            <td class="pinyin-cell" data-pinyin="ka">ka</td>
-                                            <td class="pinyin-cell" data-pinyin="ha">ha</td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td class="pinyin-cell" data-pinyin="za">za</td>
-                                            <td class="pinyin-cell" data-pinyin="ca">ca</td>
-                                            <td class="pinyin-cell" data-pinyin="sa">sa</td>
-                                            <td class="pinyin-cell" data-pinyin="zha">zha</td>
-                                            <td class="pinyin-cell" data-pinyin="cha">cha</td>
-                                            <td class="pinyin-cell" data-pinyin="sha">sha</td>
-                                            <td class="pinyin-cell" data-pinyin="ra">ra</td>
-                                        </tr>
-                                        <!-- o row -->
-                                        <tr>
-                                            <td class="row-header">o</td>
-                                            <td class="pinyin-cell" data-pinyin="bo">bo</td>
-                                            <td class="pinyin-cell" data-pinyin="po">po</td>
-                                            <td class="pinyin-cell" data-pinyin="mo">mo</td>
-                                            <td class="pinyin-cell" data-pinyin="fo">fo</td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td class="pinyin-cell" data-pinyin="lo">lo</td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td class="pinyin-cell" data-pinyin="ro">ro</td>
-                                        </tr>
-                                        <!-- e row -->
-                                        <tr>
-                                            <td class="row-header">e</td>
-                                            <td></td>
-                                            <td></td>
-                                            <td class="pinyin-cell" data-pinyin="me">me</td>
-                                            <td></td>
-                                            <td class="pinyin-cell" data-pinyin="de">de</td>
-                                            <td class="pinyin-cell" data-pinyin="te">te</td>
-                                            <td class="pinyin-cell" data-pinyin="ne">ne</td>
-                                            <td class="pinyin-cell" data-pinyin="le">le</td>
-                                            <td class="pinyin-cell" data-pinyin="ge">ge</td>
-                                            <td class="pinyin-cell" data-pinyin="ke">ke</td>
-                                            <td class="pinyin-cell" data-pinyin="he">he</td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td class="pinyin-cell" data-pinyin="ze">ze</td>
-                                            <td class="pinyin-cell" data-pinyin="ce">ce</td>
-                                            <td class="pinyin-cell" data-pinyin="se">se</td>
-                                            <td class="pinyin-cell" data-pinyin="zhe">zhe</td>
-                                            <td class="pinyin-cell" data-pinyin="che">che</td>
-                                            <td class="pinyin-cell" data-pinyin="she">she</td>
-                                            <td class="pinyin-cell" data-pinyin="re">re</td>
-                                        </tr>
-                                        <!-- i row -->
-                                        <tr>
-                                            <td class="row-header">i</td>
-                                            <td class="pinyin-cell" data-pinyin="bi">bi</td>
-                                            <td class="pinyin-cell" data-pinyin="pi">pi</td>
-                                            <td class="pinyin-cell" data-pinyin="mi">mi</td>
-                                            <td></td>
-                                            <td class="pinyin-cell" data-pinyin="di">di</td>
-                                            <td class="pinyin-cell" data-pinyin="ti">ti</td>
-                                            <td class="pinyin-cell" data-pinyin="ni">ni</td>
-                                            <td class="pinyin-cell" data-pinyin="li">li</td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td class="pinyin-cell" data-pinyin="ji">ji</td>
-                                            <td class="pinyin-cell" data-pinyin="qi">qi</td>
-                                            <td class="pinyin-cell" data-pinyin="xi">xi</td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td class="pinyin-cell" data-pinyin="ri">ri</td>
-                                        </tr>
-                                        <!-- u row -->
-                                        <tr>
-                                            <td class="row-header">u</td>
-                                            <td class="pinyin-cell" data-pinyin="bu">bu</td>
-                                            <td class="pinyin-cell" data-pinyin="pu">pu</td>
-                                            <td class="pinyin-cell" data-pinyin="mu">mu</td>
-                                            <td class="pinyin-cell" data-pinyin="fu">fu</td>
-                                            <td class="pinyin-cell" data-pinyin="du">du</td>
-                                            <td class="pinyin-cell" data-pinyin="tu">tu</td>
-                                            <td class="pinyin-cell" data-pinyin="nu">nu</td>
-                                            <td class="pinyin-cell" data-pinyin="lu">lu</td>
-                                            <td class="pinyin-cell" data-pinyin="gu">gu</td>
-                                            <td class="pinyin-cell" data-pinyin="ku">ku</td>
-                                            <td class="pinyin-cell" data-pinyin="hu">hu</td>
-                                            <td class="pinyin-cell" data-pinyin="ju">ju</td>
-                                            <td class="pinyin-cell" data-pinyin="qu">qu</td>
-                                            <td class="pinyin-cell" data-pinyin="xu">xu</td>
-                                            <td class="pinyin-cell" data-pinyin="zu">zu</td>
-                                            <td class="pinyin-cell" data-pinyin="cu">cu</td>
-                                            <td class="pinyin-cell" data-pinyin="su">su</td>
-                                            <td class="pinyin-cell" data-pinyin="zhu">zhu</td>
-                                            <td class="pinyin-cell" data-pinyin="chu">chu</td>
-                                            <td class="pinyin-cell" data-pinyin="shu">shu</td>
-                                            <td class="pinyin-cell" data-pinyin="ru">ru</td>
-                                        </tr>
-                                        <!-- ü row -->
-                                        <tr>
-                                            <td class="row-header">ü</td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td class="pinyin-cell" data-pinyin="nü">nü</td>
-                                            <td class="pinyin-cell" data-pinyin="lü">lü</td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td class="pinyin-cell" data-pinyin="ju">ju</td>
-                                            <td class="pinyin-cell" data-pinyin="qu">qu</td>
-                                            <td class="pinyin-cell" data-pinyin="xu">xu</td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                        </tr>
-                                    </tbody>
-                                </table>
-                            </div>
-                        </div>
+            <!-- Sentence Patterns Card -->
+            <a href="pages/sentence-patterns.html" class="bg-white rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300">
+                <div class="p-6">
+                    <h2 class="text-xl font-semibold text-gray-900 mb-2">Sentence Patterns</h2>
+                    <p class="text-gray-600">Understand common Chinese sentence structures and grammar patterns.</p>
+                </div>
+            </a>
 
-                        <script>
-                            document.addEventListener('DOMContentLoaded', function() {
-                                const pinyinCells = document.querySelectorAll('.pinyin-cell');
-                                
-                                async function playPinyinAudio(pinyin) {
-                                    try {
-                                        const response = await fetch('http://localhost:3000/api/tts', {
-                                            method: 'POST',
-                                            headers: {
-                                                'Content-Type': 'application/json',
-                                            },
-                                            body: JSON.stringify({ text: pinyin })
-                                        });
+            <!-- Basic Conversations Card -->
+            <a href="pages/basic-conversations.html" class="bg-white rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300">
+                <div class="p-6">
+                    <h2 class="text-xl font-semibold text-gray-900 mb-2">Basic Conversations</h2>
+                    <p class="text-gray-600">Practice everyday Chinese conversations and dialogues.</p>
+                </div>
+            </a>
 
-                                        if (!response.ok) {
-                                            throw new Error('TTS request failed');
-                                        }
+            <!-- Reading Practice Card -->
+            <a href="pages/reading-practice.html" class="bg-white rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300">
+                <div class="p-6">
+                    <h2 class="text-xl font-semibold text-gray-900 mb-2">Reading Practice</h2>
+                    <p class="text-gray-600">Improve your Chinese reading skills with graded materials.</p>
+                </div>
+            </a>
 
-                                        const audioBlob = await response.blob();
-                                        const audioUrl = URL.createObjectURL(audioBlob);
-                                        const audio = new Audio(audioUrl);
-                                        
-                                        audio.onended = () => {
-                                            URL.revokeObjectURL(audioUrl);
-                                        };
-                                        
-                                        await audio.play();
-                                    } catch (error) {
-                                        console.error('Error playing audio:', error);
-                                        alert('Failed to play audio. Please try again.');
-                                    }
-                                }
-
-                                pinyinCells.forEach(cell => {
-                                    cell.addEventListener('click', function() {
-                                        const pinyin = this.getAttribute('data-pinyin');
-                                        playPinyinAudio(pinyin);
-                                    });
-                                });
-                            });
-                        </script>
-                    </div>
-                </section>
-
-                <!-- Basic Characters -->
-                <section id="basic-characters" class="content-section bg-white rounded-lg shadow-md p-6 mb-8">
-                    <h2 class="text-2xl font-bold text-gray-900 mb-4">基础汉字 - Basic Characters</h2>
-                    <div class="space-y-4">
-                        <div class="bg-gray-50 p-4 rounded-lg">
-                            <h3 class="text-xl font-semibold text-gray-800 mb-4">Essential Characters</h3>
-                            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                                <div class="space-y-3">
-                                    <div>
-                                        <div class="pinyin">wǒ</div>
-                                        <div class="chinese-text">我</div>
-                                        <div class="english">I, me</div>
-                                    </div>
-                                    <div>
-                                        <div class="pinyin">nǐ</div>
-                                        <div class="chinese-text">你</div>
-                                        <div class="english">you</div>
-                                    </div>
-                                    <div>
-                                        <div class="pinyin">hǎo</div>
-                                        <div class="chinese-text">好</div>
-                                        <div class="english">good</div>
-                                    </div>
-                                </div>
-                                <div class="space-y-3">
-                                    <div>
-                                        <div class="pinyin">xiè xiè</div>
-                                        <div class="chinese-text">谢谢</div>
-                                        <div class="english">thank you</div>
-                                    </div>
-                                    <div>
-                                        <div class="pinyin">zài jiàn</div>
-                                        <div class="chinese-text">再见</div>
-                                        <div class="english">goodbye</div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </section>
-
-                <!-- Sentence Patterns -->
-                <section id="sentence-patterns" class="content-section bg-white rounded-lg shadow-md p-6 mb-8">
-                    <h2 class="text-2xl font-bold text-gray-900 mb-4">句型 - Sentence Patterns</h2>
-                    <div class="space-y-4">
-                        <div class="bg-gray-50 p-4 rounded-lg">
-                            <h3 class="text-xl font-semibold text-gray-800 mb-4">Basic Patterns</h3>
-                            <div class="space-y-6">
-                                <div>
-                                    <h4 class="font-medium text-gray-900 mb-2">Subject + Verb + Object</h4>
-                                    <div class="pinyin">Wǒ xué zhōngwén</div>
-                                    <div class="chinese-text">我学中文</div>
-                                    <div class="english">I study Chinese</div>
-                                </div>
-                                <div>
-                                    <h4 class="font-medium text-gray-900 mb-2">Question Formation</h4>
-                                    <div class="pinyin">Nǐ xǐhuan chī shénme?</div>
-                                    <div class="chinese-text">你喜欢吃什么？</div>
-                                    <div class="english">What do you like to eat?</div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </section>
-
-                <!-- Basic Conversations -->
-                <section id="conversations" class="content-section bg-white rounded-lg shadow-md p-6 mb-8">
-                    <h2 class="text-2xl font-bold text-gray-900 mb-4">对话 - Conversations</h2>
-                    <div class="space-y-4">
-                        <div class="bg-gray-50 p-4 rounded-lg">
-                            <h3 class="text-xl font-semibold text-gray-800 mb-4">Daily Conversations</h3>
-                            <div class="space-y-6">
-                                <div>
-                                    <h4 class="font-medium text-gray-900 mb-2">Greeting</h4>
-                                    <div class="space-y-2">
-                                        <div>
-                                            <div class="pinyin">A: Nǐ hǎo!</div>
-                                            <div class="chinese-text">A: 你好！</div>
-                                            <div class="english">A: Hello!</div>
-                                        </div>
-                                        <div>
-                                            <div class="pinyin">B: Nǐ hǎo! Nǐ hǎo ma?</div>
-                                            <div class="chinese-text">B: 你好！你好吗？</div>
-                                            <div class="english">B: Hello! How are you?</div>
-                                        </div>
-                                        <div>
-                                            <div class="pinyin">A: Wǒ hěn hǎo, xièxie.</div>
-                                            <div class="chinese-text">A: 我很好，谢谢。</div>
-                                            <div class="english">A: I'm very well, thank you.</div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </section>
-
-                <!-- Reading Practice -->
-                <section id="reading" class="content-section bg-white rounded-lg shadow-md p-6 mb-8">
-                    <h2 class="text-2xl font-bold text-gray-900 mb-4">阅读练习 - Reading Practice</h2>
-                    <div class="space-y-4">
-                        <div class="bg-gray-50 p-4 rounded-lg">
-                            <h3 class="text-xl font-semibold text-gray-800 mb-4">Simple Story</h3>
-                            <div class="space-y-4">
-                                <div>
-                                    <div class="pinyin">Zhè shì wǒ de jiā.</div>
-                                    <div class="chinese-text">这是我的家。</div>
-                                    <div class="english">This is my home.</div>
-                                </div>
-                                <div>
-                                    <div class="pinyin">Wǒ hé wǒ de jiārén zhù zài zhèlǐ.</div>
-                                    <div class="chinese-text">我和我的家人住在这里。</div>
-                                    <div class="english">I live here with my family.</div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </section>
-
-                <!-- Practice Tips -->
-                <section id="practice-tips" class="content-section bg-white rounded-lg shadow-md p-6 mb-8">
-                    <h2 class="text-2xl font-bold text-gray-900 mb-4">学习建议 - Practice Tips</h2>
-                    <div class="space-y-4">
-                        <div class="bg-gray-50 p-4 rounded-lg">
-                            <ul class="space-y-3">
-                                <li class="flex items-start">
-                                    <span class="text-red-600 mr-2">•</span>
-                                    <span class="text-gray-700">Practice pronunciation with native speakers or language apps</span>
-                                </li>
-                                <li class="flex items-start">
-                                    <span class="text-red-600 mr-2">•</span>
-                                    <span class="text-gray-700">Write characters repeatedly to memorize them</span>
-                                </li>
-                                <li class="flex items-start">
-                                    <span class="text-red-600 mr-2">•</span>
-                                    <span class="text-gray-700">Listen to Chinese music and watch Chinese movies</span>
-                                </li>
-                                <li class="flex items-start">
-                                    <span class="text-red-600 mr-2">•</span>
-                                    <span class="text-gray-700">Use flashcards for vocabulary practice</span>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                </section>
-            </div>
+            <!-- Practice Tips Card -->
+            <a href="pages/practice-tips.html" class="bg-white rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300">
+                <div class="p-6">
+                    <h2 class="text-xl font-semibold text-gray-900 mb-2">Practice Tips</h2>
+                    <p class="text-gray-600">Learn effective strategies for mastering Chinese.</p>
+                </div>
+            </a>
         </div>
     </div>
 
     <!-- Footer -->
-    <footer class="bg-white border-t border-gray-200 mt-8">
-        <div class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
-            <p class="text-center text-gray-500 text-sm">
-                © 2024 Chinese Learning Website. All rights reserved.
-            </p>
+    <footer class="bg-white mt-12">
+        <div class="max-w-7xl mx-auto py-12 px-4 sm:px-6 md:flex md:items-center md:justify-between lg:px-8">
+            <div class="mt-8 md:mt-0 md:order-1">
+                <p class="text-center text-base text-gray-400">
+                    &copy; 2024 Learn Chinese. All rights reserved.
+                </p>
+            </div>
         </div>
     </footer>
 

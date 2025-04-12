@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pinyin Chart - Learn Chinese</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="../css/styles.css">
+    <style>
+        .pinyin-chart {
+            width: 100%;
+            overflow-x: auto;
+            margin: 2rem 0;
+        }
+        .pinyin-table {
+            border-collapse: collapse;
+            width: 100%;
+            margin: 20px 0;
+            background-color: white;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        }
+        .pinyin-table th,
+        .pinyin-table td {
+            border: 1px solid #ddd;
+            padding: 12px;
+            text-align: center;
+            font-size: 16px;
+        }
+        .pinyin-table th {
+            background-color: #f5f5f5;
+            font-weight: bold;
+            color: #333;
+        }
+        .row-header {
+            background-color: #f5f5f5;
+            font-weight: bold;
+            color: #333;
+        }
+        .pinyin-cell {
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+        .pinyin-cell:hover {
+            background-color: #f0f7ff;
+            transform: scale(1.1);
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+            z-index: 1;
+            position: relative;
+        }
+        .pinyin-cell.playing {
+            background-color: #e3f2fd;
+            transform: scale(1.05);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+        }
+        @keyframes pulse {
+            0% { transform: scale(1.05); }
+            50% { transform: scale(1.1); }
+            100% { transform: scale(1.05); }
+        }
+        .pinyin-cell.playing {
+            animation: pulse 1s infinite;
+        }
+    </style>
+</head>
+<body class="bg-gray-50">
+    <!-- Navigation -->
+    <nav class="bg-white shadow">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-16">
+                <div class="flex">
+                    <div class="flex-shrink-0 flex items-center">
+                        <a href="../" class="text-red-600 text-2xl font-bold">学中文</a>
+                    </div>
+                    <div class="hidden sm:ml-6 sm:flex sm:space-x-8">
+                        <a href="../" class="text-gray-500 hover:text-gray-700 px-3 py-2 rounded-md">Home</a>
+                        <a href="../learn.html" class="text-red-600 border-red-600 border-b-2 px-3 py-2 rounded-md">Learn Chinese</a>
+                        <a href="../culture.html" class="text-gray-500 hover:text-gray-700 px-3 py-2 rounded-md">Culture</a>
+                        <a href="../travel.html" class="text-gray-500 hover:text-gray-700 px-3 py-2 rounded-md">Travel</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+        <div class="mb-8">
+            <a href="pinyin-system.html" class="text-red-600 hover:text-red-700">← Back to Pinyin System</a>
+        </div>
+
+        <h1 class="text-3xl font-bold text-gray-900 mb-8">Interactive Pinyin Chart</h1>
+
+        <!-- Interactive Chart Section -->
+        <div class="bg-white rounded-lg shadow-md p-6 mb-8">
+            <p class="text-gray-600 mb-4">Click on any Pinyin to hear its pronunciation. This chart shows all possible Pinyin combinations in Mandarin Chinese.</p>
+            
+            <div class="pinyin-chart">
+                <table class="pinyin-table">
+                    <thead>
+                        <tr>
+                            <th></th>
+                            <th>b</th>
+                            <th>p</th>
+                            <th>m</th>
+                            <th>f</th>
+                            <th>d</th>
+                            <th>t</th>
+                            <th>n</th>
+                            <th>l</th>
+                            <th>g</th>
+                            <th>k</th>
+                            <th>h</th>
+                            <th>j</th>
+                            <th>q</th>
+                            <th>x</th>
+                            <th>z</th>
+                            <th>c</th>
+                            <th>s</th>
+                            <th>zh</th>
+                            <th>ch</th>
+                            <th>sh</th>
+                            <th>r</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td class="row-header">a</td>
+                            <td class="pinyin-cell" data-pinyin="ba">ba</td>
+                            <td class="pinyin-cell" data-pinyin="pa">pa</td>
+                            <td class="pinyin-cell" data-pinyin="ma">ma</td>
+                            <td class="pinyin-cell" data-pinyin="fa">fa</td>
+                            <td class="pinyin-cell" data-pinyin="da">da</td>
+                            <td class="pinyin-cell" data-pinyin="ta">ta</td>
+                            <td class="pinyin-cell" data-pinyin="na">na</td>
+                            <td class="pinyin-cell" data-pinyin="la">la</td>
+                            <td class="pinyin-cell" data-pinyin="ga">ga</td>
+                            <td class="pinyin-cell" data-pinyin="ka">ka</td>
+                            <td class="pinyin-cell" data-pinyin="ha">ha</td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td class="pinyin-cell" data-pinyin="za">za</td>
+                            <td class="pinyin-cell" data-pinyin="ca">ca</td>
+                            <td class="pinyin-cell" data-pinyin="sa">sa</td>
+                            <td class="pinyin-cell" data-pinyin="zha">zha</td>
+                            <td class="pinyin-cell" data-pinyin="cha">cha</td>
+                            <td class="pinyin-cell" data-pinyin="sha">sha</td>
+                            <td class="pinyin-cell" data-pinyin="ra">ra</td>
+                        </tr>
+                        <!-- Add more rows for other vowels -->
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- Navigation Links -->
+        <div class="flex justify-between items-center mt-8">
+            <a href="pinyin-tones.html" class="text-red-600 hover:text-red-700">← Tones</a>
+            <a href="pinyin-initials.html" class="text-red-600 hover:text-red-700">Initials →</a>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-white mt-12">
+        <div class="max-w-7xl mx-auto py-12 px-4 sm:px-6 md:flex md:items-center md:justify-between lg:px-8">
+            <div class="mt-8 md:mt-0 md:order-1">
+                <p class="text-center text-base text-gray-400">
+                    &copy; 2024 Learn Chinese. All rights reserved.
+                </p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const pinyinCells = document.querySelectorAll('.pinyin-cell');
+            let currentAudio = null;
+
+            pinyinCells.forEach(cell => {
+                cell.addEventListener('click', async function() {
+                    const pinyin = this.dataset.pinyin;
+                    if (!pinyin) return;
+
+                    // Stop any currently playing audio
+                    if (currentAudio) {
+                        currentAudio.pause();
+                        currentAudio = null;
+                    }
+
+                    // Remove playing class from all cells
+                    document.querySelectorAll('.pinyin-cell.playing').forEach(cell => {
+                        cell.classList.remove('playing');
+                    });
+
+                    try {
+                        // Add playing class to current cell
+                        this.classList.add('playing');
+
+                        const response = await fetch('/api/tts', {
+                            method: 'POST',
+                            headers: {
+                                'Content-Type': 'application/json'
+                            },
+                            body: JSON.stringify({ text: pinyin })
+                        });
+                        
+                        if (!response.ok) {
+                            throw new Error(`HTTP error! status: ${response.status}`);
+                        }
+                        
+                        const audioBlob = await response.blob();
+                        const audioUrl = URL.createObjectURL(audioBlob);
+                        
+                        currentAudio = new Audio(audioUrl);
+                        currentAudio.addEventListener('ended', () => {
+                            URL.revokeObjectURL(audioUrl);
+                            this.classList.remove('playing');
+                        });
+                        
+                        await currentAudio.play();
+                    } catch (error) {
+                        console.error('Error playing audio:', error);
+                        this.classList.remove('playing');
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html> 
