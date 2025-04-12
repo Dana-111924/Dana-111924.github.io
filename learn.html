@@ -62,6 +62,48 @@
         .highlight-char {
             color: #1e40af;  /* dark blue */
         }
+        .pinyin-chart {
+            width: 100%;
+            overflow-x: auto;
+            margin: 2rem 0;
+        }
+        .pinyin-table {
+            border-collapse: collapse;
+            width: max-content;
+            min-width: 100%;
+        }
+        .pinyin-table th {
+            background-color: #06B6D4;
+            color: white;
+            padding: 0.5rem;
+            text-align: center;
+            font-weight: 500;
+        }
+        .pinyin-table td {
+            border: 1px solid #E5E7EB;
+            padding: 0.5rem;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        .pinyin-table td:hover {
+            background-color: #F0F9FF;
+        }
+        .pinyin-table .row-header {
+            background-color: #06B6D4;
+            color: white;
+            font-weight: 500;
+        }
+        .pinyin-cell {
+            position: relative;
+        }
+        .pinyin-cell:hover::after {
+            content: '🔊';
+            position: absolute;
+            top: -8px;
+            right: -8px;
+            font-size: 12px;
+        }
     </style>
 </head>
 <body class="bg-gray-50">
@@ -203,6 +245,237 @@
                                 </div>
                             </div>
                         </div>
+
+                        <!-- After Basic Rules section -->
+                        <div class="mt-8">
+                            <h3 class="text-xl font-semibold text-gray-800 mb-4">Interactive Pinyin Chart</h3>
+                            <p class="text-gray-600 mb-4">Click on any Pinyin to hear its pronunciation. This chart shows all possible Pinyin combinations in Mandarin Chinese.</p>
+                            
+                            <div class="pinyin-chart">
+                                <table class="pinyin-table">
+                                    <thead>
+                                        <tr>
+                                            <th></th>
+                                            <th>b</th>
+                                            <th>p</th>
+                                            <th>m</th>
+                                            <th>f</th>
+                                            <th>d</th>
+                                            <th>t</th>
+                                            <th>n</th>
+                                            <th>l</th>
+                                            <th>g</th>
+                                            <th>k</th>
+                                            <th>h</th>
+                                            <th>j</th>
+                                            <th>q</th>
+                                            <th>x</th>
+                                            <th>z</th>
+                                            <th>c</th>
+                                            <th>s</th>
+                                            <th>zh</th>
+                                            <th>ch</th>
+                                            <th>sh</th>
+                                            <th>r</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <!-- a row -->
+                                        <tr>
+                                            <td class="row-header">a</td>
+                                            <td class="pinyin-cell" data-pinyin="ba">ba</td>
+                                            <td class="pinyin-cell" data-pinyin="pa">pa</td>
+                                            <td class="pinyin-cell" data-pinyin="ma">ma</td>
+                                            <td class="pinyin-cell" data-pinyin="fa">fa</td>
+                                            <td class="pinyin-cell" data-pinyin="da">da</td>
+                                            <td class="pinyin-cell" data-pinyin="ta">ta</td>
+                                            <td class="pinyin-cell" data-pinyin="na">na</td>
+                                            <td class="pinyin-cell" data-pinyin="la">la</td>
+                                            <td class="pinyin-cell" data-pinyin="ga">ga</td>
+                                            <td class="pinyin-cell" data-pinyin="ka">ka</td>
+                                            <td class="pinyin-cell" data-pinyin="ha">ha</td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td class="pinyin-cell" data-pinyin="za">za</td>
+                                            <td class="pinyin-cell" data-pinyin="ca">ca</td>
+                                            <td class="pinyin-cell" data-pinyin="sa">sa</td>
+                                            <td class="pinyin-cell" data-pinyin="zha">zha</td>
+                                            <td class="pinyin-cell" data-pinyin="cha">cha</td>
+                                            <td class="pinyin-cell" data-pinyin="sha">sha</td>
+                                            <td class="pinyin-cell" data-pinyin="ra">ra</td>
+                                        </tr>
+                                        <!-- o row -->
+                                        <tr>
+                                            <td class="row-header">o</td>
+                                            <td class="pinyin-cell" data-pinyin="bo">bo</td>
+                                            <td class="pinyin-cell" data-pinyin="po">po</td>
+                                            <td class="pinyin-cell" data-pinyin="mo">mo</td>
+                                            <td class="pinyin-cell" data-pinyin="fo">fo</td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td class="pinyin-cell" data-pinyin="lo">lo</td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td class="pinyin-cell" data-pinyin="ro">ro</td>
+                                        </tr>
+                                        <!-- e row -->
+                                        <tr>
+                                            <td class="row-header">e</td>
+                                            <td></td>
+                                            <td></td>
+                                            <td class="pinyin-cell" data-pinyin="me">me</td>
+                                            <td></td>
+                                            <td class="pinyin-cell" data-pinyin="de">de</td>
+                                            <td class="pinyin-cell" data-pinyin="te">te</td>
+                                            <td class="pinyin-cell" data-pinyin="ne">ne</td>
+                                            <td class="pinyin-cell" data-pinyin="le">le</td>
+                                            <td class="pinyin-cell" data-pinyin="ge">ge</td>
+                                            <td class="pinyin-cell" data-pinyin="ke">ke</td>
+                                            <td class="pinyin-cell" data-pinyin="he">he</td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td class="pinyin-cell" data-pinyin="ze">ze</td>
+                                            <td class="pinyin-cell" data-pinyin="ce">ce</td>
+                                            <td class="pinyin-cell" data-pinyin="se">se</td>
+                                            <td class="pinyin-cell" data-pinyin="zhe">zhe</td>
+                                            <td class="pinyin-cell" data-pinyin="che">che</td>
+                                            <td class="pinyin-cell" data-pinyin="she">she</td>
+                                            <td class="pinyin-cell" data-pinyin="re">re</td>
+                                        </tr>
+                                        <!-- i row -->
+                                        <tr>
+                                            <td class="row-header">i</td>
+                                            <td class="pinyin-cell" data-pinyin="bi">bi</td>
+                                            <td class="pinyin-cell" data-pinyin="pi">pi</td>
+                                            <td class="pinyin-cell" data-pinyin="mi">mi</td>
+                                            <td></td>
+                                            <td class="pinyin-cell" data-pinyin="di">di</td>
+                                            <td class="pinyin-cell" data-pinyin="ti">ti</td>
+                                            <td class="pinyin-cell" data-pinyin="ni">ni</td>
+                                            <td class="pinyin-cell" data-pinyin="li">li</td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td class="pinyin-cell" data-pinyin="ji">ji</td>
+                                            <td class="pinyin-cell" data-pinyin="qi">qi</td>
+                                            <td class="pinyin-cell" data-pinyin="xi">xi</td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td class="pinyin-cell" data-pinyin="ri">ri</td>
+                                        </tr>
+                                        <!-- u row -->
+                                        <tr>
+                                            <td class="row-header">u</td>
+                                            <td class="pinyin-cell" data-pinyin="bu">bu</td>
+                                            <td class="pinyin-cell" data-pinyin="pu">pu</td>
+                                            <td class="pinyin-cell" data-pinyin="mu">mu</td>
+                                            <td class="pinyin-cell" data-pinyin="fu">fu</td>
+                                            <td class="pinyin-cell" data-pinyin="du">du</td>
+                                            <td class="pinyin-cell" data-pinyin="tu">tu</td>
+                                            <td class="pinyin-cell" data-pinyin="nu">nu</td>
+                                            <td class="pinyin-cell" data-pinyin="lu">lu</td>
+                                            <td class="pinyin-cell" data-pinyin="gu">gu</td>
+                                            <td class="pinyin-cell" data-pinyin="ku">ku</td>
+                                            <td class="pinyin-cell" data-pinyin="hu">hu</td>
+                                            <td class="pinyin-cell" data-pinyin="ju">ju</td>
+                                            <td class="pinyin-cell" data-pinyin="qu">qu</td>
+                                            <td class="pinyin-cell" data-pinyin="xu">xu</td>
+                                            <td class="pinyin-cell" data-pinyin="zu">zu</td>
+                                            <td class="pinyin-cell" data-pinyin="cu">cu</td>
+                                            <td class="pinyin-cell" data-pinyin="su">su</td>
+                                            <td class="pinyin-cell" data-pinyin="zhu">zhu</td>
+                                            <td class="pinyin-cell" data-pinyin="chu">chu</td>
+                                            <td class="pinyin-cell" data-pinyin="shu">shu</td>
+                                            <td class="pinyin-cell" data-pinyin="ru">ru</td>
+                                        </tr>
+                                        <!-- ü row -->
+                                        <tr>
+                                            <td class="row-header">ü</td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td class="pinyin-cell" data-pinyin="nü">nü</td>
+                                            <td class="pinyin-cell" data-pinyin="lü">lü</td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td class="pinyin-cell" data-pinyin="ju">ju</td>
+                                            <td class="pinyin-cell" data-pinyin="qu">qu</td>
+                                            <td class="pinyin-cell" data-pinyin="xu">xu</td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+
+                        <script>
+                            document.addEventListener('DOMContentLoaded', function() {
+                                const pinyinCells = document.querySelectorAll('.pinyin-cell');
+                                
+                                async function playPinyinAudio(pinyin) {
+                                    try {
+                                        const response = await fetch('http://localhost:3000/api/tts', {
+                                            method: 'POST',
+                                            headers: {
+                                                'Content-Type': 'application/json',
+                                            },
+                                            body: JSON.stringify({ text: pinyin })
+                                        });
+
+                                        if (!response.ok) {
+                                            throw new Error('TTS request failed');
+                                        }
+
+                                        const audioBlob = await response.blob();
+                                        const audioUrl = URL.createObjectURL(audioBlob);
+                                        const audio = new Audio(audioUrl);
+                                        
+                                        audio.onended = () => {
+                                            URL.revokeObjectURL(audioUrl);
+                                        };
+                                        
+                                        await audio.play();
+                                    } catch (error) {
+                                        console.error('Error playing audio:', error);
+                                        alert('Failed to play audio. Please try again.');
+                                    }
+                                }
+
+                                pinyinCells.forEach(cell => {
+                                    cell.addEventListener('click', function() {
+                                        const pinyin = this.getAttribute('data-pinyin');
+                                        playPinyinAudio(pinyin);
+                                    });
+                                });
+                            });
+                        </script>
                     </div>
                 </section>
 
