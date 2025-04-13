@@ -11,13 +11,15 @@ const app = express();
 
 // Configure CORS
 const corsOptions = {
-    origin: process.env.NODE_ENV === 'production' 
-        ? ['https://dana-111924.github.io'] 
-        : ['http://localhost:3000', 'http://localhost:3001'],
-    methods: ['GET', 'POST'],
-    allowedHeaders: ['Content-Type']
+    origin: ['https://dana-111924.github.io', 'http://localhost:3000', 'http://localhost:3001'],
+    methods: ['GET', 'POST', 'OPTIONS'],
+    allowedHeaders: ['Content-Type', 'Accept'],
+    credentials: true
 };
 app.use(cors(corsOptions));
+
+// Pre-flight requests
+app.options('*', cors(corsOptions));
 
 // Configure rate limiting
 const limiter = rateLimit({
@@ -47,7 +49,10 @@ async function getAccessToken() {
     
     try {
         console.log('Fetching new access token...');
-        const response = await fetch(`https://aip.baidubce.com/oauth/2.0/token?grant_type=client_credentials&client_id=${apiKey}&client_secret=${secretKey}`);
+        const tokenUrl = `https://aip.baidubce.com/oauth/2.0/token?grant_type=client_credentials&client_id=${apiKey}&client_secret=${secretKey}`;
+        console.log('Token URL:', tokenUrl);
+        
+        const response = await fetch(tokenUrl);
         
         if (!response.ok) {
             const errorText = await response.text();
@@ -55,6 +60,8 @@ async function getAccessToken() {
         }
         
         const data = await response.json();
+        console.log('Token response:', data);
+        
         if (!data.access_token) {
             throw new Error('No access token in response');
         }
@@ -75,9 +82,13 @@ async function textToSpeech(text, token) {
         throw new Error('Text and token are required');
     }
 
+    // Convert text to UTF-8 encoded string
+    const utf8Text = encodeURIComponent(text);
+    console.log('Encoded text:', utf8Text);
+
     const params = {
         tok: token,
-        tex: encodeURIComponent(text),
+        tex: utf8Text,
         cuid: process.env.BAIDU_APP_ID,
         ctp: 1,
         lan: 'zh',
@@ -92,17 +103,23 @@ async function textToSpeech(text, token) {
     console.log('Making TTS request to:', url);
     
     try {
-        const response = await fetch(url);
+        const response = await fetch(url, {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json',
+                'Accept': 'audio/mp3'
+            }
+        });
         
         // Check if response is audio
         const contentType = response.headers.get('content-type');
+        console.log('Response content type:', contentType);
+
         if (!contentType) {
             throw new Error('No content type in response');
         }
 
-        console.log('Response content type:', contentType);
-
-        if (contentType.includes('audio/mp3')) {
+        if (contentType.includes('audio/mp3') || contentType.includes('audio/mpeg')) {
             const buffer = await response.arrayBuffer();
             console.log('Received audio response, size:', buffer.byteLength);
             return buffer;
@@ -123,7 +140,12 @@ app.get('/health', (req, res) => {
     res.json({ 
         status: 'healthy',
         timestamp: new Date().toISOString(),
-        environment: process.env.NODE_ENV
+        environment: process.env.NODE_ENV,
+        config: {
+            hasAppId: !!process.env.BAIDU_APP_ID,
+            hasApiKey: !!process.env.BAIDU_API_KEY,
+            hasSecretKey: !!process.env.BAIDU_SECRET_KEY
+        }
     });
 });
 
@@ -172,8 +194,26 @@ app.use((err, req, res, next) => {
 });
 
 const PORT = process.env.PORT || 3001;
-app.listen(PORT, () => {
-    console.log(`Server running on port ${PORT}`);
-    console.log(`Environment: ${process.env.NODE_ENV}`);
-    console.log('Ready to handle TTS requests');
-}); 
+
+// Check if port is in use before starting server
+const net = require('net');
+const server = net.createServer();
+
+server.once('error', (err) => {
+    if (err.code === 'EADDRINUSE') {
+        console.error(`Port ${PORT} is already in use. Please try a different port or kill the existing process.`);
+        process.exit(1);
+    }
+});
+
+server.once('listening', () => {
+    server.close(() => {
+        app.listen(PORT, () => {
+            console.log(`Server running on port ${PORT}`);
+            console.log(`Environment: ${process.env.NODE_ENV}`);
+            console.log('Ready to handle TTS requests');
+        });
+    });
+});
+
+server.listen(PORT); 

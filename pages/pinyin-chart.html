@@ -935,9 +935,7 @@
 
     <script>
         // API configuration
-        const API_BASE_URL = window.location.hostname === 'localhost' 
-            ? 'http://localhost:3001'
-            : 'https://chinese-learning-site.onrender.com'; // Updated with Render deployment URL
+        const API_BASE_URL = 'https://chinese-learning-site.onrender.com';
 
         document.addEventListener('DOMContentLoaded', function() {
             let currentAudio = null;
@@ -946,6 +944,7 @@
             cells.forEach(cell => {
                 cell.addEventListener('click', async function() {
                     const pinyin = this.getAttribute('data-pinyin');
+                    if (!pinyin) return;
                     
                     // Remove playing class from all cells
                     cells.forEach(c => c.classList.remove('playing'));
@@ -963,16 +962,23 @@
                         const response = await fetch(`${API_BASE_URL}/api/tts`, {
                             method: 'POST',
                             headers: {
-                                'Content-Type': 'application/json'
+                                'Content-Type': 'application/json',
+                                'Accept': 'audio/mp3'
                             },
                             body: JSON.stringify({ text: pinyin })
                         });
                         
                         if (!response.ok) {
-                            throw new Error('Failed to fetch audio');
+                            const errorData = await response.json();
+                            console.error('TTS API error:', errorData);
+                            throw new Error(errorData.error || 'Failed to fetch audio');
                         }
                         
                         const audioBlob = await response.blob();
+                        if (!audioBlob || audioBlob.size === 0) {
+                            throw new Error('No audio data received');
+                        }
+
                         const audioUrl = URL.createObjectURL(audioBlob);
                         
                         // Play audio
@@ -982,10 +988,19 @@
                             URL.revokeObjectURL(audioUrl);
                             currentAudio = null;
                         });
+
+                        currentAudio.addEventListener('error', (e) => {
+                            console.error('Audio playback error:', e);
+                            this.classList.remove('playing');
+                            URL.revokeObjectURL(audioUrl);
+                            currentAudio = null;
+                        });
+
                         await currentAudio.play();
                     } catch (error) {
                         console.error('Error playing audio:', error);
                         this.classList.remove('playing');
+                        alert('Failed to play audio. Please try again later.');
                     }
                 });
             });
