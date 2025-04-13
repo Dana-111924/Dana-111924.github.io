@@ -102,23 +102,27 @@
     </footer>
 
     <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            const toneExamples = document.querySelectorAll('.tone-example');
-            let currentAudio = null;
+        // API configuration
+        const API_BASE_URL = window.location.hostname === 'localhost' 
+            ? 'http://localhost:3001'
+            : 'https://chinese-learning-site.onrender.com';
 
+        document.addEventListener('DOMContentLoaded', function() {
+            let currentAudio = null;
+            const toneExamples = document.querySelectorAll('.tone-example');
+            
             toneExamples.forEach(example => {
                 example.addEventListener('click', async function() {
                     const character = this.querySelector('.text-3xl').textContent;
                     if (!character) return;
 
-                    // Stop any currently playing audio
                     if (currentAudio) {
                         currentAudio.pause();
                         currentAudio = null;
                     }
 
                     try {
-                        const response = await fetch('/api/tts', {
+                        const response = await fetch(`${API_BASE_URL}/api/tts`, {
                             method: 'POST',
                             headers: {
                                 'Content-Type': 'application/json'

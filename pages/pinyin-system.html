@@ -149,32 +149,29 @@
     </footer>
 
     <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            const pinyinCells = document.querySelectorAll('.pinyin-cell');
-            let currentAudio = null;
+        // API configuration
+        const API_BASE_URL = window.location.hostname === 'localhost' 
+            ? 'http://localhost:3001'
+            : 'https://chinese-learning-site.onrender.com';
 
-            pinyinCells.forEach(cell => {
+        document.addEventListener('DOMContentLoaded', function() {
+            let currentAudio = null;
+            const cells = document.querySelectorAll('.pinyin-cell');
+            
+            cells.forEach(cell => {
                 cell.addEventListener('click', async function() {
                     const pinyin = this.getAttribute('data-pinyin');
                     if (!pinyin) return;
 
-                    // Stop any currently playing audio
                     if (currentAudio) {
                         currentAudio.pause();
                         currentAudio = null;
                     }
 
-                    // Remove playing class from all cells
-                    document.querySelectorAll('.pinyin-cell').forEach(cell => {
-                        cell.classList.remove('playing');
-                    });
-
                     try {
-                        // Add playing class to current cell
                         this.classList.add('playing');
-
-                        // Create and play audio
-                        const response = await fetch('/api/tts', {
+                        
+                        const response = await fetch(`${API_BASE_URL}/api/tts`, {
                             method: 'POST',
                             headers: {
                                 'Content-Type': 'application/json'

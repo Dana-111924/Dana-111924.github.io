@@ -137,31 +137,29 @@
     </footer>
 
     <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            const initialCards = document.querySelectorAll('.initial-card');
-            let currentAudio = null;
+        // API configuration
+        const API_BASE_URL = window.location.hostname === 'localhost' 
+            ? 'http://localhost:3001'
+            : 'https://chinese-learning-site.onrender.com';
 
+        document.addEventListener('DOMContentLoaded', function() {
+            let currentAudio = null;
+            const initialCards = document.querySelectorAll('.initial-card');
+            
             initialCards.forEach(card => {
                 card.addEventListener('click', async function() {
                     const pinyin = this.dataset.pinyin;
                     if (!pinyin) return;
 
-                    // Stop any currently playing audio
                     if (currentAudio) {
                         currentAudio.pause();
                         currentAudio = null;
                     }
 
-                    // Remove playing class from all cards
-                    document.querySelectorAll('.initial-card.playing').forEach(card => {
-                        card.classList.remove('playing');
-                    });
-
                     try {
-                        // Add playing class to current card
                         this.classList.add('playing');
 
-                        const response = await fetch('/api/tts', {
+                        const response = await fetch(`${API_BASE_URL}/api/tts`, {
                             method: 'POST',
                             headers: {
                                 'Content-Type': 'application/json'
