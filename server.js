@@ -38,17 +38,20 @@ async function getAccessToken() {
     
     // Return cached token if still valid
     if (accessToken && tokenExpiry > now) {
+        console.log('Using cached access token');
         return accessToken;
     }
 
     const apiKey = process.env.BAIDU_API_KEY;
     const secretKey = process.env.BAIDU_SECRET_KEY;
-    const url = `https://aip.baidubce.com/oauth/2.0/token?grant_type=client_credentials&client_id=${apiKey}&client_secret=${secretKey}`;
     
     try {
-        const response = await fetch(url);
+        console.log('Fetching new access token...');
+        const response = await fetch(`https://aip.baidubce.com/oauth/2.0/token?grant_type=client_credentials&client_id=${apiKey}&client_secret=${secretKey}`);
+        
         if (!response.ok) {
-            throw new Error(`Failed to get access token: ${response.status}`);
+            const errorText = await response.text();
+            throw new Error(`Failed to get access token: ${response.status} - ${errorText}`);
         }
         
         const data = await response.json();
@@ -72,9 +75,9 @@ async function textToSpeech(text, token) {
         throw new Error('Text and token are required');
     }
 
-    const params = querystring.stringify({
-        tex: text,
+    const params = {
         tok: token,
+        tex: encodeURIComponent(text),
         cuid: process.env.BAIDU_APP_ID,
         ctp: 1,
         lan: 'zh',
@@ -83,9 +86,10 @@ async function textToSpeech(text, token) {
         vol: 15,
         per: 0,
         aue: 3
-    });
+    };
 
-    const url = `https://tsn.baidu.com/text2audio?${params}`;
+    const url = `https://tsn.baidu.com/text2audio?${querystring.stringify(params)}`;
+    console.log('Making TTS request to:', url);
     
     try {
         const response = await fetch(url);
@@ -96,13 +100,17 @@ async function textToSpeech(text, token) {
             throw new Error('No content type in response');
         }
 
+        console.log('Response content type:', contentType);
+
         if (contentType.includes('audio/mp3')) {
-            return await response.arrayBuffer();
+            const buffer = await response.arrayBuffer();
+            console.log('Received audio response, size:', buffer.byteLength);
+            return buffer;
         }
         
         // If not audio, it's an error response
         const errorData = await response.json();
-        console.error('TTS API error:', errorData);
+        console.error('TTS API error response:', errorData);
         throw new Error(JSON.stringify(errorData));
     } catch (error) {
         console.error('Error getting TTS audio:', error);
@@ -135,11 +143,13 @@ app.post('/api/tts', async (req, res) => {
             return res.status(500).json({ error: 'Failed to get access token' });
         }
 
+        console.log('Got access token, requesting audio...');
         const audioBuffer = await textToSpeech(text, token);
         if (!audioBuffer) {
             throw new Error('No audio data received');
         }
 
+        console.log('Sending audio response...');
         res.setHeader('Content-Type', 'audio/mp3');
         res.send(Buffer.from(audioBuffer));
         console.log('TTS response sent successfully for text:', text);
