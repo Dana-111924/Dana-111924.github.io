@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chinese Vocabulary by Subject</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        .category-content {
+            display: none;
+        }
+        .category.active .category-content {
+            display: block;
+        }
+        .category-header {
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        .category-header:hover {
+            background-color: #FEE2E2;
+        }
+        .word-item {
+            transition: all 0.3s ease;
+        }
+        .word-item:hover {
+            background-color: #FEF2F2;
+        }
+    </style>
+</head>
+<body class="bg-gray-50">
+    <!-- Navigation -->
+    <nav class="bg-white shadow-lg">
+        <div class="max-w-7xl mx-auto px-4">
+            <div class="flex justify-between">
+                <div class="flex">
+                    <div class="flex-shrink-0 flex items-center">
+                        <a href="/" class="text-2xl font-bold text-red-600">学中文</a>
+                    </div>
+                    <div class="hidden sm:ml-6 sm:flex sm:space-x-8">
+                        <a href="/" class="text-gray-500 hover:text-red-500 inline-flex items-center px-1 pt-1 text-sm font-medium">Home</a>
+                        <a href="/pages/pinyin-chart.html" class="text-gray-500 hover:text-red-500 inline-flex items-center px-1 pt-1 text-sm font-medium">Pinyin Chart</a>
+                        <a href="/pages/vocabulary.html" class="border-red-500 text-gray-900 inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium">Vocabulary</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <div class="max-w-7xl mx-auto py-6 sm:px-6 lg:px-8">
+        <div class="px-4 py-6 sm:px-0">
+            <h1 class="text-3xl font-bold text-gray-900 mb-8">Chinese Vocabulary by Subject</h1>
+            
+            <!-- Categories -->
+            <div class="space-y-4">
+                <!-- People -->
+                <div class="category bg-white rounded-lg shadow">
+                    <div class="category-header p-4 flex justify-between items-center">
+                        <h2 class="text-xl font-semibold text-gray-900">People (人)</h2>
+                        <svg class="w-6 h-6 text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+                        </svg>
+                    </div>
+                    <div class="category-content p-4 border-t">
+                        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+                            <div class="word-item p-3 rounded-md">
+                                <div class="text-lg font-medium">妈妈 (māma)</div>
+                                <div class="text-gray-600">mother</div>
+                            </div>
+                            <div class="word-item p-3 rounded-md">
+                                <div class="text-lg font-medium">爸爸 (bàba)</div>
+                                <div class="text-gray-600">father</div>
+                            </div>
+                            <div class="word-item p-3 rounded-md">
+                                <div class="text-lg font-medium">老师 (lǎoshī)</div>
+                                <div class="text-gray-600">teacher</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Time -->
+                <div class="category bg-white rounded-lg shadow">
+                    <div class="category-header p-4 flex justify-between items-center">
+                        <h2 class="text-xl font-semibold text-gray-900">Time (时间)</h2>
+                        <svg class="w-6 h-6 text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+                        </svg>
+                    </div>
+                    <div class="category-content p-4 border-t">
+                        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+                            <div class="word-item p-3 rounded-md">
+                                <div class="text-lg font-medium">今天 (jīntiān)</div>
+                                <div class="text-gray-600">today</div>
+                            </div>
+                            <div class="word-item p-3 rounded-md">
+                                <div class="text-lg font-medium">明天 (míngtiān)</div>
+                                <div class="text-gray-600">tomorrow</div>
+                            </div>
+                            <div class="word-item p-3 rounded-md">
+                                <div class="text-lg font-medium">昨天 (zuótiān)</div>
+                                <div class="text-gray-600">yesterday</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Places -->
+                <div class="category bg-white rounded-lg shadow">
+                    <div class="category-header p-4 flex justify-between items-center">
+                        <h2 class="text-xl font-semibold text-gray-900">Places (地方)</h2>
+                        <svg class="w-6 h-6 text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+                        </svg>
+                    </div>
+                    <div class="category-content p-4 border-t">
+                        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+                            <div class="word-item p-3 rounded-md">
+                                <div class="text-lg font-medium">学校 (xuéxiào)</div>
+                                <div class="text-gray-600">school</div>
+                            </div>
+                            <div class="word-item p-3 rounded-md">
+                                <div class="text-lg font-medium">医院 (yīyuàn)</div>
+                                <div class="text-gray-600">hospital</div>
+                            </div>
+                            <div class="word-item p-3 rounded-md">
+                                <div class="text-lg font-medium">商店 (shāngdiàn)</div>
+                                <div class="text-gray-600">shop</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.querySelectorAll('.category-header').forEach(header => {
+            header.addEventListener('click', () => {
+                const category = header.parentElement;
+                category.classList.toggle('active');
+            });
+        });
+    </script>
+</body>
+</html> 

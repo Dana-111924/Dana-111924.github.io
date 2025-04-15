@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Time Vocabulary - Learn Chinese</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        .vocab-card {
+            transition: all 0.3s ease;
+        }
+        .vocab-card:hover {
+            transform: translateY(-2px);
+        }
+        .character {
+            font-size: 1.5em;
+        }
+        .hsk-level {
+            position: absolute;
+            top: 0.5rem;
+            right: 0.5rem;
+            padding: 0.25rem 0.5rem;
+            border-radius: 9999px;
+            font-size: 0.75rem;
+            font-weight: 500;
+        }
+        .hsk-1 { background-color: #FEE2E2; color: #991B1B; }
+        .hsk-2 { background-color: #FEF3C7; color: #92400E; }
+        .hsk-3 { background-color: #ECFCCB; color: #3F6212; }
+    </style>
+</head>
+<body class="bg-gray-50">
+    <!-- Navigation -->
+    <nav class="bg-white shadow-lg">
+        <div class="max-w-7xl mx-auto px-4">
+            <div class="flex justify-between h-16">
+                <div class="flex">
+                    <div class="flex-shrink-0 flex items-center">
+                        <a href="/" class="text-2xl font-bold text-red-600">学中文</a>
+                    </div>
+                    <div class="hidden sm:ml-6 sm:flex sm:space-x-8">
+                        <a href="/" class="text-gray-500 hover:text-red-500 inline-flex items-center px-1 pt-1 text-sm font-medium">Home</a>
+                        <a href="/pages/vocab/time.html" class="border-red-500 text-gray-900 inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium">Vocabulary</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Header -->
+    <div class="bg-white shadow">
+        <div class="max-w-7xl mx-auto py-6 px-4">
+            <h1 class="text-3xl font-bold text-gray-900">Time (时间)</h1>
+            <p class="mt-2 text-gray-600">Essential vocabulary about time expressions</p>
+            <div class="mt-4 flex space-x-4">
+                <span class="inline-flex items-center px-3 py-1 rounded-full text-sm font-medium bg-red-100 text-red-800">
+                    HSK 1
+                </span>
+                <span class="inline-flex items-center px-3 py-1 rounded-full text-sm font-medium bg-yellow-100 text-yellow-800">
+                    HSK 2
+                </span>
+                <span class="inline-flex items-center px-3 py-1 rounded-full text-sm font-medium bg-green-100 text-green-800">
+                    HSK 3
+                </span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Vocabulary Grid -->
+    <div class="max-w-7xl mx-auto py-12 px-4">
+        <div class="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
+            <!-- HSK 1 Words -->
+            <div class="vocab-card bg-white rounded-lg shadow p-6 cursor-pointer relative" onclick="playAudio('今天')">
+                <span class="hsk-level hsk-1">HSK 1</span>
+                <div class="flex justify-between items-start">
+                    <div>
+                        <span class="character">今天</span>
+                        <p class="text-gray-600 mt-1">jīntiān</p>
+                        <p class="text-gray-500 mt-2">today</p>
+                    </div>
+                    <button class="text-red-600 hover:text-red-700">
+                        <svg class="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.536 8.464a5 5 0 010 7.072M12 9.64a3 3 0 010 4.72m-3.536-1.464a5 5 0 010-7.072M12 6.36a3 3 0 010-4.72" />
+                        </svg>
+                    </button>
+                </div>
+            </div>
+
+            <div class="vocab-card bg-white rounded-lg shadow p-6 cursor-pointer relative" onclick="playAudio('明天')">
+                <span class="hsk-level hsk-1">HSK 1</span>
+                <div class="flex justify-between items-start">
+                    <div>
+                        <span class="character">明天</span>
+                        <p class="text-gray-600 mt-1">míngtiān</p>
+                        <p class="text-gray-500 mt-2">tomorrow</p>
+                    </div>
+                    <button class="text-red-600 hover:text-red-700">
+                        <svg class="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.536 8.464a5 5 0 010 7.072M12 9.64a3 3 0 010 4.72m-3.536-1.464a5 5 0 010-7.072M12 6.36a3 3 0 010-4.72" />
+                        </svg>
+                    </button>
+                </div>
+            </div>
+
+            <div class="vocab-card bg-white rounded-lg shadow p-6 cursor-pointer relative" onclick="playAudio('昨天')">
+                <span class="hsk-level hsk-1">HSK 1</span>
+                <div class="flex justify-between items-start">
+                    <div>
+                        <span class="character">昨天</span>
+                        <p class="text-gray-600 mt-1">zuótiān</p>
+                        <p class="text-gray-500 mt-2">yesterday</p>
+                    </div>
+                    <button class="text-red-600 hover:text-red-700">
+                        <svg class="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.536 8.464a5 5 0 010 7.072M12 9.64a3 3 0 010 4.72m-3.536-1.464a5 5 0 010-7.072M12 6.36a3 3 0 010-4.72" />
+                        </svg>
+                    </button>
+                </div>
+            </div>
+
+            <div class="vocab-card bg-white rounded-lg shadow p-6 cursor-pointer relative" onclick="playAudio('上午')">
+                <span class="hsk-level hsk-1">HSK 1</span>
+                <div class="flex justify-between items-start">
+                    <div>
+                        <span class="character">上午</span>
+                        <p class="text-gray-600 mt-1">shàngwǔ</p>
+                        <p class="text-gray-500 mt-2">morning</p>
+                    </div>
+                    <button class="text-red-600 hover:text-red-700">
+                        <svg class="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.536 8.464a5 5 0 010 7.072M12 9.64a3 3 0 010 4.72m-3.536-1.464a5 5 0 010-7.072M12 6.36a3 3 0 010-4.72" />
+                        </svg>
+                    </button>
+                </div>
+            </div>
+
+            <div class="vocab-card bg-white rounded-lg shadow p-6 cursor-pointer relative" onclick="playAudio('下午')">
+                <span class="hsk-level hsk-1">HSK 1</span>
+                <div class="flex justify-between items-start">
+                    <div>
+                        <span class="character">下午</span>
+                        <p class="text-gray-600 mt-1">xiàwǔ</p>
+                        <p class="text-gray-500 mt-2">afternoon</p>
+                    </div>
+                    <button class="text-red-600 hover:text-red-700">
+                        <svg class="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.536 8.464a5 5 0 010 7.072M12 9.64a3 3 0 010 4.72m-3.536-1.464a5 5 0 010-7.072M12 6.36a3 3 0 010-4.72" />
+                        </svg>
+                    </button>
+                </div>
+            </div>
+
+            <!-- HSK 3 Words -->
+            <div class="vocab-card bg-white rounded-lg shadow p-6 cursor-pointer relative" onclick="playAudio('以前')">
+                <span class="hsk-level hsk-3">HSK 3</span>
+                <div class="flex justify-between items-start">
+                    <div>
+                        <span class="character">以前</span>
+                        <p class="text-gray-600 mt-1">yǐqián</p>
+                        <p class="text-gray-500 mt-2">before</p>
+                    </div>
+                    <button class="text-red-600 hover:text-red-700">
+                        <svg class="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.536 8.464a5 5 0 010 7.072M12 9.64a3 3 0 010 4.72m-3.536-1.464a5 5 0 010-7.072M12 6.36a3 3 0 010-4.72" />
+                        </svg>
+                    </button>
+                </div>
+            </div>
+
+            <div class="vocab-card bg-white rounded-lg shadow p-6 cursor-pointer relative" onclick="playAudio('以后')">
+                <span class="hsk-level hsk-3">HSK 3</span>
+                <div class="flex justify-between items-start">
+                    <div>
+                        <span class="character">以后</span>
+                        <p class="text-gray-600 mt-1">yǐhòu</p>
+                        <p class="text-gray-500 mt-2">after</p>
+                    </div>
+                    <button class="text-red-600 hover:text-red-700">
+                        <svg class="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.536 8.464a5 5 0 010 7.072M12 9.64a3 3 0 010 4.72m-3.536-1.464a5 5 0 010-7.072M12 6.36a3 3 0 010-4.72" />
+                        </svg>
+                    </button>
+                </div>
+            </div>
+
+            <div class="vocab-card bg-white rounded-lg shadow p-6 cursor-pointer relative" onclick="playAudio('最近')">
+                <span class="hsk-level hsk-3">HSK 3</span>
+                <div class="flex justify-between items-start">
+                    <div>
+                        <span class="character">最近</span>
+                        <p class="text-gray-600 mt-1">zuìjìn</p>
+                        <p class="text-gray-500 mt-2">recently</p>
+                    </div>
+                    <button class="text-red-600 hover:text-red-700">
+                        <svg class="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.536 8.464a5 5 0 010 7.072M12 9.64a3 3 0 010 4.72m-3.536-1.464a5 5 0 010-7.072M12 6.36a3 3 0 010-4.72" />
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Function to play audio using our TTS API
+        async function playAudio(text) {
+            try {
+                const response = await fetch('http://localhost:3001/api/tts', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({ text: text })
+                });
+                
+                if (!response.ok) {
+                    throw new Error('Network response was not ok');
+                }
+                
+                const audioBlob = await response.blob();
+                const audioUrl = URL.createObjectURL(audioBlob);
+                const audio = new Audio(audioUrl);
+                await audio.play();
+                
+                // Clean up
+                audio.onended = () => {
+                    URL.revokeObjectURL(audioUrl);
+                };
+            } catch (error) {
+                console.error('Error playing audio:', error);
+            }
+        }
+    </script>
+</body>
+</html> 

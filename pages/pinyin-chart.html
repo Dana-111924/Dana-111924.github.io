@@ -28,6 +28,81 @@
             padding: 10px;
             white-space: nowrap;
         }
+        
+        .tone-popup {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            z-index: 1000;
+            min-width: 300px;
+        }
+
+        .tone-popup.show {
+            display: block;
+        }
+
+        .tone-title {
+            font-size: 1.2em;
+            margin-bottom: 15px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid #eee;
+        }
+
+        .tone-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 10px;
+            margin-bottom: 15px;
+        }
+
+        .tone-button {
+            padding: 10px;
+            background: #f0f0f0;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            cursor: pointer;
+            text-align: center;
+            transition: background-color 0.2s;
+        }
+
+        .tone-button:hover {
+            background: #e0e0e0;
+        }
+
+        .tone-button.playing {
+            background: #00bcd4;
+            color: white;
+        }
+
+        .close-button {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            cursor: pointer;
+            font-size: 20px;
+            color: #666;
+        }
+
+        .overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 999;
+        }
+
+        .overlay.show {
+            display: block;
+        }
     </style>
 </head>
 <body class="bg-gray-50">
@@ -466,7 +541,6 @@
                         <td class="px-4 py-2 border"></td>
                         <td class="px-4 py-2 border"></td>
                         <td class="px-4 py-2 border"></td>
-                        <td class="px-4 py-2 border"></td>
                     </tr>
                     <tr>
                         <td class="px-4 py-2 border finals-col">in</td>
@@ -570,7 +644,6 @@
                         <td class="px-4 py-2 border pinyin-cell" data-pinyin="po">po</td>
                         <td class="px-4 py-2 border pinyin-cell" data-pinyin="mo">mo</td>
                         <td class="px-4 py-2 border pinyin-cell" data-pinyin="fo">fo</td>
-                        <td class="px-4 py-2 border"></td>
                         <td class="px-4 py-2 border"></td>
                         <td class="px-4 py-2 border"></td>
                         <td class="px-4 py-2 border"></td>
@@ -933,77 +1006,169 @@
         <p>&copy; 2024 Learn Chinese. All rights reserved.</p>
     </footer>
 
+    <div class="overlay" id="overlay"></div>
+    <div class="tone-popup" id="tonePopup">
+        <div class="close-button" onclick="closeTonePopup()">×</div>
+        <div class="tone-title">Select tone for <span id="currentPinyin"></span></div>
+        <div class="tone-grid" id="toneGrid"></div>
+    </div>
+
     <script>
         // API configuration
-        const API_BASE_URL = 'https://chinese-learning-site.onrender.com';
+        const API_BASE_URL = 'http://localhost:3001';
+
+        // Tone marks for vowels
+        const toneMarks = {
+            'a': ['ā', 'á', 'ǎ', 'à'],
+            'e': ['ē', 'é', 'ě', 'è'],
+            'i': ['ī', 'í', 'ǐ', 'ì'],
+            'o': ['ō', 'ó', 'ǒ', 'ò'],
+            'u': ['ū', 'ú', 'ǔ', 'ù'],
+            'ü': ['ǖ', 'ǘ', 'ǚ', 'ǜ']
+        };
+
+        function addToneMarks(pinyin, toneNumber) {
+            if (toneNumber === 5) return pinyin; // neutral tone
+            
+            const vowels = 'aeiouü';
+            let found = false;
+            
+            // Special cases for 'ui' and 'iu'
+            if (pinyin.includes('ui')) {
+                return pinyin.replace('i', toneMarks['i'][toneNumber - 1]);
+            }
+            if (pinyin.includes('iu')) {
+                return pinyin.replace('u', toneMarks['u'][toneNumber - 1]);
+            }
+
+            // Find the vowel to mark based on priority
+            for (let vowel of 'aeoiuü') {
+                if (pinyin.includes(vowel)) {
+                    return pinyin.replace(vowel, toneMarks[vowel][toneNumber - 1]);
+                }
+            }
+            
+            return pinyin;
+        }
+
+        function showTonePopup(pinyin, x, y) {
+            const popup = document.getElementById('tonePopup');
+            const overlay = document.getElementById('overlay');
+            const currentPinyinSpan = document.getElementById('currentPinyin');
+            const toneGrid = document.getElementById('toneGrid');
+            
+            currentPinyinSpan.textContent = pinyin;
+            toneGrid.innerHTML = '';
+            
+            // Create buttons for each tone
+            for (let tone = 1; tone <= 4; tone++) {
+                const button = document.createElement('div');
+                button.className = 'tone-button';
+                button.textContent = addToneMarks(pinyin, tone);
+                button.setAttribute('data-pinyin', pinyin);
+                button.setAttribute('data-tone', tone);
+                button.onclick = () => playTone(pinyin, tone, button);
+                toneGrid.appendChild(button);
+            }
+
+            overlay.classList.add('show');
+            popup.classList.add('show');
+        }
+
+        function closeTonePopup() {
+            const popup = document.getElementById('tonePopup');
+            const overlay = document.getElementById('overlay');
+            popup.classList.remove('show');
+            overlay.classList.remove('show');
+            
+            // Stop any playing audio
+            if (currentAudio) {
+                currentAudio.pause();
+                currentAudio = null;
+            }
+            
+            // Remove playing class from all buttons
+            document.querySelectorAll('.tone-button').forEach(button => {
+                button.classList.remove('playing');
+            });
+        }
+
+        let currentAudio = null;
+
+        async function playTone(pinyin, tone, button) {
+            try {
+                // Remove playing class from all buttons
+                document.querySelectorAll('.tone-button').forEach(btn => {
+                    btn.classList.remove('playing');
+                });
+                
+                // Stop current audio if playing
+                if (currentAudio) {
+                    currentAudio.pause();
+                    currentAudio = null;
+                }
+                
+                // Add playing class to clicked button
+                button.classList.add('playing');
+                
+                // Add tone number to pinyin for TTS
+                const pinyinWithTone = pinyin + tone;
+                
+                const response = await fetch(`${API_BASE_URL}/api/tts`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Accept': 'audio/mp3'
+                    },
+                    body: JSON.stringify({ 
+                        text: pinyinWithTone,
+                        tone: tone 
+                    })
+                });
+                
+                if (!response.ok) {
+                    throw new Error('Failed to fetch audio');
+                }
+                
+                const audioBlob = await response.blob();
+                const audioUrl = URL.createObjectURL(audioBlob);
+                
+                currentAudio = new Audio(audioUrl);
+                currentAudio.addEventListener('ended', () => {
+                    button.classList.remove('playing');
+                    URL.revokeObjectURL(audioUrl);
+                    currentAudio = null;
+                });
+                
+                currentAudio.addEventListener('error', (e) => {
+                    console.error('Audio playback error:', e);
+                    button.classList.remove('playing');
+                    URL.revokeObjectURL(audioUrl);
+                    currentAudio = null;
+                });
+                
+                await currentAudio.play();
+            } catch (error) {
+                console.error('Error playing audio:', error);
+                button.classList.remove('playing');
+                alert('Failed to play audio. Please try again later.');
+            }
+        }
 
         document.addEventListener('DOMContentLoaded', function() {
-            let currentAudio = null;
             const cells = document.querySelectorAll('.pinyin-cell');
             
             cells.forEach(cell => {
-                cell.addEventListener('click', async function() {
+                cell.addEventListener('click', function(event) {
                     const pinyin = this.getAttribute('data-pinyin');
                     if (!pinyin) return;
                     
-                    // Remove playing class from all cells
-                    cells.forEach(c => c.classList.remove('playing'));
-                    
-                    // Stop current audio if playing
-                    if (currentAudio) {
-                        currentAudio.pause();
-                        currentAudio = null;
-                    }
-                    
-                    try {
-                        // Add playing class to clicked cell
-                        this.classList.add('playing');
-                        
-                        const response = await fetch(`${API_BASE_URL}/api/tts`, {
-                            method: 'POST',
-                            headers: {
-                                'Content-Type': 'application/json',
-                                'Accept': 'audio/mp3'
-                            },
-                            body: JSON.stringify({ text: pinyin })
-                        });
-                        
-                        if (!response.ok) {
-                            const errorData = await response.json();
-                            console.error('TTS API error:', errorData);
-                            throw new Error(errorData.error || 'Failed to fetch audio');
-                        }
-                        
-                        const audioBlob = await response.blob();
-                        if (!audioBlob || audioBlob.size === 0) {
-                            throw new Error('No audio data received');
-                        }
-
-                        const audioUrl = URL.createObjectURL(audioBlob);
-                        
-                        // Play audio
-                        currentAudio = new Audio(audioUrl);
-                        currentAudio.addEventListener('ended', () => {
-                            this.classList.remove('playing');
-                            URL.revokeObjectURL(audioUrl);
-                            currentAudio = null;
-                        });
-
-                        currentAudio.addEventListener('error', (e) => {
-                            console.error('Audio playback error:', e);
-                            this.classList.remove('playing');
-                            URL.revokeObjectURL(audioUrl);
-                            currentAudio = null;
-                        });
-
-                        await currentAudio.play();
-                    } catch (error) {
-                        console.error('Error playing audio:', error);
-                        this.classList.remove('playing');
-                        alert('Failed to play audio. Please try again later.');
-                    }
+                    showTonePopup(pinyin);
                 });
             });
+            
+            // Close popup when clicking overlay
+            document.getElementById('overlay').addEventListener('click', closeTonePopup);
         });
     </script>
 </body>
