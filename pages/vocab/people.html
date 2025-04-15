@@ -202,32 +202,27 @@
     </div>
 
     <script>
-        // Function to play audio using our TTS API
+        // Audio configuration
+        const AUDIO_BASE_URL = 'https://chinese-audio-cdn.yourdomain.com/vocab/';  // Replace with your actual audio CDN URL
+
+        // Function to play audio using pre-recorded files
         async function playAudio(text) {
             try {
-                const response = await fetch('http://localhost:3001/api/tts', {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json',
-                    },
-                    body: JSON.stringify({ text: text })
+                // Create a safe filename from the text
+                const audioFileName = encodeURIComponent(text) + '.mp3';
+                const audioUrl = `${AUDIO_BASE_URL}${audioFileName}`;
+                
+                const audio = new Audio(audioUrl);
+                
+                audio.addEventListener('error', (e) => {
+                    console.error('Audio playback error:', e);
+                    alert('Audio file not found. Please try again later.');
                 });
                 
-                if (!response.ok) {
-                    throw new Error('Network response was not ok');
-                }
-                
-                const audioBlob = await response.blob();
-                const audioUrl = URL.createObjectURL(audioBlob);
-                const audio = new Audio(audioUrl);
                 await audio.play();
-                
-                // Clean up
-                audio.onended = () => {
-                    URL.revokeObjectURL(audioUrl);
-                };
             } catch (error) {
                 console.error('Error playing audio:', error);
+                alert('Failed to play audio. Please try again later.');
             }
         }
     </script>

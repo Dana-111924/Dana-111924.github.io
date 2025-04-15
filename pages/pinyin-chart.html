@@ -1014,8 +1014,8 @@
     </div>
 
     <script>
-        // API configuration
-        const API_BASE_URL = 'http://localhost:3001';
+        // Audio configuration
+        const AUDIO_BASE_URL = 'https://chinese-audio-cdn.yourdomain.com/pinyin/';  // Replace with your actual audio CDN URL
 
         // Tone marks for vowels
         const toneMarks = {
@@ -1111,40 +1111,21 @@
                 // Add playing class to clicked button
                 button.classList.add('playing');
                 
-                // Add tone number to pinyin for TTS
-                const pinyinWithTone = pinyin + tone;
-                
-                const response = await fetch(`${API_BASE_URL}/api/tts`, {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json',
-                        'Accept': 'audio/mp3'
-                    },
-                    body: JSON.stringify({ 
-                        text: pinyinWithTone,
-                        tone: tone 
-                    })
-                });
-                
-                if (!response.ok) {
-                    throw new Error('Failed to fetch audio');
-                }
-                
-                const audioBlob = await response.blob();
-                const audioUrl = URL.createObjectURL(audioBlob);
+                // Add tone number to pinyin for audio file name
+                const audioFileName = `${pinyin}${tone}.mp3`;
+                const audioUrl = `${AUDIO_BASE_URL}${audioFileName}`;
                 
                 currentAudio = new Audio(audioUrl);
                 currentAudio.addEventListener('ended', () => {
                     button.classList.remove('playing');
-                    URL.revokeObjectURL(audioUrl);
                     currentAudio = null;
                 });
                 
                 currentAudio.addEventListener('error', (e) => {
                     console.error('Audio playback error:', e);
                     button.classList.remove('playing');
-                    URL.revokeObjectURL(audioUrl);
                     currentAudio = null;
+                    alert('Audio file not found. Please try again later.');
                 });
                 
                 await currentAudio.play();

@@ -139,10 +139,8 @@
     </footer>
 
     <script>
-        // API configuration
-        const API_BASE_URL = window.location.hostname === 'localhost' 
-            ? 'http://localhost:3001'
-            : 'https://chinese-learning-site.onrender.com';
+        // Audio configuration
+        const AUDIO_BASE_URL = 'https://chinese-audio-cdn.yourdomain.com/characters/';  // Replace with your actual audio CDN URL
 
         document.addEventListener('DOMContentLoaded', function() {
             let currentAudio = null;
@@ -160,33 +158,24 @@
                     }
 
                     try {
-                        this.classList.add('playing');
-                        
-                        const response = await fetch(`${API_BASE_URL}/api/tts`, {
-                            method: 'POST',
-                            headers: {
-                                'Content-Type': 'application/json'
-                            },
-                            body: JSON.stringify({ text: character })
-                        });
-                        
-                        if (!response.ok) {
-                            throw new Error(`HTTP error! status: ${response.status}`);
-                        }
-                        
-                        const audioBlob = await response.blob();
-                        const audioUrl = URL.createObjectURL(audioBlob);
+                        const audioFileName = `${character}.mp3`;
+                        const audioUrl = `${AUDIO_BASE_URL}${audioFileName}`;
                         
                         currentAudio = new Audio(audioUrl);
                         currentAudio.addEventListener('ended', () => {
-                            URL.revokeObjectURL(audioUrl);
-                            this.classList.remove('playing');
+                            currentAudio = null;
+                        });
+                        
+                        currentAudio.addEventListener('error', (e) => {
+                            console.error('Audio playback error:', e);
+                            currentAudio = null;
+                            alert('Audio file not found. Please try again later.');
                         });
                         
                         await currentAudio.play();
                     } catch (error) {
                         console.error('Error playing audio:', error);
-                        this.classList.remove('playing');
+                        alert('Failed to play audio. Please try again later.');
                     }
                 });
             });

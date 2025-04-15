@@ -3,78 +3,73 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Learn Chinese - Your Gateway to China</title>
+    <title>Learn Chinese</title>
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
 </head>
 <body class="bg-gray-50">
     <!-- Navigation -->
     <nav class="bg-red-500 text-white p-4">
         <div class="container mx-auto flex justify-between items-center">
-            <a href="/" class="text-2xl font-bold">学中文</a>
+            <a href="../index.html" class="text-2xl font-bold">学中文</a>
             <div class="space-x-4">
-                <a href="/" class="hover:text-red-200">Home</a>
-                <a href="/pages/learn-chinese.html" class="hover:text-red-200">Learn Chinese</a>
-                <a href="/pages/culture.html" class="hover:text-red-200">Culture</a>
-                <a href="/pages/travel.html" class="hover:text-red-200">Travel</a>
+                <a href="../index.html" class="hover:text-red-200">Home</a>
+                <a href="./learn-chinese.html" class="hover:text-red-200">Learn Chinese</a>
+                <a href="./culture.html" class="hover:text-red-200">Culture</a>
+                <a href="./travel.html" class="hover:text-red-200">Travel</a>
             </div>
         </div>
     </nav>
 
     <!-- Main Content -->
     <div class="container mx-auto px-4 py-8">
-        <h1 class="text-4xl font-bold text-center text-gray-800 mb-8">Learn Chinese</h1>
-        <p class="text-center text-gray-600 mb-12 max-w-2xl mx-auto">
-            Start your journey to master Chinese language with our comprehensive learning resources.
-        </p>
-
-        <!-- Learning Resources Grid -->
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            <!-- Beginner's Guide -->
-            <div class="bg-white rounded-lg shadow-md p-6">
-                <div class="text-3xl mb-4">🔰</div>
-                <h2 class="text-2xl font-semibold text-gray-800 mb-2">Beginner's Guide</h2>
-                <p class="text-gray-600 mb-4">Start your journey in learning Chinese with our comprehensive guide for absolute beginners.</p>
-                <a href="/pages/beginners-guide.html" class="text-red-500 hover:text-red-600 font-medium">Get Started →</a>
-            </div>
-
+        <h1 class="text-4xl font-bold text-gray-800 mb-8">Learn Chinese</h1>
+        
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
             <!-- Pinyin System -->
-            <div class="bg-white rounded-lg shadow-md p-6">
-                <div class="text-3xl mb-4">🔤</div>
-                <h2 class="text-2xl font-semibold text-gray-800 mb-2">Pinyin System</h2>
-                <p class="text-gray-600 mb-4">Master the pronunciation system used for Standard Chinese with interactive audio.</p>
-                <a href="/pages/pinyin-chart.html" class="text-red-500 hover:text-red-600 font-medium">Learn Pronunciation →</a>
+            <div class="bg-white rounded-lg shadow-lg p-6">
+                <h2 class="text-2xl font-bold text-gray-800 mb-4">Pinyin System</h2>
+                <p class="text-gray-600 mb-4">Master the pronunciation system used for Standard Chinese.</p>
+                <div class="space-y-2">
+                    <a href="./pinyin-system.html" class="block text-red-500 hover:text-red-600">→ Introduction to Pinyin</a>
+                    <a href="./pinyin-initials.html" class="block text-red-500 hover:text-red-600">→ Initials (声母)</a>
+                    <a href="./pinyin-finals.html" class="block text-red-500 hover:text-red-600">→ Finals (韵母)</a>
+                    <a href="./pinyin-tones.html" class="block text-red-500 hover:text-red-600">→ Tones (声调)</a>
+                    <a href="./pinyin-chart.html" class="block text-red-500 hover:text-red-600">→ Interactive Chart</a>
+                </div>
             </div>
 
-            <!-- Vocabularies -->
-            <div class="bg-white rounded-lg shadow-md p-6">
-                <div class="text-3xl mb-4">📚</div>
-                <h2 class="text-2xl font-semibold text-gray-800 mb-2">Vocabularies</h2>
-                <p class="text-gray-600 mb-4">Learn essential Chinese vocabulary organized by topics and HSK levels.</p>
-                <a href="/pages/vocabularies.html" class="text-red-500 hover:text-red-600 font-medium">Explore Words →</a>
+            <!-- Basic Characters -->
+            <div class="bg-white rounded-lg shadow-lg p-6">
+                <h2 class="text-2xl font-bold text-gray-800 mb-4">Basic Characters</h2>
+                <p class="text-gray-600 mb-4">Learn essential Chinese characters and their meanings.</p>
+                <div class="space-y-2">
+                    <a href="./basic-characters.html" class="block text-red-500 hover:text-red-600">→ Common Characters</a>
+                    <a href="./stroke-order.html" class="block text-red-500 hover:text-red-600">→ Stroke Order</a>
+                    <a href="./radicals.html" class="block text-red-500 hover:text-red-600">→ Radicals</a>
+                </div>
             </div>
 
-            <!-- Sentence Patterns -->
-            <div class="bg-white rounded-lg shadow-md p-6">
-                <div class="text-3xl mb-4">📝</div>
-                <h2 class="text-2xl font-semibold text-gray-800 mb-2">Sentence Patterns</h2>
-                <p class="text-gray-600 mb-4">Understand common Chinese sentence structures and grammar patterns.</p>
-                <a href="/pages/sentence-patterns.html" class="text-red-500 hover:text-red-600 font-medium">Study Grammar →</a>
+            <!-- Vocabulary -->
+            <div class="bg-white rounded-lg shadow-lg p-6">
+                <h2 class="text-2xl font-bold text-gray-800 mb-4">Vocabulary</h2>
+                <p class="text-gray-600 mb-4">Build your Chinese vocabulary with these essential words.</p>
+                <div class="space-y-2">
+                    <a href="./vocabularies.html" class="block text-red-500 hover:text-red-600">→ Categories</a>
+                    <a href="./vocab/numbers.html" class="block text-red-500 hover:text-red-600">→ Numbers</a>
+                    <a href="./vocab/time.html" class="block text-red-500 hover:text-red-600">→ Time</a>
+                    <a href="./vocab/people.html" class="block text-red-500 hover:text-red-600">→ People</a>
+                </div>
             </div>
 
-            <!-- Basic Conversations -->
-            <div class="bg-white rounded-lg shadow-md p-6">
-                <div class="text-3xl mb-4">💬</div>
-                <h2 class="text-2xl font-semibold text-gray-800 mb-2">Basic Conversations</h2>
-                <p class="text-gray-600 mb-4">Practice everyday Chinese conversations and dialogues with audio.</p>
-                <a href="/pages/basic-conversations.html" class="text-red-500 hover:text-red-600 font-medium">Practice Speaking →</a>
-            </div>
-
-            <!-- Reading Practice -->
-            <div class="bg-white rounded-lg shadow-md p-6">
-                <div class="text-3xl mb-4">📖</div>
-                <h2 class="text-2xl font-semibold text-gray-800 mb-2">Reading Practice</h2>
-                <p class="text-gray-600 mb-4">Improve your Chinese reading skills with graded materials.</p>
-                <a href="/pages/reading-practice.html" class="text-red-500 hover:text-red-600 font-medium">Start Reading →</a>
+            <!-- Grammar -->
+            <div class="bg-white rounded-lg shadow-lg p-6">
+                <h2 class="text-2xl font-bold text-gray-800 mb-4">Grammar</h2>
+                <p class="text-gray-600 mb-4">Learn Chinese grammar patterns and sentence structures.</p>
+                <div class="space-y-2">
+                    <a href="./sentence-patterns.html" class="block text-red-500 hover:text-red-600">→ Basic Patterns</a>
+                    <a href="./measure-words.html" class="block text-red-500 hover:text-red-600">→ Measure Words</a>
+                    <a href="./particles.html" class="block text-red-500 hover:text-red-600">→ Particles</a>
+                </div>
             </div>
         </div>
     </div>
