@@ -11,29 +11,24 @@
                 extend: {
                     colors: {
                         primary: {
-                            DEFAULT: '#5EBFBF',
-                            light: '#7FCFCF',
-                            dark: '#4E9F9F',
+                            DEFAULT: '#4CB8B8',
+                            light: '#5EBFBF',
+                            dark: '#3A9999',
                         },
                         secondary: {
-                            DEFAULT: '#22c55e',
-                            light: '#4ade80',
-                            dark: '#16a34a',
+                            DEFAULT: '#6B7280',
+                            light: '#9CA3AF',
+                            dark: '#4B5563',
                         },
                         accent: {
-                            DEFAULT: '#dc2626',
-                            light: '#ef4444',
-                            dark: '#b91c1c',
+                            DEFAULT: '#F87171',
+                            light: '#FCA5A5',
+                            dark: '#EF4444',
                         },
-                        yellow: {
-                            DEFAULT: '#eab308',
-                            light: '#facc15',
-                            dark: '#ca8a04',
-                        },
-                        gray: {
-                            light: '#f3f4f6',
-                            DEFAULT: '#9ca3af',
-                            dark: '#4b5563',
+                        background: {
+                            DEFAULT: '#F3F4F6',
+                            card: '#FFFFFF',
+                            dark: '#1F2937',
                         }
                     }
                 }
@@ -41,67 +36,78 @@
         }
     </script>
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;500;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Noto Sans SC', sans-serif;
+        }
+        .nav-link {
+            transition: color 0.2s ease;
+        }
+        .nav-link:hover {
+            color: #FFFFFF;
+        }
+    </style>
 </head>
-<body class="bg-gray-light">
+<body class="bg-background">
     <!-- Navigation -->
-    <nav class="bg-primary text-white shadow-lg">
-        <div class="container mx-auto px-6 py-3">
+    <nav class="bg-primary shadow-lg">
+        <div class="container mx-auto px-6 py-4">
             <div class="flex items-center justify-between">
-                <div class="text-2xl font-bold">学中文</div>
-                <div class="hidden md:flex space-x-6">
-                    <a href="/" class="hover:text-primary-light">Home</a>
-                    <a href="/pages/learn-chinese.html" class="hover:text-primary-light">Learn Chinese</a>
-                    <a href="/pages/culture.html" class="hover:text-primary-light">Culture</a>
-                    <a href="/pages/travel.html" class="hover:text-primary-light">Travel</a>
+                <div class="text-2xl font-bold text-white">学中文</div>
+                <div class="hidden md:flex space-x-8">
+                    <a href="/" class="nav-link text-white opacity-90 hover:opacity-100">Home</a>
+                    <a href="/pages/learn-chinese.html" class="nav-link text-white opacity-90 hover:opacity-100">Learn Chinese</a>
+                    <a href="/pages/culture.html" class="nav-link text-white opacity-90 hover:opacity-100">Culture</a>
+                    <a href="/pages/travel.html" class="nav-link text-white opacity-90 hover:opacity-100">Travel</a>
                 </div>
             </div>
         </div>
     </nav>
 
     <!-- Main Content -->
-    <div class="container mx-auto px-4 py-12">
+    <div class="container mx-auto px-6 py-12">
         <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
             <!-- Learn Chinese Section -->
-            <div class="bg-white rounded-lg shadow-lg p-6">
+            <div class="bg-background-card rounded-lg shadow-lg p-8 hover:shadow-xl transition-shadow duration-300">
                 <div class="text-4xl mb-4">📚</div>
                 <h2 class="text-2xl font-bold text-primary-dark mb-4">Learn Chinese</h2>
-                <p class="text-gray-dark mb-6">Start your journey in learning Chinese with our comprehensive resources.</p>
-                <div class="space-y-2">
-                    <a href="/pages/pinyin-chart.html" class="block text-accent hover:text-accent-light">→ Pinyin System</a>
-                    <a href="/pages/basic-characters.html" class="block text-accent hover:text-accent-light">→ Basic Characters</a>
-                    <a href="/pages/vocabularies.html" class="block text-accent hover:text-accent-light">→ Vocabularies</a>
-                    <a href="/pages/sentence-patterns.html" class="block text-accent hover:text-accent-light">→ Sentence Patterns</a>
+                <p class="text-secondary-dark mb-6">Start your journey in learning Chinese with our comprehensive resources.</p>
+                <div class="space-y-3">
+                    <a href="/pages/pinyin-chart.html" class="block text-primary hover:text-primary-dark transition-colors duration-200">→ Pinyin System</a>
+                    <a href="/pages/basic-characters.html" class="block text-primary hover:text-primary-dark transition-colors duration-200">→ Basic Characters</a>
+                    <a href="/pages/vocabularies.html" class="block text-primary hover:text-primary-dark transition-colors duration-200">→ Vocabularies</a>
+                    <a href="/pages/sentence-patterns.html" class="block text-primary hover:text-primary-dark transition-colors duration-200">→ Sentence Patterns</a>
                 </div>
             </div>
 
             <!-- Chinese Culture Section -->
-            <div class="bg-white rounded-lg shadow-lg p-6">
+            <div class="bg-background-card rounded-lg shadow-lg p-8 hover:shadow-xl transition-shadow duration-300">
                 <div class="text-4xl mb-4">🏮</div>
                 <h2 class="text-2xl font-bold text-primary-dark mb-4">Chinese Culture</h2>
-                <p class="text-gray-dark mb-6">Discover the rich traditions and customs of China.</p>
-                <div class="space-y-2">
-                    <a href="/pages/traditional-festivals.html" class="block text-accent hover:text-accent-light">→ Traditional Festivals</a>
-                    <a href="/pages/customs-etiquette.html" class="block text-accent hover:text-accent-light">→ Customs & Etiquette</a>
+                <p class="text-secondary-dark mb-6">Discover the rich traditions and customs of China.</p>
+                <div class="space-y-3">
+                    <a href="/pages/traditional-festivals.html" class="block text-primary hover:text-primary-dark transition-colors duration-200">→ Traditional Festivals</a>
+                    <a href="/pages/customs-etiquette.html" class="block text-primary hover:text-primary-dark transition-colors duration-200">→ Customs & Etiquette</a>
                 </div>
             </div>
 
             <!-- Travel to China Section -->
-            <div class="bg-white rounded-lg shadow-lg p-6">
+            <div class="bg-background-card rounded-lg shadow-lg p-8 hover:shadow-xl transition-shadow duration-300">
                 <div class="text-4xl mb-4">✈️</div>
                 <h2 class="text-2xl font-bold text-primary-dark mb-4">Travel to China</h2>
-                <p class="text-gray-dark mb-6">Plan your trip to China with our travel guides.</p>
-                <div class="space-y-2">
-                    <a href="/pages/popular-destinations.html" class="block text-accent hover:text-accent-light">→ Popular Destinations</a>
-                    <a href="/pages/travel-tips.html" class="block text-accent hover:text-accent-light">→ Travel Tips</a>
+                <p class="text-secondary-dark mb-6">Plan your trip to China with our travel guides.</p>
+                <div class="space-y-3">
+                    <a href="/pages/popular-destinations.html" class="block text-primary hover:text-primary-dark transition-colors duration-200">→ Popular Destinations</a>
+                    <a href="/pages/travel-tips.html" class="block text-primary hover:text-primary-dark transition-colors duration-200">→ Travel Tips</a>
                 </div>
             </div>
         </div>
     </div>
 
     <!-- Footer -->
-    <footer class="bg-primary-dark text-white py-8">
+    <footer class="bg-primary-dark text-white py-8 mt-12">
         <div class="container mx-auto px-6 text-center">
-            <p>&copy; 2024 Learn Chinese. All rights reserved.</p>
+            <p class="opacity-90">&copy; 2024 Learn Chinese. All rights reserved.</p>
         </div>
     </footer>
 </body>

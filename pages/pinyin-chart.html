@@ -5,10 +5,46 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Pinyin Chart - Learn Chinese</title>
     <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: {
+                            DEFAULT: '#4CB8B8',
+                            light: '#5EBFBF',
+                            dark: '#3A9999',
+                        },
+                        secondary: {
+                            DEFAULT: '#6B7280',
+                            light: '#9CA3AF',
+                            dark: '#4B5563',
+                        },
+                        accent: {
+                            DEFAULT: '#F87171',
+                            light: '#FCA5A5',
+                            dark: '#EF4444',
+                        },
+                        background: {
+                            DEFAULT: '#F3F4F6',
+                            card: '#FFFFFF',
+                            dark: '#1F2937',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;500;700&display=swap" rel="stylesheet">
     <style>
         body {
             font-family: 'Noto Sans SC', sans-serif;
+        }
+        .nav-link {
+            transition: color 0.2s ease;
+        }
+        .nav-link:hover {
+            color: #FFFFFF;
         }
         .pinyin-cell {
             transition: all 0.3s ease;
@@ -25,17 +61,17 @@
         }
     </style>
 </head>
-<body class="bg-gray-light">
+<body class="bg-background">
     <!-- Navigation -->
-    <nav class="bg-primary text-white shadow-lg">
-        <div class="container mx-auto px-6 py-3">
+    <nav class="bg-primary shadow-lg">
+        <div class="container mx-auto px-6 py-4">
             <div class="flex items-center justify-between">
-                <div class="text-2xl font-bold">学中文</div>
-                <div class="hidden md:flex space-x-6">
-                    <a href="/" class="hover:text-primary-light">Home</a>
-                    <a href="/pages/learn-chinese.html" class="hover:text-primary-light">Learn Chinese</a>
-                    <a href="/pages/culture.html" class="hover:text-primary-light">Culture</a>
-                    <a href="/pages/travel.html" class="hover:text-primary-light">Travel</a>
+                <div class="text-2xl font-bold text-white">学中文</div>
+                <div class="hidden md:flex space-x-8">
+                    <a href="/" class="nav-link text-white opacity-90 hover:opacity-100">Home</a>
+                    <a href="/pages/learn-chinese.html" class="nav-link text-white opacity-90 hover:opacity-100">Learn Chinese</a>
+                    <a href="/pages/culture.html" class="nav-link text-white opacity-90 hover:opacity-100">Culture</a>
+                    <a href="/pages/travel.html" class="nav-link text-white opacity-90 hover:opacity-100">Travel</a>
                 </div>
             </div>
         </div>
@@ -44,10 +80,10 @@
     <!-- Main Content -->
     <div class="container mx-auto px-6 py-12">
         <h1 class="text-4xl font-bold text-primary-dark mb-8">Pinyin Chart</h1>
-        <p class="text-gray-dark mb-8">Click on any Pinyin to hear its pronunciation. Select the tone to practice different tones.</p>
+        <p class="text-secondary-dark mb-8">Click on any Pinyin to hear its pronunciation. Select the tone to practice different tones.</p>
 
         <!-- Pinyin Table -->
-        <div class="bg-white rounded-lg shadow-lg p-6 mb-8">
+        <div class="bg-background-card rounded-lg shadow-lg p-8 mb-8">
             <div class="overflow-x-auto">
                 <table class="min-w-full">
                     <thead>
@@ -61,18 +97,18 @@
                     <tbody>
                         <!-- Example row -->
                         <tr>
-                            <td class="px-4 py-2">b</td>
-                            <td class="px-4 py-2">a</td>
+                            <td class="px-4 py-2 text-secondary-dark">b</td>
+                            <td class="px-4 py-2 text-secondary-dark">a</td>
                             <td class="px-4 py-2">
-                                <button class="pinyin-cell bg-primary-light text-white px-4 py-2 rounded-lg hover:bg-primary">
+                                <button class="pinyin-cell bg-primary text-white px-4 py-2 rounded-lg hover:bg-primary-light">
                                     ba
                                 </button>
                             </td>
                             <td class="px-4 py-2">
-                                <button class="tone-button bg-accent text-white px-3 py-1 rounded-full mr-1">1</button>
-                                <button class="tone-button bg-accent text-white px-3 py-1 rounded-full mr-1">2</button>
-                                <button class="tone-button bg-accent text-white px-3 py-1 rounded-full mr-1">3</button>
-                                <button class="tone-button bg-accent text-white px-3 py-1 rounded-full">4</button>
+                                <button class="tone-button bg-primary text-white px-3 py-1 rounded-full mr-1">1</button>
+                                <button class="tone-button bg-primary text-white px-3 py-1 rounded-full mr-1">2</button>
+                                <button class="tone-button bg-primary text-white px-3 py-1 rounded-full mr-1">3</button>
+                                <button class="tone-button bg-primary text-white px-3 py-1 rounded-full">4</button>
                             </td>
                         </tr>
                     </tbody>
@@ -81,33 +117,33 @@
         </div>
 
         <!-- Tone Guide -->
-        <div class="bg-white rounded-lg shadow-lg p-6">
-            <h2 class="text-2xl font-bold text-primary-dark mb-4">Tone Guide</h2>
-            <div class="grid md:grid-cols-4 gap-4">
-                <div class="bg-secondary-light text-white p-4 rounded-lg">
+        <div class="bg-background-card rounded-lg shadow-lg p-8">
+            <h2 class="text-2xl font-bold text-primary-dark mb-6">Tone Guide</h2>
+            <div class="grid md:grid-cols-4 gap-6">
+                <div class="bg-primary text-white p-6 rounded-lg">
                     <h3 class="font-bold mb-2">First Tone (ˉ)</h3>
-                    <p>High and level</p>
+                    <p class="opacity-90">High and level</p>
                 </div>
-                <div class="bg-accent text-white p-4 rounded-lg">
+                <div class="bg-primary-light text-white p-6 rounded-lg">
                     <h3 class="font-bold mb-2">Second Tone (ˊ)</h3>
-                    <p>Rising</p>
+                    <p class="opacity-90">Rising</p>
                 </div>
-                <div class="bg-yellow text-white p-4 rounded-lg">
+                <div class="bg-primary text-white p-6 rounded-lg">
                     <h3 class="font-bold mb-2">Third Tone (ˇ)</h3>
-                    <p>Falling-rising</p>
+                    <p class="opacity-90">Falling-rising</p>
                 </div>
-                <div class="bg-primary text-white p-4 rounded-lg">
+                <div class="bg-primary-dark text-white p-6 rounded-lg">
                     <h3 class="font-bold mb-2">Fourth Tone (ˋ)</h3>
-                    <p>Falling</p>
+                    <p class="opacity-90">Falling</p>
                 </div>
             </div>
         </div>
     </div>
 
     <!-- Footer -->
-    <footer class="bg-primary-dark text-white py-8">
+    <footer class="bg-primary-dark text-white py-8 mt-12">
         <div class="container mx-auto px-6 text-center">
-            <p>&copy; 2024 Learn Chinese. All rights reserved.</p>
+            <p class="opacity-90">&copy; 2024 Learn Chinese. All rights reserved.</p>
         </div>
     </footer>
 </body>
