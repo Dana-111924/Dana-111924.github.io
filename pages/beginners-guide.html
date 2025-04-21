@@ -4,66 +4,110 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Beginner's Guide - Learn Chinese</title>
-    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="../css/styles.css">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: {
+                            DEFAULT: '#4CB8B8',
+                            light: '#5EBFBF',
+                            dark: '#3A9999',
+                        },
+                        secondary: {
+                            DEFAULT: '#6B7280',
+                            light: '#9CA3AF',
+                            dark: '#4B5563',
+                        },
+                        accent: {
+                            DEFAULT: '#F87171',
+                            light: '#FCA5A5',
+                            dark: '#EF4444',
+                        },
+                        background: {
+                            DEFAULT: '#F3F4F6',
+                            card: '#FFFFFF',
+                            dark: '#1F2937',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;500;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Noto Sans SC', sans-serif;
+        }
+        .nav-link {
+            transition: color 0.2s ease;
+        }
+        .nav-link:hover {
+            color: #FFFFFF;
+        }
+        .guide-section {
+            transition: all 0.3s ease;
+        }
+        .guide-section:hover {
+            transform: translateY(-2px);
+        }
+    </style>
 </head>
-<body class="bg-gray-50">
+<body class="bg-background">
     <!-- Navigation -->
-    <nav class="bg-white shadow">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex justify-between h-16">
-                <div class="flex">
-                    <div class="flex-shrink-0 flex items-center">
-                        <a href="../" class="text-red-600 text-2xl font-bold">学中文</a>
-                    </div>
-                    <div class="hidden sm:ml-6 sm:flex sm:space-x-8">
-                        <a href="../" class="text-gray-500 hover:text-gray-700 px-3 py-2 rounded-md">Home</a>
-                        <a href="../learn.html" class="text-red-600 border-red-600 border-b-2 px-3 py-2 rounded-md">Learn Chinese</a>
-                        <a href="../culture.html" class="text-gray-500 hover:text-gray-700 px-3 py-2 rounded-md">Culture</a>
-                        <a href="../travel.html" class="text-gray-500 hover:text-gray-700 px-3 py-2 rounded-md">Travel</a>
-                    </div>
+    <nav class="bg-primary shadow-lg">
+        <div class="container mx-auto px-6 py-4">
+            <div class="flex items-center justify-between">
+                <div class="text-2xl font-bold text-white">学中文</div>
+                <div class="hidden md:flex space-x-8">
+                    <a href="/" class="nav-link text-white opacity-90 hover:opacity-100">Home</a>
+                    <a href="/pages/learn-chinese.html" class="nav-link text-white opacity-90 hover:opacity-100">Learn Chinese</a>
+                    <a href="/pages/pinyin-chart.html" class="nav-link text-white opacity-90 hover:opacity-100">Pinyin</a>
+                    <a href="/pages/vocabularies.html" class="nav-link text-white opacity-90 hover:opacity-100">Vocabulary</a>
                 </div>
             </div>
         </div>
     </nav>
 
     <!-- Main Content -->
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+    <div class="container mx-auto px-6 py-12">
         <div class="mb-8">
-            <a href="../learn.html" class="text-red-600 hover:text-red-700">← Back to Learn Chinese</a>
+            <a href="/pages/learn-chinese.html" class="text-primary hover:text-primary-dark transition-colors duration-200">← Back to Learn Chinese</a>
         </div>
 
-        <h1 class="text-3xl font-bold text-gray-900 mb-8">Beginner's Guide to Chinese</h1>
+        <h1 class="text-4xl font-bold text-primary-dark mb-4">Beginner's Guide to Chinese</h1>
+        <p class="text-secondary-dark mb-8">Start your journey to learn Mandarin Chinese with our comprehensive guide.</p>
 
-        <div class="bg-white rounded-lg shadow-md p-6 mb-8">
-            <h2 class="text-2xl font-bold text-gray-900 mb-4">Getting Started</h2>
-            <p class="text-gray-600 mb-6">
+        <div class="bg-background-card rounded-lg shadow-lg p-6 mb-8">
+            <h2 class="text-2xl font-semibold text-primary-dark mb-4">Getting Started</h2>
+            <p class="text-secondary-dark mb-6">
                 Welcome to your Chinese learning journey! This guide will help you get started with learning Mandarin Chinese.
             </p>
 
             <div class="space-y-6">
-                <div class="bg-gray-50 p-6 rounded-lg">
-                    <h3 class="text-xl font-semibold text-gray-900 mb-3">1. Understanding Chinese</h3>
-                    <p class="text-gray-600">
+                <div class="guide-section bg-background p-6 rounded-lg border border-secondary-light">
+                    <h3 class="text-xl font-semibold text-primary-dark mb-3">1. Understanding Chinese</h3>
+                    <p class="text-secondary-dark">
                         Chinese is a tonal language with a unique writing system. Unlike alphabetic languages, Chinese uses characters (汉字) that represent meanings rather than sounds.
                     </p>
                 </div>
 
-                <div class="bg-gray-50 p-6 rounded-lg">
-                    <h3 class="text-xl font-semibold text-gray-900 mb-3">2. Learning Path</h3>
-                    <p class="text-gray-600 mb-4">Follow this recommended learning path:</p>
-                    <ol class="list-decimal list-inside space-y-2 text-gray-600">
-                        <li>Start with <a href="pinyin-system.html" class="text-red-600 hover:text-red-700">Pinyin</a> to learn pronunciation</li>
-                        <li>Learn <a href="basic-characters.html" class="text-red-600 hover:text-red-700">basic characters</a></li>
-                        <li>Practice <a href="basic-conversations.html" class="text-red-600 hover:text-red-700">simple conversations</a></li>
-                        <li>Study <a href="sentence-patterns.html" class="text-red-600 hover:text-red-700">sentence patterns</a></li>
-                        <li>Build vocabulary through <a href="reading-practice.html" class="text-red-600 hover:text-red-700">reading practice</a></li>
+                <div class="guide-section bg-background p-6 rounded-lg border border-secondary-light">
+                    <h3 class="text-xl font-semibold text-primary-dark mb-3">2. Learning Path</h3>
+                    <p class="text-secondary-dark mb-4">Follow this recommended learning path:</p>
+                    <ol class="list-decimal list-inside space-y-2 text-secondary-dark">
+                        <li>Start with <a href="pinyin-system.html" class="text-primary hover:text-primary-dark">Pinyin</a> to learn pronunciation</li>
+                        <li>Learn <a href="basic-characters.html" class="text-primary hover:text-primary-dark">basic characters</a></li>
+                        <li>Practice <a href="basic-conversations.html" class="text-primary hover:text-primary-dark">simple conversations</a></li>
+                        <li>Study <a href="sentence-patterns.html" class="text-primary hover:text-primary-dark">sentence patterns</a></li>
+                        <li>Build vocabulary through <a href="reading-practice.html" class="text-primary hover:text-primary-dark">reading practice</a></li>
                     </ol>
                 </div>
 
-                <div class="bg-gray-50 p-6 rounded-lg">
-                    <h3 class="text-xl font-semibold text-gray-900 mb-3">3. Study Tips</h3>
-                    <ul class="list-disc list-inside space-y-2 text-gray-600">
+                <div class="guide-section bg-background p-6 rounded-lg border border-secondary-light">
+                    <h3 class="text-xl font-semibold text-primary-dark mb-3">3. Study Tips</h3>
+                    <ul class="list-disc list-inside space-y-2 text-secondary-dark">
                         <li>Practice consistently - even 15 minutes daily is better than irregular long sessions</li>
                         <li>Focus on pronunciation from the beginning</li>
                         <li>Learn characters alongside pinyin</li>
@@ -72,9 +116,9 @@
                     </ul>
                 </div>
 
-                <div class="bg-gray-50 p-6 rounded-lg">
-                    <h3 class="text-xl font-semibold text-gray-900 mb-3">4. Common Challenges</h3>
-                    <ul class="list-disc list-inside space-y-2 text-gray-600">
+                <div class="guide-section bg-background p-6 rounded-lg border border-secondary-light">
+                    <h3 class="text-xl font-semibold text-primary-dark mb-3">4. Common Challenges</h3>
+                    <ul class="list-disc list-inside space-y-2 text-secondary-dark">
                         <li>Tones - Take time to master the four tones</li>
                         <li>Characters - Start with simple ones and learn radicals</li>
                         <li>Word order - Practice basic sentence patterns</li>
@@ -87,18 +131,14 @@
         <!-- Navigation Links -->
         <div class="flex justify-between items-center mt-8">
             <div></div>
-            <a href="pinyin-system.html" class="text-red-600 hover:text-red-700">Pinyin System →</a>
+            <a href="pinyin-system.html" class="text-primary hover:text-primary-dark">Pinyin System →</a>
         </div>
     </div>
 
     <!-- Footer -->
-    <footer class="bg-white mt-12">
-        <div class="max-w-7xl mx-auto py-12 px-4 sm:px-6 md:flex md:items-center md:justify-between lg:px-8">
-            <div class="mt-8 md:mt-0 md:order-1">
-                <p class="text-center text-base text-gray-400">
-                    &copy; 2024 Learn Chinese. All rights reserved.
-                </p>
-            </div>
+    <footer class="bg-primary-dark text-white py-8 mt-12">
+        <div class="container mx-auto px-6 text-center">
+            <p class="opacity-90">&copy; 2024 Learn Chinese. All rights reserved.</p>
         </div>
     </footer>
 </body>

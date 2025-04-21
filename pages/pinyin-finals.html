@@ -4,204 +4,212 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Pinyin Finals - Learn Chinese</title>
-    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="../css/styles.css">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: {
+                            DEFAULT: '#4CB8B8',
+                            light: '#5EBFBF',
+                            dark: '#3A9999',
+                        },
+                        secondary: {
+                            DEFAULT: '#6B7280',
+                            light: '#9CA3AF',
+                            dark: '#4B5563',
+                        },
+                        accent: {
+                            DEFAULT: '#F87171',
+                            light: '#FCA5A5',
+                            dark: '#EF4444',
+                        },
+                        background: {
+                            DEFAULT: '#F3F4F6',
+                            card: '#FFFFFF',
+                            dark: '#1F2937',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;500;700&display=swap" rel="stylesheet">
     <style>
+        body {
+            font-family: 'Noto Sans SC', sans-serif;
+        }
+        .nav-link {
+            transition: color 0.2s ease;
+        }
+        .nav-link:hover {
+            color: #FFFFFF;
+        }
         .final-card {
-            cursor: pointer;
-            transition: all 0.2s ease;
+            transition: all 0.3s ease;
         }
         .final-card:hover {
-            transform: scale(1.02);
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            transform: translateY(-2px);
         }
-        .final-card.playing {
-            background-color: #e3f2fd;
-            transform: scale(1.02);
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        .sound-example {
+            transition: all 0.2s ease;
+        }
+        .sound-example:hover {
+            background-color: var(--primary-light);
+            color: white;
         }
     </style>
 </head>
-<body class="bg-gray-50">
+<body class="bg-background">
     <!-- Navigation -->
-    <nav class="bg-white shadow">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex justify-between h-16">
-                <div class="flex">
-                    <div class="flex-shrink-0 flex items-center">
-                        <a href="../" class="text-red-600 text-2xl font-bold">学中文</a>
-                    </div>
-                    <div class="hidden sm:ml-6 sm:flex sm:space-x-8">
-                        <a href="../" class="text-gray-500 hover:text-gray-700 px-3 py-2 rounded-md">Home</a>
-                        <a href="../learn.html" class="text-red-600 border-red-600 border-b-2 px-3 py-2 rounded-md">Learn Chinese</a>
-                        <a href="../culture.html" class="text-gray-500 hover:text-gray-700 px-3 py-2 rounded-md">Culture</a>
-                        <a href="../travel.html" class="text-gray-500 hover:text-gray-700 px-3 py-2 rounded-md">Travel</a>
-                    </div>
+    <nav class="bg-primary shadow-lg">
+        <div class="container mx-auto px-6 py-4">
+            <div class="flex items-center justify-between">
+                <div class="text-2xl font-bold text-white">学中文</div>
+                <div class="hidden md:flex space-x-8">
+                    <a href="/" class="nav-link text-white opacity-90 hover:opacity-100">Home</a>
+                    <a href="/pages/learn-chinese.html" class="nav-link text-white opacity-90 hover:opacity-100">Learn Chinese</a>
+                    <a href="/pages/pinyin-chart.html" class="nav-link text-white opacity-90 hover:opacity-100">Pinyin</a>
+                    <a href="/pages/vocabularies.html" class="nav-link text-white opacity-90 hover:opacity-100">Vocabulary</a>
                 </div>
             </div>
         </div>
     </nav>
 
     <!-- Main Content -->
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+    <div class="container mx-auto px-6 py-12">
         <div class="mb-8">
-            <a href="pinyin-system.html" class="text-red-600 hover:text-red-700">← Back to Pinyin System</a>
+            <a href="/pages/pinyin-system.html" class="text-primary hover:text-primary-dark transition-colors duration-200">← Back to Pinyin System</a>
         </div>
 
-        <h1 class="text-3xl font-bold text-gray-900 mb-8">韵母 - Pinyin Finals</h1>
+        <h1 class="text-4xl font-bold text-primary-dark mb-4">韵母 - Pinyin Finals</h1>
+        <p class="text-secondary-dark mb-8">Learn the vowel sounds that form the core of Chinese syllables.</p>
 
-        <div class="bg-white rounded-lg shadow-md p-6 mb-8">
-            <p class="text-gray-600 mb-6">
-                Finals (韵母) are the vowel sounds that form the core of Chinese syllables. 
-                Click on each final to hear its pronunciation.
+        <!-- Finals Overview -->
+        <div class="bg-background-card rounded-lg shadow-lg p-6 mb-8">
+            <h2 class="text-2xl font-semibold text-primary-dark mb-4">Overview</h2>
+            <p class="text-secondary-dark mb-4">
+                Finals are the vowel sounds in Mandarin Chinese. They can be simple vowels, compound vowels,
+                or vowels followed by n or ng. Click on each final to hear its pronunciation.
             </p>
+        </div>
 
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                <!-- Simple Finals -->
-                <div class="space-y-4">
-                    <h3 class="text-lg font-semibold text-gray-900">Simple Finals</h3>
-                    <div class="final-card p-4 bg-gray-50 rounded-lg" data-pinyin="a">
-                        <div class="text-2xl mb-2">a</div>
-                        <p class="text-sm text-gray-600">as in "father"</p>
+        <!-- Final Groups -->
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <!-- Simple Finals -->
+            <div class="final-card bg-background-card rounded-lg shadow-lg p-6">
+                <h3 class="text-xl font-semibold text-primary-dark mb-4">Simple Finals</h3>
+                <div class="space-y-3">
+                    <div class="sound-example p-3 rounded-lg border border-secondary-light cursor-pointer" onclick="playAudio('a')">
+                        <div class="text-lg font-medium text-primary-dark">a</div>
+                        <div class="text-secondary-dark">like 'a' in "father"</div>
                     </div>
-                    <div class="final-card p-4 bg-gray-50 rounded-lg" data-pinyin="o">
-                        <div class="text-2xl mb-2">o</div>
-                        <p class="text-sm text-gray-600">as in "more"</p>
+                    <div class="sound-example p-3 rounded-lg border border-secondary-light cursor-pointer" onclick="playAudio('o')">
+                        <div class="text-lg font-medium text-primary-dark">o</div>
+                        <div class="text-secondary-dark">like 'o' in "or"</div>
                     </div>
-                    <div class="final-card p-4 bg-gray-50 rounded-lg" data-pinyin="e">
-                        <div class="text-2xl mb-2">e</div>
-                        <p class="text-sm text-gray-600">as in "her"</p>
+                    <div class="sound-example p-3 rounded-lg border border-secondary-light cursor-pointer" onclick="playAudio('e')">
+                        <div class="text-lg font-medium text-primary-dark">e</div>
+                        <div class="text-secondary-dark">like 'e' in "her"</div>
                     </div>
-                    <div class="final-card p-4 bg-gray-50 rounded-lg" data-pinyin="i">
-                        <div class="text-2xl mb-2">i</div>
-                        <p class="text-sm text-gray-600">as in "see"</p>
+                    <div class="sound-example p-3 rounded-lg border border-secondary-light cursor-pointer" onclick="playAudio('i')">
+                        <div class="text-lg font-medium text-primary-dark">i</div>
+                        <div class="text-secondary-dark">like 'ee' in "see"</div>
                     </div>
-                    <div class="final-card p-4 bg-gray-50 rounded-lg" data-pinyin="u">
-                        <div class="text-2xl mb-2">u</div>
-                        <p class="text-sm text-gray-600">as in "too"</p>
+                    <div class="sound-example p-3 rounded-lg border border-secondary-light cursor-pointer" onclick="playAudio('u')">
+                        <div class="text-lg font-medium text-primary-dark">u</div>
+                        <div class="text-secondary-dark">like 'oo' in "too"</div>
                     </div>
-                    <div class="final-card p-4 bg-gray-50 rounded-lg" data-pinyin="ü">
-                        <div class="text-2xl mb-2">ü</div>
-                        <p class="text-sm text-gray-600">as in French "tu"</p>
-                    </div>
-                </div>
-
-                <!-- Compound Finals -->
-                <div class="space-y-4">
-                    <h3 class="text-lg font-semibold text-gray-900">Compound Finals</h3>
-                    <div class="final-card p-4 bg-gray-50 rounded-lg" data-pinyin="ai">
-                        <div class="text-2xl mb-2">ai</div>
-                        <p class="text-sm text-gray-600">as in "eye"</p>
-                    </div>
-                    <div class="final-card p-4 bg-gray-50 rounded-lg" data-pinyin="ei">
-                        <div class="text-2xl mb-2">ei</div>
-                        <p class="text-sm text-gray-600">as in "hey"</p>
-                    </div>
-                    <div class="final-card p-4 bg-gray-50 rounded-lg" data-pinyin="ao">
-                        <div class="text-2xl mb-2">ao</div>
-                        <p class="text-sm text-gray-600">as in "how"</p>
-                    </div>
-                    <div class="final-card p-4 bg-gray-50 rounded-lg" data-pinyin="ou">
-                        <div class="text-2xl mb-2">ou</div>
-                        <p class="text-sm text-gray-600">as in "oh"</p>
-                    </div>
-                </div>
-
-                <!-- Nasal Finals -->
-                <div class="space-y-4">
-                    <h3 class="text-lg font-semibold text-gray-900">Nasal Finals</h3>
-                    <div class="final-card p-4 bg-gray-50 rounded-lg" data-pinyin="an">
-                        <div class="text-2xl mb-2">an</div>
-                        <p class="text-sm text-gray-600">as in "fun"</p>
-                    </div>
-                    <div class="final-card p-4 bg-gray-50 rounded-lg" data-pinyin="en">
-                        <div class="text-2xl mb-2">en</div>
-                        <p class="text-sm text-gray-600">as in "run"</p>
-                    </div>
-                    <div class="final-card p-4 bg-gray-50 rounded-lg" data-pinyin="ang">
-                        <div class="text-2xl mb-2">ang</div>
-                        <p class="text-sm text-gray-600">as in "song"</p>
-                    </div>
-                    <div class="final-card p-4 bg-gray-50 rounded-lg" data-pinyin="eng">
-                        <div class="text-2xl mb-2">eng</div>
-                        <p class="text-sm text-gray-600">as in "sung"</p>
+                    <div class="sound-example p-3 rounded-lg border border-secondary-light cursor-pointer" onclick="playAudio('ü')">
+                        <div class="text-lg font-medium text-primary-dark">ü</div>
+                        <div class="text-secondary-dark">like German 'ü'</div>
                     </div>
                 </div>
             </div>
-        </div>
 
-        <!-- Navigation Links -->
-        <div class="flex justify-between items-center mt-8">
-            <a href="pinyin-initials.html" class="text-red-600 hover:text-red-700">← Initials</a>
-            <a href="pinyin-tones.html" class="text-red-600 hover:text-red-700">Tones →</a>
+            <!-- Compound Finals -->
+            <div class="final-card bg-background-card rounded-lg shadow-lg p-6">
+                <h3 class="text-xl font-semibold text-primary-dark mb-4">Compound Finals</h3>
+                <div class="space-y-3">
+                    <div class="sound-example p-3 rounded-lg border border-secondary-light cursor-pointer" onclick="playAudio('ai')">
+                        <div class="text-lg font-medium text-primary-dark">ai</div>
+                        <div class="text-secondary-dark">like 'y' in "my"</div>
+                    </div>
+                    <div class="sound-example p-3 rounded-lg border border-secondary-light cursor-pointer" onclick="playAudio('ei')">
+                        <div class="text-lg font-medium text-primary-dark">ei</div>
+                        <div class="text-secondary-dark">like 'ay' in "say"</div>
+                    </div>
+                    <div class="sound-example p-3 rounded-lg border border-secondary-light cursor-pointer" onclick="playAudio('ao')">
+                        <div class="text-lg font-medium text-primary-dark">ao</div>
+                        <div class="text-secondary-dark">like 'ow' in "now"</div>
+                    </div>
+                    <div class="sound-example p-3 rounded-lg border border-secondary-light cursor-pointer" onclick="playAudio('ou')">
+                        <div class="text-lg font-medium text-primary-dark">ou</div>
+                        <div class="text-secondary-dark">like 'o' in "go"</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Nasal Finals -->
+            <div class="final-card bg-background-card rounded-lg shadow-lg p-6">
+                <h3 class="text-xl font-semibold text-primary-dark mb-4">Nasal Finals</h3>
+                <div class="space-y-3">
+                    <div class="sound-example p-3 rounded-lg border border-secondary-light cursor-pointer" onclick="playAudio('an')">
+                        <div class="text-lg font-medium text-primary-dark">an</div>
+                        <div class="text-secondary-dark">like 'an' in "fan"</div>
+                    </div>
+                    <div class="sound-example p-3 rounded-lg border border-secondary-light cursor-pointer" onclick="playAudio('en')">
+                        <div class="text-lg font-medium text-primary-dark">en</div>
+                        <div class="text-secondary-dark">like 'un' in "fun"</div>
+                    </div>
+                    <div class="sound-example p-3 rounded-lg border border-secondary-light cursor-pointer" onclick="playAudio('ang')">
+                        <div class="text-lg font-medium text-primary-dark">ang</div>
+                        <div class="text-secondary-dark">like 'ung' in "sung"</div>
+                    </div>
+                    <div class="sound-example p-3 rounded-lg border border-secondary-light cursor-pointer" onclick="playAudio('eng')">
+                        <div class="text-lg font-medium text-primary-dark">eng</div>
+                        <div class="text-secondary-dark">like 'ung' in "hung"</div>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 
     <!-- Footer -->
-    <footer class="bg-white mt-12">
-        <div class="max-w-7xl mx-auto py-12 px-4 sm:px-6 md:flex md:items-center md:justify-between lg:px-8">
-            <div class="mt-8 md:mt-0 md:order-1">
-                <p class="text-center text-base text-gray-400">
-                    &copy; 2024 Learn Chinese. All rights reserved.
-                </p>
-            </div>
+    <footer class="bg-primary-dark text-white py-8 mt-12">
+        <div class="container mx-auto px-6 text-center">
+            <p class="opacity-90">&copy; 2024 Learn Chinese. All rights reserved.</p>
         </div>
     </footer>
 
     <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            const finalCards = document.querySelectorAll('.final-card');
-            let currentAudio = null;
+        // API configuration
+        const API_BASE_URL = window.location.hostname === 'localhost' 
+            ? 'http://localhost:3001'
+            : 'https://chinese-learning-site.onrender.com';
 
-            finalCards.forEach(card => {
-                card.addEventListener('click', async function() {
-                    const pinyin = this.dataset.pinyin;
-                    if (!pinyin) return;
-
-                    // Stop any currently playing audio
-                    if (currentAudio) {
-                        currentAudio.pause();
-                        currentAudio = null;
-                    }
-
-                    // Remove playing class from all cards
-                    document.querySelectorAll('.final-card.playing').forEach(card => {
-                        card.classList.remove('playing');
-                    });
-
-                    try {
-                        // Add playing class to current card
-                        this.classList.add('playing');
-
-                        const response = await fetch('/api/tts', {
-                            method: 'POST',
-                            headers: {
-                                'Content-Type': 'application/json'
-                            },
-                            body: JSON.stringify({ text: pinyin })
-                        });
-                        
-                        if (!response.ok) {
-                            throw new Error(`HTTP error! status: ${response.status}`);
-                        }
-                        
-                        const audioBlob = await response.blob();
-                        const audioUrl = URL.createObjectURL(audioBlob);
-                        
-                        currentAudio = new Audio(audioUrl);
-                        currentAudio.addEventListener('ended', () => {
-                            URL.revokeObjectURL(audioUrl);
-                            this.classList.remove('playing');
-                        });
-                        
-                        await currentAudio.play();
-                    } catch (error) {
-                        console.error('Error playing audio:', error);
-                        this.classList.remove('playing');
-                    }
+        async function playAudio(final) {
+            try {
+                const response = await fetch(`${API_BASE_URL}/api/tts`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({ text: final })
                 });
-            });
-        });
+
+                if (!response.ok) {
+                    throw new Error(`HTTP error! status: ${response.status}`);
+                }
+
+                const blob = await response.blob();
+                const audio = new Audio(URL.createObjectURL(blob));
+                await audio.play();
+            } catch (error) {
+                console.error('Error playing audio:', error);
+            }
+        }
     </script>
 </body>
 </html> 

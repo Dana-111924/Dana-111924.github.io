@@ -5,6 +5,36 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Basic Characters - Learn Chinese</title>
     <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: {
+                            DEFAULT: '#4CB8B8',
+                            light: '#5EBFBF',
+                            dark: '#3A9999',
+                        },
+                        secondary: {
+                            DEFAULT: '#6B7280',
+                            light: '#9CA3AF',
+                            dark: '#4B5563',
+                        },
+                        accent: {
+                            DEFAULT: '#F87171',
+                            light: '#FCA5A5',
+                            dark: '#EF4444',
+                        },
+                        background: {
+                            DEFAULT: '#F3F4F6',
+                            card: '#FFFFFF',
+                            dark: '#1F2937',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;500;700&display=swap" rel="stylesheet">
     <style>
         body {
@@ -17,14 +47,20 @@
             transform: translateY(-5px);
             box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1);
         }
+        .nav-link {
+            transition: color 0.2s ease;
+        }
+        .nav-link:hover {
+            color: #FFFFFF;
+        }
     </style>
 </head>
-<body class="bg-gray-light">
+<body class="bg-background">
     <!-- Navigation -->
-    <nav class="bg-primary text-white shadow-lg">
-        <div class="container mx-auto px-6 py-3">
+    <nav class="bg-primary shadow-lg">
+        <div class="container mx-auto px-6 py-4">
             <div class="flex items-center justify-between">
-                <div class="text-2xl font-bold">学中文</div>
+                <div class="text-2xl font-bold text-white">学中文</div>
                 <div class="hidden md:flex space-x-8">
                     <a href="/" class="nav-link text-white opacity-90 hover:opacity-100">Home</a>
                     <a href="/pages/learn-chinese.html" class="nav-link text-white opacity-90 hover:opacity-100">Learn Chinese</a>
@@ -38,16 +74,16 @@
     <!-- Main Content -->
     <div class="container mx-auto px-6 py-12">
         <h1 class="text-4xl font-bold text-primary-dark mb-8">Basic Characters</h1>
-        <p class="text-gray-dark mb-8">Learn essential Chinese characters with stroke order and pronunciation.</p>
+        <p class="text-secondary-dark mb-8">Learn essential Chinese characters with stroke order and pronunciation.</p>
 
         <!-- Character Grid -->
         <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
             <!-- Example Character Card -->
-            <div class="character-card bg-white rounded-lg shadow-lg p-6">
+            <div class="character-card bg-background-card rounded-lg shadow-lg p-6">
                 <div class="text-6xl text-center mb-4 text-primary-dark">人</div>
                 <div class="text-center">
-                    <p class="text-gray-dark mb-2">rén</p>
-                    <p class="text-primary-dark font-semibold">person</p>
+                    <p class="text-secondary-dark mb-2">rén</p>
+                    <p class="text-primary font-semibold">person</p>
                 </div>
             </div>
 
@@ -55,10 +91,10 @@
         </div>
 
         <!-- Stroke Order Guide -->
-        <div class="mt-12 bg-white rounded-lg shadow-lg p-6">
+        <div class="mt-12 bg-background-card rounded-lg shadow-lg p-6">
             <h2 class="text-2xl font-bold text-primary-dark mb-4">Stroke Order Rules</h2>
             <div class="grid md:grid-cols-2 gap-6">
-                <div class="bg-secondary-light text-white p-6 rounded-lg">
+                <div class="bg-primary text-white p-6 rounded-lg hover:bg-primary-light transition-colors duration-300">
                     <h3 class="font-bold mb-2">Basic Rules</h3>
                     <ul class="list-disc list-inside">
                         <li>Top to bottom</li>
@@ -67,7 +103,7 @@
                         <li>Outside before inside</li>
                     </ul>
                 </div>
-                <div class="bg-accent text-white p-6 rounded-lg">
+                <div class="bg-primary text-white p-6 rounded-lg hover:bg-primary-light transition-colors duration-300">
                     <h3 class="font-bold mb-2">Practice Tips</h3>
                     <ul class="list-disc list-inside">
                         <li>Start with simple characters</li>
@@ -81,9 +117,9 @@
     </div>
 
     <!-- Footer -->
-    <footer class="bg-primary-dark text-white py-8">
+    <footer class="bg-primary-dark text-white py-8 mt-12">
         <div class="container mx-auto px-6 text-center">
-            <p>&copy; 2024 Learn Chinese. All rights reserved.</p>
+            <p class="opacity-90">&copy; 2024 Learn Chinese. All rights reserved.</p>
         </div>
     </footer>
 </body>

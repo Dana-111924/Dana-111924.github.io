@@ -4,147 +4,244 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Pinyin Chart - Learn Chinese</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    colors: {
-                        primary: {
-                            DEFAULT: '#4CB8B8',
-                            light: '#5EBFBF',
-                            dark: '#3A9999',
-                        },
-                        secondary: {
-                            DEFAULT: '#6B7280',
-                            light: '#9CA3AF',
-                            dark: '#4B5563',
-                        },
-                        accent: {
-                            DEFAULT: '#F87171',
-                            light: '#FCA5A5',
-                            dark: '#EF4444',
-                        },
-                        background: {
-                            DEFAULT: '#F3F4F6',
-                            card: '#FFFFFF',
-                            dark: '#1F2937',
-                        }
-                    }
-                }
-            }
-        }
-    </script>
-    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;500;700&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
     <style>
-        body {
-            font-family: 'Noto Sans SC', sans-serif;
-        }
-        .nav-link {
-            transition: color 0.2s ease;
-        }
-        .nav-link:hover {
-            color: #FFFFFF;
-        }
         .pinyin-cell {
-            transition: all 0.3s ease;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            position: relative;
         }
         .pinyin-cell:hover {
-            transform: scale(1.05);
+            background-color: #e3f2fd;
+        }
+        .pinyin-cell.playing {
+            background-color: #bbdefb;
+        }
+        .pinyin-table {
+            font-size: 14px;
+            width: 100%;
+            overflow-x: auto;
+        }
+        .pinyin-table td {
+            padding: 4px 8px;
+            border: 1px solid #e5e7eb;
+            min-width: 40px;
+            text-align: center;
+        }
+        .pinyin-table th {
+            background-color: #20B2AA;
+            color: white;
+            padding: 4px 8px;
+            border: 1px solid #e5e7eb;
+            position: sticky;
+            top: 0;
+        }
+        .row-header {
+            background-color: #20B2AA;
+            color: white;
+            font-weight: normal;
+        }
+        .tone-popup {
+            position: fixed;
+            background: white;
+            border: 1px solid #e5e7eb;
+            border-radius: 8px;
             box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+            z-index: 50;
+            padding: 8px;
+            min-width: 120px;
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
         }
-        .tone-button {
+        .tone-option {
+            padding: 8px 16px;
+            cursor: pointer;
             transition: all 0.2s ease;
+            border-radius: 4px;
+            text-align: center;
+            font-size: 16px;
+            background-color: #f3f4f6;
         }
-        .tone-button:hover {
-            transform: scale(1.1);
+        .tone-option:hover {
+            background-color: #e5e7eb;
+        }
+        .close-popup {
+            position: absolute;
+            top: 4px;
+            right: 8px;
+            cursor: pointer;
+            font-size: 18px;
+            color: #666;
         }
     </style>
 </head>
-<body class="bg-background">
+<body class="bg-gray-50">
     <!-- Navigation -->
-    <nav class="bg-primary shadow-lg">
-        <div class="container mx-auto px-6 py-4">
-            <div class="flex items-center justify-between">
-                <div class="text-2xl font-bold text-white">学中文</div>
-                <div class="hidden md:flex space-x-8">
-                    <a href="/" class="nav-link text-white opacity-90 hover:opacity-100">Home</a>
-                    <a href="/pages/learn-chinese.html" class="nav-link text-white opacity-90 hover:opacity-100">Learn Chinese</a>
-                    <a href="/pages/pinyin-chart.html" class="nav-link text-white opacity-90 hover:opacity-100">Pinyin</a>
-                    <a href="/pages/vocabularies.html" class="nav-link text-white opacity-90 hover:opacity-100">Vocabulary</a>
+    <nav class="bg-white shadow">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-16">
+                <div class="flex">
+                    <div class="flex-shrink-0 flex items-center">
+                        <a href="../../" class="text-red-600 text-2xl font-bold">学中文</a>
+                    </div>
+                    <div class="hidden sm:ml-6 sm:flex sm:space-x-8">
+                        <a href="../../" class="text-gray-500 hover:text-gray-700 px-3 py-2 rounded-md">Home</a>
+                        <a href="../../learn.html" class="text-red-600 border-red-600 border-b-2 px-3 py-2 rounded-md">Learn Chinese</a>
+                        <a href="../../culture.html" class="text-gray-500 hover:text-gray-700 px-3 py-2 rounded-md">Culture</a>
+                        <a href="../../travel.html" class="text-gray-500 hover:text-gray-700 px-3 py-2 rounded-md">Travel</a>
+                    </div>
                 </div>
             </div>
         </div>
     </nav>
 
     <!-- Main Content -->
-    <div class="container mx-auto px-6 py-12">
-        <h1 class="text-4xl font-bold text-primary-dark mb-8">Pinyin Chart</h1>
-        <p class="text-secondary-dark mb-8">Click on any Pinyin to hear its pronunciation. Select the tone to practice different tones.</p>
-
-        <!-- Pinyin Table -->
-        <div class="bg-background-card rounded-lg shadow-lg p-8 mb-8">
-            <div class="overflow-x-auto">
-                <table class="min-w-full">
-                    <thead>
-                        <tr>
-                            <th class="px-4 py-2 text-left text-primary-dark">Initial</th>
-                            <th class="px-4 py-2 text-left text-primary-dark">Final</th>
-                            <th class="px-4 py-2 text-left text-primary-dark">Pinyin</th>
-                            <th class="px-4 py-2 text-left text-primary-dark">Audio</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <!-- Example row -->
-                        <tr>
-                            <td class="px-4 py-2 text-secondary-dark">b</td>
-                            <td class="px-4 py-2 text-secondary-dark">a</td>
-                            <td class="px-4 py-2">
-                                <button class="pinyin-cell bg-primary text-white px-4 py-2 rounded-lg hover:bg-primary-light">
-                                    ba
-                                </button>
-                            </td>
-                            <td class="px-4 py-2">
-                                <button class="tone-button bg-primary text-white px-3 py-1 rounded-full mr-1">1</button>
-                                <button class="tone-button bg-primary text-white px-3 py-1 rounded-full mr-1">2</button>
-                                <button class="tone-button bg-primary text-white px-3 py-1 rounded-full mr-1">3</button>
-                                <button class="tone-button bg-primary text-white px-3 py-1 rounded-full">4</button>
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+        <div class="mb-8">
+            <a href="pinyin-system.html" class="text-red-600 hover:text-red-700">← Back to Pinyin System</a>
         </div>
 
-        <!-- Tone Guide -->
-        <div class="bg-background-card rounded-lg shadow-lg p-8">
-            <h2 class="text-2xl font-bold text-primary-dark mb-6">Tone Guide</h2>
-            <div class="grid md:grid-cols-4 gap-6">
-                <div class="bg-primary text-white p-6 rounded-lg">
-                    <h3 class="font-bold mb-2">First Tone (ˉ)</h3>
-                    <p class="opacity-90">High and level</p>
-                </div>
-                <div class="bg-primary-light text-white p-6 rounded-lg">
-                    <h3 class="font-bold mb-2">Second Tone (ˊ)</h3>
-                    <p class="opacity-90">Rising</p>
-                </div>
-                <div class="bg-primary text-white p-6 rounded-lg">
-                    <h3 class="font-bold mb-2">Third Tone (ˇ)</h3>
-                    <p class="opacity-90">Falling-rising</p>
-                </div>
-                <div class="bg-primary-dark text-white p-6 rounded-lg">
-                    <h3 class="font-bold mb-2">Fourth Tone (ˋ)</h3>
-                    <p class="opacity-90">Falling</p>
-                </div>
-            </div>
+        <h1 class="text-3xl font-bold text-gray-900 mb-4">Interactive Pinyin Chart</h1>
+        <p class="text-gray-600 mb-8">Click on any Pinyin to hear its pronunciation with different tones. This chart shows all possible Pinyin combinations in Mandarin Chinese.</p>
+
+        <div class="overflow-x-auto shadow-md rounded-lg mb-8">
+            <table class="pinyin-table min-w-full bg-white">
+                <tr>
+                    <th></th><th>b</th><th>p</th><th>m</th><th>f</th><th>d</th><th>t</th><th>n</th><th>l</th><th>g</th><th>k</th><th>h</th><th>j</th><th>q</th><th>x</th><th>z</th><th>c</th><th>s</th><th>zh</th><th>ch</th><th>sh</th><th>r</th>
+                </tr>
+                <tr><td class="row-header">i</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td>zi</td><td>ci</td><td>si</td><td>zhi</td><td>chi</td><td>shi</td><td>ri</td><td></td><td></td><td></td></tr>
+                <tr><td class="row-header">a</td><td>ba</td><td>pa</td><td>ma</td><td>fa</td><td>da</td><td>ta</td><td>na</td><td>la</td><td>ga</td><td>ka</td><td>ha</td><td>za</td><td>ca</td><td>sa</td><td>zha</td><td>cha</td><td>sha</td><td>ra</td><td></td><td></td><td></td></tr>
+                <tr><td class="row-header">ai</td><td>bai</td><td>pai</td><td>mai</td><td></td><td>dai</td><td>tai</td><td>nai</td><td>lai</td><td>gai</td><td>kai</td><td>hai</td><td>zai</td><td>cai</td><td>sai</td><td>zhai</td><td>chai</td><td>shai</td><td></td><td></td><td></td><td></td></tr>
+                <tr><td class="row-header">an</td><td>ban</td><td>pan</td><td>man</td><td>fan</td><td>dan</td><td>tan</td><td>nan</td><td>lan</td><td>gan</td><td>kan</td><td>han</td><td>zan</td><td>can</td><td>san</td><td>zhan</td><td>chan</td><td>shan</td><td>ran</td><td></td><td></td><td></td></tr>
+                <tr><td class="row-header">ang</td><td>bang</td><td>pang</td><td>mang</td><td>fang</td><td>dang</td><td>tang</td><td>nang</td><td>lang</td><td>gang</td><td>kang</td><td>hang</td><td>zang</td><td>cang</td><td>sang</td><td>zhang</td><td>chang</td><td>shang</td><td>rang</td><td></td><td></td><td></td></tr>
+                <tr><td class="row-header">ao</td><td>bao</td><td>pao</td><td>mao</td><td></td><td>dao</td><td>tao</td><td>nao</td><td>lao</td><td>gao</td><td>kao</td><td>hao</td><td>zao</td><td>cao</td><td>sao</td><td>zhao</td><td>chao</td><td>shao</td><td>rao</td><td></td><td></td><td></td></tr>
+                <tr><td class="row-header">e</td><td></td><td></td><td>me</td><td></td><td>de</td><td>te</td><td>ne</td><td>le</td><td>ge</td><td>ke</td><td>he</td><td>ze</td><td>ce</td><td>se</td><td>zhe</td><td>che</td><td>she</td><td>re</td><td></td><td></td><td></td></tr>
+                <tr><td class="row-header">ei</td><td>bei</td><td>pei</td><td>mei</td><td>fei</td><td>dei</td><td></td><td>nei</td><td>lei</td><td>gei</td><td></td><td>hei</td><td>zei</td><td></td><td></td><td>zhei</td><td></td><td>shei</td><td></td><td></td><td></td><td></td></tr>
+                <tr><td class="row-header">en</td><td>ben</td><td>pen</td><td>men</td><td>fen</td><td></td><td></td><td>nen</td><td></td><td>gen</td><td>ken</td><td>hen</td><td>zen</td><td>cen</td><td>sen</td><td>zhen</td><td>chen</td><td>shen</td><td>ren</td><td></td><td></td><td></td></tr>
+                <tr><td class="row-header">eng</td><td>beng</td><td>peng</td><td>meng</td><td>feng</td><td>deng</td><td>teng</td><td>neng</td><td>leng</td><td>geng</td><td>keng</td><td>heng</td><td>zeng</td><td>ceng</td><td>seng</td><td>zheng</td><td>cheng</td><td>sheng</td><td>reng</td><td></td><td></td><td></td></tr>
+                <tr><td class="row-header">er</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+                <tr><td class="row-header">i</td><td>bi</td><td>pi</td><td>mi</td><td></td><td>di</td><td>ti</td><td>ni</td><td>li</td><td></td><td></td><td></td><td>ji</td><td>qi</td><td>xi</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+                <tr><td class="row-header">ia</td><td></td><td></td><td></td><td></td><td>dia</td><td></td><td></td><td>lia</td><td></td><td></td><td></td><td>jia</td><td>qia</td><td>xia</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+                <tr><td class="row-header">ian</td><td>bian</td><td>pian</td><td>mian</td><td></td><td>dian</td><td>tian</td><td>nian</td><td>lian</td><td></td><td></td><td></td><td>jian</td><td>qian</td><td>xian</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+                <tr><td class="row-header">iang</td><td></td><td></td><td></td><td></td><td></td><td></td><td>niang</td><td>liang</td><td></td><td></td><td></td><td>jiang</td><td>qiang</td><td>xiang</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+                <tr><td class="row-header">iao</td><td>biao</td><td>piao</td><td>miao</td><td></td><td>diao</td><td>tiao</td><td>niao</td><td>liao</td><td></td><td></td><td></td><td>jiao</td><td>qiao</td><td>xiao</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+                <tr><td class="row-header">ie</td><td>bie</td><td>pie</td><td>mie</td><td></td><td>die</td><td>tie</td><td>nie</td><td>lie</td><td></td><td></td><td></td><td>jie</td><td>qie</td><td>xie</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+                <tr><td class="row-header">in</td><td>bin</td><td>pin</td><td>min</td><td></td><td></td><td></td><td>nin</td><td>lin</td><td></td><td></td><td></td><td>jin</td><td>qin</td><td>xin</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+                <tr><td class="row-header">ing</td><td>bing</td><td>ping</td><td>ming</td><td></td><td>ding</td><td>ting</td><td>ning</td><td>ling</td><td></td><td></td><td></td><td>jing</td><td>qing</td><td>xing</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+                <tr><td class="row-header">iong</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td>jiong</td><td>qiong</td><td>xiong</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+                <tr><td class="row-header">iou</td><td></td><td></td><td>miu</td><td></td><td>diu</td><td></td><td>niu</td><td>liu</td><td></td><td></td><td></td><td>jiu</td><td>qiu</td><td>xiu</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+                <tr><td class="row-header">o</td><td>bo</td><td>po</td><td>mo</td><td>fo</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+                <tr><td class="row-header">ong</td><td></td><td></td><td></td><td></td><td>dong</td><td>tong</td><td>nong</td><td>long</td><td>gong</td><td>kong</td><td>hong</td><td>zong</td><td>cong</td><td>song</td><td>zhong</td><td>chong</td><td></td><td>rong</td><td></td><td></td><td></td></tr>
+                <tr><td class="row-header">ou</td><td></td><td>pou</td><td>mou</td><td>fou</td><td>dou</td><td>tou</td><td>nou</td><td>lou</td><td>gou</td><td>kou</td><td>hou</td><td>zou</td><td>cou</td><td>sou</td><td>zhou</td><td>chou</td><td>shou</td><td>rou</td><td></td><td></td><td></td></tr>
+                <tr><td class="row-header">u</td><td>bu</td><td>pu</td><td>mu</td><td>fu</td><td>du</td><td>tu</td><td>nu</td><td>lu</td><td>gu</td><td>ku</td><td>hu</td><td>zu</td><td>cu</td><td>su</td><td>zhu</td><td>chu</td><td>shu</td><td>ru</td><td></td><td></td><td></td></tr>
+                <tr><td class="row-header">ua</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td>gua</td><td>kua</td><td>hua</td><td></td><td></td><td></td><td>zhua</td><td></td><td>shua</td><td></td><td></td><td></td><td></td></tr>
+                <tr><td class="row-header">uai</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td>guai</td><td>kuai</td><td>huai</td><td></td><td></td><td></td><td>zhuai</td><td>chuai</td><td>shuai</td><td></td><td></td><td></td><td></td></tr>
+                <tr><td class="row-header">uan</td><td></td><td></td><td></td><td></td><td>duan</td><td>tuan</td><td>nuan</td><td>luan</td><td>guan</td><td>kuan</td><td>huan</td><td>zuan</td><td>cuan</td><td>suan</td><td>zhuan</td><td>chuan</td><td>shuan</td><td>ruan</td><td></td><td></td><td></td></tr>
+                <tr><td class="row-header">uang</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td>guang</td><td>kuang</td><td>huang</td><td></td><td></td><td></td><td>zhuang</td><td>chuang</td><td>shuang</td><td></td><td></td><td></td><td></td></tr>
+                <tr><td class="row-header">uei</td><td></td><td></td><td></td><td></td><td>dui</td><td>tui</td><td></td><td></td><td>gui</td><td>kui</td><td>hui</td><td>zui</td><td>cui</td><td>sui</td><td>zhui</td><td>chui</td><td>shui</td><td>rui</td><td></td><td></td><td></td></tr>
+                <tr><td class="row-header">uen</td><td></td><td></td><td></td><td></td><td>dun</td><td>tun</td><td></td><td>lun</td><td>gun</td><td>kun</td><td>hun</td><td>zun</td><td>cun</td><td>sun</td><td>zhun</td><td>chun</td><td>shun</td><td>run</td><td></td><td></td><td></td></tr>
+                <tr><td class="row-header">ueng</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+                <tr><td class="row-header">uo</td><td></td><td></td><td></td><td></td><td>duo</td><td>tuo</td><td>nuo</td><td>luo</td><td>guo</td><td>kuo</td><td>huo</td><td>zuo</td><td>cuo</td><td>suo</td><td>zhuo</td><td>chuo</td><td>shuo</td><td>ruo</td><td></td><td></td><td></td></tr>
+                <tr><td class="row-header">ü</td><td></td><td></td><td></td><td></td><td></td><td></td><td>nü</td><td>lü</td><td></td><td></td><td></td><td>ju</td><td>qu</td><td>xu</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+                <tr><td class="row-header">üan</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td>juan</td><td>quan</td><td>xuan</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+                <tr><td class="row-header">üe</td><td></td><td></td><td></td><td></td><td></td><td></td><td>nüe</td><td>lüe</td><td></td><td></td><td></td><td>jue</td><td>que</td><td>xue</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+                <tr><td class="row-header">ün</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td>jun</td><td>qun</td><td>xun</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+            </table>
+        </div>
+
+        <div class="flex justify-between items-center mt-8">
+            <a href="pinyin-tones.html" class="text-red-600 hover:text-red-700">← Tones</a>
+            <a href="pinyin-initials.html" class="text-red-600 hover:text-red-700">Initials →</a>
         </div>
     </div>
 
     <!-- Footer -->
-    <footer class="bg-primary-dark text-white py-8 mt-12">
-        <div class="container mx-auto px-6 text-center">
-            <p class="opacity-90">&copy; 2024 Learn Chinese. All rights reserved.</p>
+    <footer class="bg-white mt-12">
+        <div class="max-w-7xl mx-auto py-12 px-4 sm:px-6 md:flex md:items-center md:justify-between lg:px-8">
+            <div class="mt-8 md:mt-0 md:order-1">
+                <p class="text-center text-base text-gray-400">
+                    © 2024 Learn Chinese. All rights reserved.
+                </p>
+            </div>
         </div>
     </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const cells = document.querySelectorAll('td:not(.row-header)');
+            let currentAudio = null;
+            let currentPopup = null;
+
+            // Close popup when clicking outside
+            document.addEventListener('click', (e) => {
+                if (currentPopup && !e.target.closest('.pinyin-cell') && !e.target.closest('.tone-popup')) {
+                    currentPopup.remove();
+                    currentPopup = null;
+                }
+            });
+
+            cells.forEach(cell => {
+                if (cell.textContent.trim()) {
+                    cell.classList.add('pinyin-cell');
+                    cell.addEventListener('click', function(e) {
+                        const text = this.textContent.trim();
+                        if (!text) return;
+
+                        // Remove any existing popup
+                        if (currentPopup) {
+                            currentPopup.remove();
+                            currentPopup = null;
+                        }
+
+                        // Create tone popup
+                        const popup = document.createElement('div');
+                        popup.className = 'tone-popup';
+
+                        // Add close button
+                        const closeBtn = document.createElement('span');
+                        closeBtn.className = 'close-popup';
+                        closeBtn.innerHTML = '×';
+                        closeBtn.onclick = (e) => {
+                            e.stopPropagation();
+                            popup.remove();
+                            currentPopup = null;
+                        };
+                        popup.appendChild(closeBtn);
+
+                        // Create tone options
+                        for (let i = 1; i <= 4; i++) {
+                            const option = document.createElement('div');
+                            option.className = 'tone-option';
+                            option.textContent = `${text}${i}`;
+                            option.onclick = () => {
+                                if (currentAudio) {
+                                    currentAudio.pause();
+                                    currentAudio.currentTime = 0;
+                                }
+                                currentAudio = new Audio(`https://chinese-learning-api.com/tts/${text}${i}`);
+                                currentAudio.play().catch(error => {
+                                    console.error('Error playing audio:', error);
+                                });
+                            };
+                            popup.appendChild(option);
+                        }
+
+                        // Position the popup
+                        const rect = this.getBoundingClientRect();
+                        popup.style.left = `${rect.left}px`;
+                        popup.style.top = `${rect.bottom + window.scrollY + 8}px`;
+
+                        // Add popup to the document
+                        document.body.appendChild(popup);
+                        currentPopup = popup;
+
+                        // Prevent event from bubbling
+                        e.stopPropagation();
+                    });
+                }
+            });
+        });
+    </script>
 </body>
 </html> 

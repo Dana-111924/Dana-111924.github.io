@@ -3,101 +3,190 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Chinese Tones - Learn Chinese</title>
-    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="../css/styles.css">
+    <title>Pinyin Tones - Learn Chinese</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: {
+                            DEFAULT: '#4CB8B8',
+                            light: '#5EBFBF',
+                            dark: '#3A9999',
+                        },
+                        secondary: {
+                            DEFAULT: '#6B7280',
+                            light: '#9CA3AF',
+                            dark: '#4B5563',
+                        },
+                        accent: {
+                            DEFAULT: '#F87171',
+                            light: '#FCA5A5',
+                            dark: '#EF4444',
+                        },
+                        background: {
+                            DEFAULT: '#F3F4F6',
+                            card: '#FFFFFF',
+                            dark: '#1F2937',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;500;700&display=swap" rel="stylesheet">
     <style>
+        body {
+            font-family: 'Noto Sans SC', sans-serif;
+        }
+        .nav-link {
+            transition: color 0.2s ease;
+        }
+        .nav-link:hover {
+            color: #FFFFFF;
+        }
+        .tone-card {
+            transition: all 0.3s ease;
+        }
+        .tone-card:hover {
+            transform: translateY(-2px);
+        }
         .tone-example {
-            border: 1px solid #E5E7EB;
-            padding: 1rem;
-            margin: 0.5rem 0;
-            border-radius: 0.5rem;
-            background-color: #F9FAFB;
+            transition: all 0.2s ease;
+        }
+        .tone-example:hover {
+            background-color: var(--primary-light);
+            color: white;
+        }
+        .tone-mark {
+            font-weight: bold;
+            color: var(--primary-dark);
         }
     </style>
 </head>
-<body class="bg-gray-50">
+<body class="bg-background">
     <!-- Navigation -->
-    <nav class="bg-white shadow">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex justify-between h-16">
-                <div class="flex">
-                    <div class="flex-shrink-0 flex items-center">
-                        <a href="../" class="text-red-600 text-2xl font-bold">学中文</a>
-                    </div>
-                    <div class="hidden sm:ml-6 sm:flex sm:space-x-8">
-                        <a href="../" class="text-gray-500 hover:text-gray-700 px-3 py-2 rounded-md">Home</a>
-                        <a href="../learn.html" class="text-red-600 border-red-600 border-b-2 px-3 py-2 rounded-md">Learn Chinese</a>
-                        <a href="../culture.html" class="text-gray-500 hover:text-gray-700 px-3 py-2 rounded-md">Culture</a>
-                        <a href="../travel.html" class="text-gray-500 hover:text-gray-700 px-3 py-2 rounded-md">Travel</a>
-                    </div>
+    <nav class="bg-primary shadow-lg">
+        <div class="container mx-auto px-6 py-4">
+            <div class="flex items-center justify-between">
+                <div class="text-2xl font-bold text-white">学中文</div>
+                <div class="hidden md:flex space-x-8">
+                    <a href="/" class="nav-link text-white opacity-90 hover:opacity-100">Home</a>
+                    <a href="/pages/learn-chinese.html" class="nav-link text-white opacity-90 hover:opacity-100">Learn Chinese</a>
+                    <a href="/pages/pinyin-chart.html" class="nav-link text-white opacity-90 hover:opacity-100">Pinyin</a>
+                    <a href="/pages/vocabularies.html" class="nav-link text-white opacity-90 hover:opacity-100">Vocabulary</a>
                 </div>
             </div>
         </div>
     </nav>
 
     <!-- Main Content -->
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+    <div class="container mx-auto px-6 py-12">
         <div class="mb-8">
-            <a href="pinyin-system.html" class="text-red-600 hover:text-red-700">← Back to Pinyin System</a>
+            <a href="/pages/pinyin-system.html" class="text-primary hover:text-primary-dark transition-colors duration-200">← Back to Pinyin System</a>
         </div>
 
-        <h1 class="text-3xl font-bold text-gray-900 mb-8">Chinese Tones (声调)</h1>
+        <h1 class="text-4xl font-bold text-primary-dark mb-4">声调 - Pinyin Tones</h1>
+        <p class="text-secondary-dark mb-8">Learn the four tones and neutral tone in Mandarin Chinese.</p>
 
-        <!-- Tones Section -->
-        <div class="bg-white rounded-lg shadow-md p-6 mb-8">
-            <p class="text-gray-600 mb-6">
-                Mandarin Chinese is a tonal language with four main tones and one neutral tone. 
-                The tone of a syllable can change its meaning completely. Click on each example to hear the pronunciation.
+        <!-- Tones Overview -->
+        <div class="bg-background-card rounded-lg shadow-lg p-6 mb-8">
+            <h2 class="text-2xl font-semibold text-primary-dark mb-4">Overview</h2>
+            <p class="text-secondary-dark mb-4">
+                Mandarin Chinese is a tonal language, meaning that the same syllable pronounced with different tones
+                can have completely different meanings. There are four main tones and one neutral tone.
             </p>
-            
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                <div class="space-y-4">
-                    <div class="tone-example">
-                        <div class="text-lg font-medium">First Tone (ˉ)</div>
-                        <div class="text-3xl my-2">妈</div>
-                        <div class="text-gray-600">mā - mother</div>
-                        <div class="text-sm text-gray-500">High and level tone</div>
+        </div>
+
+        <!-- Tone Cards -->
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <!-- First Tone -->
+            <div class="tone-card bg-background-card rounded-lg shadow-lg p-6">
+                <h3 class="text-xl font-semibold text-primary-dark mb-4">First Tone (ˉ)</h3>
+                <p class="text-secondary-dark mb-4">High level tone</p>
+                <div class="space-y-3">
+                    <div class="tone-example p-3 rounded-lg border border-secondary-light cursor-pointer" onclick="playAudio('mā')">
+                        <div class="text-lg font-medium text-primary-dark">mā</div>
+                        <div class="text-secondary-dark">妈 (mother)</div>
                     </div>
-                    <div class="tone-example">
-                        <div class="text-lg font-medium">Second Tone (ˊ)</div>
-                        <div class="text-3xl my-2">麻</div>
-                        <div class="text-gray-600">má - hemp</div>
-                        <div class="text-sm text-gray-500">Rising tone</div>
-                    </div>
-                </div>
-                <div class="space-y-4">
-                    <div class="tone-example">
-                        <div class="text-lg font-medium">Third Tone (ˇ)</div>
-                        <div class="text-3xl my-2">马</div>
-                        <div class="text-gray-600">mǎ - horse</div>
-                        <div class="text-sm text-gray-500">Falling-rising tone</div>
-                    </div>
-                    <div class="tone-example">
-                        <div class="text-lg font-medium">Fourth Tone (ˋ)</div>
-                        <div class="text-3xl my-2">骂</div>
-                        <div class="text-gray-600">mà - scold</div>
-                        <div class="text-sm text-gray-500">Falling tone</div>
+                    <div class="tone-example p-3 rounded-lg border border-secondary-light cursor-pointer" onclick="playAudio('yī')">
+                        <div class="text-lg font-medium text-primary-dark">yī</div>
+                        <div class="text-secondary-dark">一 (one)</div>
                     </div>
                 </div>
             </div>
-        </div>
 
-        <!-- Navigation Links -->
-        <div class="flex justify-between items-center mt-8">
-            <a href="pinyin-system.html" class="text-red-600 hover:text-red-700">← Introduction</a>
-            <a href="pinyin-chart.html" class="text-red-600 hover:text-red-700">Interactive Chart →</a>
+            <!-- Second Tone -->
+            <div class="tone-card bg-background-card rounded-lg shadow-lg p-6">
+                <h3 class="text-xl font-semibold text-primary-dark mb-4">Second Tone (ˊ)</h3>
+                <p class="text-secondary-dark mb-4">Rising tone</p>
+                <div class="space-y-3">
+                    <div class="tone-example p-3 rounded-lg border border-secondary-light cursor-pointer" onclick="playAudio('má')">
+                        <div class="text-lg font-medium text-primary-dark">má</div>
+                        <div class="text-secondary-dark">麻 (hemp)</div>
+                    </div>
+                    <div class="tone-example p-3 rounded-lg border border-secondary-light cursor-pointer" onclick="playAudio('yí')">
+                        <div class="text-lg font-medium text-primary-dark">yí</div>
+                        <div class="text-secondary-dark">移 (move)</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Third Tone -->
+            <div class="tone-card bg-background-card rounded-lg shadow-lg p-6">
+                <h3 class="text-xl font-semibold text-primary-dark mb-4">Third Tone (ˇ)</h3>
+                <p class="text-secondary-dark mb-4">Falling-rising tone</p>
+                <div class="space-y-3">
+                    <div class="tone-example p-3 rounded-lg border border-secondary-light cursor-pointer" onclick="playAudio('mǎ')">
+                        <div class="text-lg font-medium text-primary-dark">mǎ</div>
+                        <div class="text-secondary-dark">马 (horse)</div>
+                    </div>
+                    <div class="tone-example p-3 rounded-lg border border-secondary-light cursor-pointer" onclick="playAudio('yǐ')">
+                        <div class="text-lg font-medium text-primary-dark">yǐ</div>
+                        <div class="text-secondary-dark">已 (already)</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Fourth Tone -->
+            <div class="tone-card bg-background-card rounded-lg shadow-lg p-6">
+                <h3 class="text-xl font-semibold text-primary-dark mb-4">Fourth Tone (ˋ)</h3>
+                <p class="text-secondary-dark mb-4">Falling tone</p>
+                <div class="space-y-3">
+                    <div class="tone-example p-3 rounded-lg border border-secondary-light cursor-pointer" onclick="playAudio('mà')">
+                        <div class="text-lg font-medium text-primary-dark">mà</div>
+                        <div class="text-secondary-dark">骂 (scold)</div>
+                    </div>
+                    <div class="tone-example p-3 rounded-lg border border-secondary-light cursor-pointer" onclick="playAudio('yì')">
+                        <div class="text-lg font-medium text-primary-dark">yì</div>
+                        <div class="text-secondary-dark">义 (justice)</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Neutral Tone -->
+            <div class="tone-card bg-background-card rounded-lg shadow-lg p-6">
+                <h3 class="text-xl font-semibold text-primary-dark mb-4">Neutral Tone</h3>
+                <p class="text-secondary-dark mb-4">Light and short tone</p>
+                <div class="space-y-3">
+                    <div class="tone-example p-3 rounded-lg border border-secondary-light cursor-pointer" onclick="playAudio('ma')">
+                        <div class="text-lg font-medium text-primary-dark">ma</div>
+                        <div class="text-secondary-dark">吗 (question particle)</div>
+                    </div>
+                    <div class="tone-example p-3 rounded-lg border border-secondary-light cursor-pointer" onclick="playAudio('le')">
+                        <div class="text-lg font-medium text-primary-dark">le</div>
+                        <div class="text-secondary-dark">了 (completion particle)</div>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 
     <!-- Footer -->
-    <footer class="bg-white mt-12">
-        <div class="max-w-7xl mx-auto py-12 px-4 sm:px-6 md:flex md:items-center md:justify-between lg:px-8">
-            <div class="mt-8 md:mt-0 md:order-1">
-                <p class="text-center text-base text-gray-400">
-                    &copy; 2024 Learn Chinese. All rights reserved.
-                </p>
-            </div>
+    <footer class="bg-primary-dark text-white py-8 mt-12">
+        <div class="container mx-auto px-6 text-center">
+            <p class="opacity-90">&copy; 2024 Learn Chinese. All rights reserved.</p>
         </div>
     </footer>
 
@@ -107,48 +196,27 @@
             ? 'http://localhost:3001'
             : 'https://chinese-learning-site.onrender.com';
 
-        document.addEventListener('DOMContentLoaded', function() {
-            let currentAudio = null;
-            const toneExamples = document.querySelectorAll('.tone-example');
-            
-            toneExamples.forEach(example => {
-                example.addEventListener('click', async function() {
-                    const character = this.querySelector('.text-3xl').textContent;
-                    if (!character) return;
-
-                    if (currentAudio) {
-                        currentAudio.pause();
-                        currentAudio = null;
-                    }
-
-                    try {
-                        const response = await fetch(`${API_BASE_URL}/api/tts`, {
-                            method: 'POST',
-                            headers: {
-                                'Content-Type': 'application/json'
-                            },
-                            body: JSON.stringify({ text: character })
-                        });
-                        
-                        if (!response.ok) {
-                            throw new Error(`HTTP error! status: ${response.status}`);
-                        }
-                        
-                        const audioBlob = await response.blob();
-                        const audioUrl = URL.createObjectURL(audioBlob);
-                        
-                        currentAudio = new Audio(audioUrl);
-                        currentAudio.addEventListener('ended', () => {
-                            URL.revokeObjectURL(audioUrl);
-                        });
-                        
-                        await currentAudio.play();
-                    } catch (error) {
-                        console.error('Error playing audio:', error);
-                    }
+        async function playAudio(tone) {
+            try {
+                const response = await fetch(`${API_BASE_URL}/api/tts`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({ text: tone })
                 });
-            });
-        });
+
+                if (!response.ok) {
+                    throw new Error(`HTTP error! status: ${response.status}`);
+                }
+
+                const blob = await response.blob();
+                const audio = new Audio(URL.createObjectURL(blob));
+                await audio.play();
+            } catch (error) {
+                console.error('Error playing audio:', error);
+            }
+        }
     </script>
 </body>
 </html> 

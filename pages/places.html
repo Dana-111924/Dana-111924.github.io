@@ -4,157 +4,183 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Places Vocabulary - Learn Chinese</title>
-    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: {
+                            DEFAULT: '#4CB8B8',
+                            light: '#5EBFBF',
+                            dark: '#3A9999',
+                        },
+                        secondary: {
+                            DEFAULT: '#6B7280',
+                            light: '#9CA3AF',
+                            dark: '#4B5563',
+                        },
+                        accent: {
+                            DEFAULT: '#F87171',
+                            light: '#FCA5A5',
+                            dark: '#EF4444',
+                        },
+                        background: {
+                            DEFAULT: '#F3F4F6',
+                            card: '#FFFFFF',
+                            dark: '#1F2937',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;500;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Noto Sans SC', sans-serif;
+        }
+        .nav-link {
+            transition: color 0.2s ease;
+        }
+        .nav-link:hover {
+            color: #FFFFFF;
+        }
+        .word-card {
+            transition: all 0.3s ease;
+        }
+        .word-card:hover {
+            transform: translateY(-2px);
+        }
+    </style>
 </head>
-<body class="bg-gray-50">
+<body class="bg-background">
     <!-- Navigation -->
-    <nav class="bg-red-500 text-white p-4">
-        <div class="container mx-auto flex justify-between items-center">
-            <a href="/" class="text-2xl font-bold">学中文</a>
-            <div class="space-x-4">
-                <a href="/" class="hover:text-red-200">Home</a>
-                <a href="/pages/learn-chinese.html" class="hover:text-red-200">Learn Chinese</a>
-                <a href="/pages/culture.html" class="hover:text-red-200">Culture</a>
-                <a href="/pages/travel.html" class="hover:text-red-200">Travel</a>
+    <nav class="bg-primary shadow-lg">
+        <div class="container mx-auto px-6 py-4">
+            <div class="flex items-center justify-between">
+                <div class="text-2xl font-bold text-white">学中文</div>
+                <div class="hidden md:flex space-x-8">
+                    <a href="/" class="nav-link text-white opacity-90 hover:opacity-100">Home</a>
+                    <a href="/pages/learn-chinese.html" class="nav-link text-white opacity-90 hover:opacity-100">Learn Chinese</a>
+                    <a href="/pages/pinyin-chart.html" class="nav-link text-white opacity-90 hover:opacity-100">Pinyin</a>
+                    <a href="/pages/vocabularies.html" class="nav-link text-white opacity-90 hover:opacity-100">Vocabulary</a>
+                </div>
             </div>
         </div>
     </nav>
 
     <!-- Main Content -->
-    <div class="container mx-auto px-4 py-8">
+    <div class="container mx-auto px-6 py-12">
         <div class="mb-8">
-            <a href="/pages/vocabularies.html" class="text-red-500 hover:text-red-600">← Back to Vocabularies</a>
+            <a href="/pages/vocabularies.html" class="text-primary hover:text-primary-dark transition-colors duration-200">← Back to Vocabularies</a>
         </div>
         
-        <h1 class="text-4xl font-bold text-gray-800 mb-4">Places Vocabulary</h1>
-        <p class="text-gray-600 mb-8">Learn essential Chinese words for locations, buildings, cities, and geographical terms.</p>
+        <h1 class="text-4xl font-bold text-primary-dark mb-4">Places Vocabulary</h1>
+        <p class="text-secondary-dark mb-8">Learn essential Chinese words for places and locations.</p>
 
         <!-- HSK 1 Section -->
-        <div class="bg-white rounded-lg shadow-md p-6 mb-8">
-            <h2 class="text-2xl font-semibold text-gray-800 mb-4">HSK 1 Places</h2>
+        <div class="bg-background-card rounded-lg shadow-lg p-6 mb-8">
+            <h2 class="text-2xl font-semibold text-primary-dark mb-4">HSK 1 Places</h2>
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-                <!-- Word Card -->
-                <div class="border rounded p-4 hover:bg-gray-50 cursor-pointer" onclick="playAudio('学校')">
-                    <div class="text-xl font-medium text-gray-800">学校</div>
-                    <div class="text-red-500">xuéxiào</div>
-                    <div class="text-gray-600">school</div>
+                <!-- Word Cards -->
+                <div class="word-card border border-secondary-light rounded-lg p-4 hover:shadow-lg cursor-pointer bg-background-card" onclick="playAudio('家')">
+                    <div class="text-xl font-medium text-primary-dark">家</div>
+                    <div class="text-primary">jiā</div>
+                    <div class="text-secondary-dark">home</div>
                 </div>
                 
-                <div class="border rounded p-4 hover:bg-gray-50 cursor-pointer" onclick="playAudio('商店')">
-                    <div class="text-xl font-medium text-gray-800">商店</div>
-                    <div class="text-red-500">shāngdiàn</div>
-                    <div class="text-gray-600">store / shop</div>
+                <div class="word-card border border-secondary-light rounded-lg p-4 hover:shadow-lg cursor-pointer bg-background-card" onclick="playAudio('学校')">
+                    <div class="text-xl font-medium text-primary-dark">学校</div>
+                    <div class="text-primary">xuéxiào</div>
+                    <div class="text-secondary-dark">school</div>
                 </div>
 
-                <div class="border rounded p-4 hover:bg-gray-50 cursor-pointer" onclick="playAudio('医院')">
-                    <div class="text-xl font-medium text-gray-800">医院</div>
-                    <div class="text-red-500">yīyuàn</div>
-                    <div class="text-gray-600">hospital</div>
+                <div class="word-card border border-secondary-light rounded-lg p-4 hover:shadow-lg cursor-pointer bg-background-card" onclick="playAudio('饭馆')">
+                    <div class="text-xl font-medium text-primary-dark">饭馆</div>
+                    <div class="text-primary">fànguǎn</div>
+                    <div class="text-secondary-dark">restaurant</div>
                 </div>
 
-                <div class="border rounded p-4 hover:bg-gray-50 cursor-pointer" onclick="playAudio('中国')">
-                    <div class="text-xl font-medium text-gray-800">中国</div>
-                    <div class="text-red-500">Zhōngguó</div>
-                    <div class="text-gray-600">China</div>
+                <div class="word-card border border-secondary-light rounded-lg p-4 hover:shadow-lg cursor-pointer bg-background-card" onclick="playAudio('商店')">
+                    <div class="text-xl font-medium text-primary-dark">商店</div>
+                    <div class="text-primary">shāngdiàn</div>
+                    <div class="text-secondary-dark">store</div>
                 </div>
 
-                <div class="border rounded p-4 hover:bg-gray-50 cursor-pointer" onclick="playAudio('北京')">
-                    <div class="text-xl font-medium text-gray-800">北京</div>
-                    <div class="text-red-500">Běijīng</div>
-                    <div class="text-gray-600">Beijing</div>
+                <div class="word-card border border-secondary-light rounded-lg p-4 hover:shadow-lg cursor-pointer bg-background-card" onclick="playAudio('医院')">
+                    <div class="text-xl font-medium text-primary-dark">医院</div>
+                    <div class="text-primary">yīyuàn</div>
+                    <div class="text-secondary-dark">hospital</div>
                 </div>
 
-                <div class="border rounded p-4 hover:bg-gray-50 cursor-pointer" onclick="playAudio('家')">
-                    <div class="text-xl font-medium text-gray-800">家</div>
-                    <div class="text-red-500">jiā</div>
-                    <div class="text-gray-600">home</div>
+                <div class="word-card border border-secondary-light rounded-lg p-4 hover:shadow-lg cursor-pointer bg-background-card" onclick="playAudio('公园')">
+                    <div class="text-xl font-medium text-primary-dark">公园</div>
+                    <div class="text-primary">gōngyuán</div>
+                    <div class="text-secondary-dark">park</div>
                 </div>
             </div>
         </div>
 
         <!-- HSK 2 Section -->
-        <div class="bg-white rounded-lg shadow-md p-6 mb-8">
-            <h2 class="text-2xl font-semibold text-gray-800 mb-4">HSK 2 Places</h2>
+        <div class="bg-background-card rounded-lg shadow-lg p-6 mb-8">
+            <h2 class="text-2xl font-semibold text-primary-dark mb-4">HSK 2 Places</h2>
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-                <div class="border rounded p-4 hover:bg-gray-50 cursor-pointer" onclick="playAudio('房间')">
-                    <div class="text-xl font-medium text-gray-800">房间</div>
-                    <div class="text-red-500">fángjiān</div>
-                    <div class="text-gray-600">room</div>
+                <div class="word-card border border-secondary-light rounded-lg p-4 hover:shadow-lg cursor-pointer bg-background-card" onclick="playAudio('图书馆')">
+                    <div class="text-xl font-medium text-primary-dark">图书馆</div>
+                    <div class="text-primary">túshūguǎn</div>
+                    <div class="text-secondary-dark">library</div>
+                </div>
+
+                <div class="word-card border border-secondary-light rounded-lg p-4 hover:shadow-lg cursor-pointer bg-background-card" onclick="playAudio('银行')">
+                    <div class="text-xl font-medium text-primary-dark">银行</div>
+                    <div class="text-primary">yínháng</div>
+                    <div class="text-secondary-dark">bank</div>
+                </div>
+
+                <div class="word-card border border-secondary-light rounded-lg p-4 hover:shadow-lg cursor-pointer bg-background-card" onclick="playAudio('机场')">
+                    <div class="text-xl font-medium text-primary-dark">机场</div>
+                    <div class="text-primary">jīchǎng</div>
+                    <div class="text-secondary-dark">airport</div>
                 </div>
             </div>
         </div>
     </div>
 
-    <!-- Audio Playback Script -->
-    <script>
-        // Mapping for characters to pinyin with tones
-        const pinyinMap = {
-            '学': { pinyin: 'xue', tone: 2 },
-            '校': { pinyin: 'xiao', tone: 4 },
-            '商': { pinyin: 'shang', tone: 1 },
-            '店': { pinyin: 'dian', tone: 4 },
-            '医': { pinyin: 'yi', tone: 1 },
-            '院': { pinyin: 'yuan', tone: 4 },
-            '中': { pinyin: 'zhong', tone: 1 },
-            '国': { pinyin: 'guo', tone: 2 },
-            '北': { pinyin: 'bei', tone: 3 },
-            '京': { pinyin: 'jing', tone: 1 },
-            '家': { pinyin: 'jia', tone: 1 },
-            '房': { pinyin: 'fang', tone: 2 },
-            '间': { pinyin: 'jian', tone: 1 }
-        };
+    <!-- Footer -->
+    <footer class="bg-primary-dark text-white py-8 mt-12">
+        <div class="container mx-auto px-6 text-center">
+            <p class="opacity-90">&copy; 2024 Learn Chinese. All rights reserved.</p>
+        </div>
+    </footer>
 
-        async function playAudio(text) {
+    <script>
+        // API configuration
+        const API_BASE_URL = window.location.hostname === 'localhost' 
+            ? 'http://localhost:3001'
+            : 'https://chinese-learning-site.onrender.com';
+
+        async function playAudio(word) {
             try {
-                // Play the whole word directly
-                console.log('Playing word:', text);
-                await playOneAudio(text);
+                const response = await fetch(`${API_BASE_URL}/api/tts`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({ text: word })
+                });
+
+                if (!response.ok) {
+                    throw new Error(`HTTP error! status: ${response.status}`);
+                }
+
+                const blob = await response.blob();
+                const audio = new Audio(URL.createObjectURL(blob));
+                await audio.play();
             } catch (error) {
                 console.error('Error playing audio:', error);
             }
         }
-
-        async function playOneAudio(text, pinyinData = null) {
-            try {
-                // Always send just the Chinese characters
-                const requestBody = { text };
-
-                const response = await fetch('http://localhost:3001/api/tts', {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json',
-                    },
-                    body: JSON.stringify(requestBody)
-                });
-                
-                if (!response.ok) {
-                    throw new Error(`HTTP error! status: ${response.status}`);
-                }
-                
-                const blob = await response.blob();
-                if (blob.size === 0) {
-                    throw new Error('Received empty audio response');
-                }
-                
-                const audio = new Audio(URL.createObjectURL(blob));
-                return new Promise((resolve, reject) => {
-                    audio.onended = resolve;
-                    audio.onerror = reject;
-                    const playPromise = audio.play();
-                    if (playPromise) {
-                        playPromise.catch(reject);
-                    }
-                });
-            } catch (error) {
-                console.error('Error in playOneAudio:', error);
-                throw error;
-            }
-        }
     </script>
-
-    <!-- Footer -->
-    <footer class="bg-gray-100 text-center p-4 mt-12">
-        <p class="text-gray-600">© 2024 Learn Chinese. All rights reserved.</p>
-    </footer>
 </body>
 </html> 
