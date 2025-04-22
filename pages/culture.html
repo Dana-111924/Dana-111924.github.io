@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chinese Culture - Learn Chinese</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: {
+                            DEFAULT: '#4CB8B8',
+                            light: '#5EBFBF',
+                            dark: '#3A9999',
+                        },
+                        secondary: {
+                            DEFAULT: '#6B7280',
+                            light: '#9CA3AF',
+                            dark: '#4B5563',
+                        },
+                        accent: {
+                            DEFAULT: '#F87171',
+                            light: '#FCA5A5',
+                            dark: '#EF4444',
+                        },
+                        background: {
+                            DEFAULT: '#F3F4F6',
+                            card: '#FFFFFF',
+                            dark: '#1F2937',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;500;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Noto Sans SC', sans-serif;
+        }
+        .culture-card {
+            transition: all 0.3s ease;
+        }
+        .culture-card:hover {
+            transform: translateY(-2px);
+        }
+    </style>
+</head>
+<body class="bg-background">
+    <!-- Navigation -->
+    <nav class="bg-primary shadow-lg">
+        <div class="container mx-auto px-6 py-4">
+            <div class="flex items-center justify-between">
+                <div class="text-2xl font-bold text-white">学中文</div>
+                <div class="hidden md:flex space-x-8">
+                    <a href="/" class="nav-link text-white opacity-90 hover:opacity-100">Home</a>
+                    <a href="/pages/learn-chinese.html" class="nav-link text-white opacity-90 hover:opacity-100">Learn Chinese</a>
+                    <a href="/pages/pinyin-chart.html" class="nav-link text-white opacity-90 hover:opacity-100">Pinyin</a>
+                    <a href="/pages/vocabularies.html" class="nav-link text-white opacity-90 hover:opacity-100">Vocabulary</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Header -->
+    <div class="bg-white shadow">
+        <div class="max-w-7xl mx-auto py-6 px-4">
+            <h1 class="text-3xl font-bold text-primary-dark">Chinese Culture (中国文化)</h1>
+            <p class="mt-2 text-secondary">Explore the rich traditions and customs of China</p>
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <div class="container mx-auto px-6 py-12">
+        <div class="grid grid-cols-1 gap-8 md:grid-cols-2">
+            <!-- Festivals -->
+            <div class="culture-card bg-background-card rounded-lg shadow-lg hover:shadow-xl transition-shadow p-6">
+                <h2 class="text-2xl font-bold text-primary-dark mb-4">Major Festivals</h2>
+                <div class="space-y-4">
+                    <div>
+                        <h3 class="text-xl font-semibold text-secondary-dark">春节 (Chūnjié)</h3>
+                        <p class="text-secondary mt-2">Chinese New Year - The most important traditional festival, celebrated with family reunions, red decorations, and fireworks.</p>
+                    </div>
+                    <div>
+                        <h3 class="text-xl font-semibold text-secondary-dark">中秋节 (Zhōngqiūjié)</h3>
+                        <p class="text-secondary mt-2">Mid-Autumn Festival - Celebrated with mooncakes and family gatherings under the full moon.</p>
+                    </div>
+                    <div>
+                        <h3 class="text-xl font-semibold text-secondary-dark">端午节 (Duānwǔjié)</h3>
+                        <p class="text-secondary mt-2">Dragon Boat Festival - Known for dragon boat races and eating zongzi (sticky rice dumplings).</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Traditions -->
+            <div class="culture-card bg-background-card rounded-lg shadow-lg hover:shadow-xl transition-shadow p-6">
+                <h2 class="text-2xl font-bold text-primary-dark mb-4">Traditional Customs</h2>
+                <div class="space-y-4">
+                    <div>
+                        <h3 class="text-xl font-semibold text-secondary-dark">茶文化 (Chá Wénhuà)</h3>
+                        <p class="text-secondary mt-2">Tea Culture - The art of tea preparation and appreciation, with different varieties and ceremonies.</p>
+                    </div>
+                    <div>
+                        <h3 class="text-xl font-semibold text-secondary-dark">书法 (Shūfǎ)</h3>
+                        <p class="text-secondary mt-2">Calligraphy - The traditional art of writing Chinese characters with brush and ink.</p>
+                    </div>
+                    <div>
+                        <h3 class="text-xl font-semibold text-secondary-dark">家庭观念 (Jiātíng Guānniàn)</h3>
+                        <p class="text-secondary mt-2">Family Values - Strong emphasis on family relationships and filial piety.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Etiquette -->
+            <div class="culture-card bg-background-card rounded-lg shadow-lg hover:shadow-xl transition-shadow p-6">
+                <h2 class="text-2xl font-bold text-primary-dark mb-4">Social Etiquette</h2>
+                <div class="space-y-4">
+                    <div>
+                        <h3 class="text-xl font-semibold text-secondary-dark">礼仪 (Lǐyí)</h3>
+                        <p class="text-secondary mt-2">Proper etiquette in social interactions, including gift-giving and dining manners.</p>
+                    </div>
+                    <div>
+                        <h3 class="text-xl font-semibold text-secondary-dark">面子 (Miànzi)</h3>
+                        <p class="text-secondary mt-2">The concept of "face" - maintaining dignity and respect in social situations.</p>
+                    </div>
+                    <div>
+                        <h3 class="text-xl font-semibold text-secondary-dark">关系 (Guānxi)</h3>
+                        <p class="text-secondary mt-2">Building and maintaining personal relationships and networks.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Arts -->
+            <div class="culture-card bg-background-card rounded-lg shadow-lg hover:shadow-xl transition-shadow p-6">
+                <h2 class="text-2xl font-bold text-primary-dark mb-4">Traditional Arts</h2>
+                <div class="space-y-4">
+                    <div>
+                        <h3 class="text-xl font-semibold text-secondary-dark">京剧 (Jīngjù)</h3>
+                        <p class="text-secondary mt-2">Beijing Opera - A traditional form of Chinese theater with elaborate costumes and makeup.</p>
+                    </div>
+                    <div>
+                        <h3 class="text-xl font-semibold text-secondary-dark">国画 (Guóhuà)</h3>
+                        <p class="text-secondary mt-2">Traditional Chinese painting - Known for its use of ink and brush techniques.</p>
+                    </div>
+                    <div>
+                        <h3 class="text-xl font-semibold text-secondary-dark">武术 (Wǔshù)</h3>
+                        <p class="text-secondary mt-2">Martial Arts - Traditional Chinese martial arts like Tai Chi and Kung Fu.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-primary-dark text-white mt-12">
+        <div class="container mx-auto py-12 px-4 text-center">
+            <p class="opacity-90">&copy; 2024 Learn Chinese. All rights reserved.</p>
+        </div>
+    </footer>
+</body>
+</html> 
