@@ -1,9 +1,18 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="zh-CN">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Chinese Vocabulary Categories</title>
+    <!-- Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-XZKZVRHTKW"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-XZKZVRHTKW');
+    </script>
+    <!-- End Google Analytics -->
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
         tailwind.config = {
@@ -80,7 +89,7 @@
         <!-- Category Grid -->
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             <!-- People Category -->
-            <a href="/pages/people.html" class="category-card bg-background-card rounded-lg shadow-lg hover:shadow-xl transition-shadow p-6">
+            <a href="/pages/people.html" class="category-card bg-background-card rounded-lg shadow-lg hover:shadow-xl transition-shadow p-6" onclick="trackCategoryClick('people')">
                 <div class="text-3xl mb-4">👥</div>
                 <h2 class="text-2xl font-semibold text-primary-dark mb-2">People</h2>
                 <p class="text-secondary-dark">Learn words for family members, relationships, and professions.</p>
@@ -90,7 +99,7 @@
             </a>
 
             <!-- Time Category -->
-            <a href="/pages/vocab/time.html" class="category-card bg-background-card rounded-lg shadow-lg hover:shadow-xl transition-shadow p-6">
+            <a href="/pages/vocab/time.html" class="category-card bg-background-card rounded-lg shadow-lg hover:shadow-xl transition-shadow p-6" onclick="trackCategoryClick('time')">
                 <div class="text-3xl mb-4">⏰</div>
                 <h2 class="text-2xl font-semibold text-primary-dark mb-2">Time</h2>
                 <p class="text-secondary-dark">Words for time, dates, days of the week, and schedules.</p>
@@ -100,7 +109,7 @@
             </a>
 
             <!-- Places Category -->
-            <a href="/pages/places.html" class="category-card bg-background-card rounded-lg shadow-lg hover:shadow-xl transition-shadow p-6">
+            <a href="/pages/places.html" class="category-card bg-background-card rounded-lg shadow-lg hover:shadow-xl transition-shadow p-6" onclick="trackCategoryClick('places')">
                 <div class="text-3xl mb-4">📍</div>
                 <h2 class="text-2xl font-semibold text-primary-dark mb-2">Places</h2>
                 <p class="text-secondary-dark">Locations, buildings, cities, and geographical terms.</p>
@@ -110,7 +119,7 @@
             </a>
 
             <!-- Verbs Category -->
-            <a href="/pages/verbs.html" class="category-card bg-background-card rounded-lg shadow-lg hover:shadow-xl transition-shadow p-6">
+            <a href="/pages/verbs.html" class="category-card bg-background-card rounded-lg shadow-lg hover:shadow-xl transition-shadow p-6" onclick="trackCategoryClick('verbs')">
                 <div class="text-3xl mb-4">🔤</div>
                 <h2 class="text-2xl font-semibold text-primary-dark mb-2">Verbs</h2>
                 <p class="text-secondary-dark">Common actions and activities in everyday life.</p>
@@ -120,7 +129,7 @@
             </a>
 
             <!-- Daily Life Category -->
-            <a href="/pages/daily-life.html" class="category-card bg-background-card rounded-lg shadow-lg hover:shadow-xl transition-shadow p-6">
+            <a href="/pages/daily-life.html" class="category-card bg-background-card rounded-lg shadow-lg hover:shadow-xl transition-shadow p-6" onclick="trackCategoryClick('daily-life')">
                 <div class="text-3xl mb-4">🏠</div>
                 <h2 class="text-2xl font-semibold text-primary-dark mb-2">Daily Life</h2>
                 <p class="text-secondary-dark">Objects, activities, and expressions for everyday situations.</p>
@@ -130,7 +139,7 @@
             </a>
 
             <!-- Numbers Category -->
-            <a href="/pages/numbers.html" class="category-card bg-background-card rounded-lg shadow-lg hover:shadow-xl transition-shadow p-6">
+            <a href="/pages/numbers.html" class="category-card bg-background-card rounded-lg shadow-lg hover:shadow-xl transition-shadow p-6" onclick="trackCategoryClick('numbers')">
                 <div class="text-3xl mb-4">🔢</div>
                 <h2 class="text-2xl font-semibold text-primary-dark mb-2">Numbers & Quantity</h2>
                 <p class="text-secondary-dark">Numbers, counting, and measure words.</p>
@@ -140,7 +149,7 @@
             </a>
 
             <!-- Emotions Category -->
-            <a href="/pages/emotions.html" class="category-card bg-background-card rounded-lg shadow-lg hover:shadow-xl transition-shadow p-6">
+            <a href="/pages/emotions.html" class="category-card bg-background-card rounded-lg shadow-lg hover:shadow-xl transition-shadow p-6" onclick="trackCategoryClick('emotions')">
                 <div class="text-3xl mb-4">😊</div>
                 <h2 class="text-2xl font-semibold text-primary-dark mb-2">Emotions & Personality</h2>
                 <p class="text-secondary-dark">Express feelings, personality traits, and emotional states.</p>
@@ -150,7 +159,7 @@
             </a>
 
             <!-- Thoughts Category -->
-            <a href="/pages/thoughts.html" class="category-card bg-background-card rounded-lg shadow-lg hover:shadow-xl transition-shadow p-6">
+            <a href="/pages/thoughts.html" class="category-card bg-background-card rounded-lg shadow-lg hover:shadow-xl transition-shadow p-6" onclick="trackCategoryClick('thoughts')">
                 <div class="text-3xl mb-4">💬</div>
                 <h2 class="text-2xl font-semibold text-primary-dark mb-2">Expressing Thoughts</h2>
                 <p class="text-secondary-dark">Words and phrases for opinions, ideas, and beliefs.</p>
@@ -160,7 +169,7 @@
             </a>
 
             <!-- Directions Category -->
-            <a href="/pages/directions.html" class="category-card bg-background-card rounded-lg shadow-lg hover:shadow-xl transition-shadow p-6">
+            <a href="/pages/directions.html" class="category-card bg-background-card rounded-lg shadow-lg hover:shadow-xl transition-shadow p-6" onclick="trackCategoryClick('directions')">
                 <div class="text-3xl mb-4">🧭</div>
                 <h2 class="text-2xl font-semibold text-primary-dark mb-2">Directions & Location</h2>
                 <p class="text-secondary-dark">Words for navigation, position, and spatial relationships.</p>
@@ -170,7 +179,7 @@
             </a>
 
             <!-- Food Category -->
-            <a href="/pages/food.html" class="category-card bg-background-card rounded-lg shadow-lg hover:shadow-xl transition-shadow p-6">
+            <a href="/pages/food.html" class="category-card bg-background-card rounded-lg shadow-lg hover:shadow-xl transition-shadow p-6" onclick="trackCategoryClick('food')">
                 <div class="text-3xl mb-4">🍜</div>
                 <h2 class="text-2xl font-semibold text-primary-dark mb-2">Food & Health</h2>
                 <p class="text-secondary-dark">Vocabulary for food, drinks, dining, and wellness.</p>
@@ -180,7 +189,7 @@
             </a>
 
             <!-- Social Category -->
-            <a href="/pages/social.html" class="category-card bg-background-card rounded-lg shadow-lg hover:shadow-xl transition-shadow p-6">
+            <a href="/pages/social.html" class="category-card bg-background-card rounded-lg shadow-lg hover:shadow-xl transition-shadow p-6" onclick="trackCategoryClick('social')">
                 <div class="text-3xl mb-4">🤝</div>
                 <h2 class="text-2xl font-semibold text-primary-dark mb-2">Social Interactions</h2>
                 <p class="text-secondary-dark">Words for social situations, relationships, and communication.</p>
@@ -190,7 +199,7 @@
             </a>
 
             <!-- Culture Category -->
-            <a href="/pages/culture.html" class="category-card bg-background-card rounded-lg shadow-lg hover:shadow-xl transition-shadow p-6">
+            <a href="/pages/culture.html" class="category-card bg-background-card rounded-lg shadow-lg hover:shadow-xl transition-shadow p-6" onclick="trackCategoryClick('culture')">
                 <div class="text-3xl mb-4">📚</div>
                 <h2 class="text-2xl font-semibold text-primary-dark mb-2">Culture & Literature</h2>
                 <p class="text-secondary-dark">Terms related to Chinese culture, arts, and literature.</p>
@@ -198,24 +207,62 @@
                     <span class="bg-primary-light/20 text-primary-dark text-xs font-semibold px-2.5 py-0.5 rounded">HSK 5-6</span>
                 </div>
             </a>
-
-            <!-- Work Category -->
-            <a href="/pages/work.html" class="category-card bg-background-card rounded-lg shadow-lg hover:shadow-xl transition-shadow p-6">
-                <div class="text-3xl mb-4">💼</div>
-                <h2 class="text-2xl font-semibold text-primary-dark mb-2">Work & Study</h2>
-                <p class="text-secondary-dark">Vocabulary for professional life, education, and careers.</p>
-                <div class="mt-4">
-                    <span class="bg-primary-light/20 text-primary-dark text-xs font-semibold px-2.5 py-0.5 rounded">HSK 4-5</span>
-                </div>
-            </a>
         </div>
     </div>
 
     <!-- Footer -->
-    <footer class="bg-primary-dark text-white py-8 mt-12">
-        <div class="container mx-auto px-6 text-center">
+    <footer class="bg-primary-dark text-white mt-12">
+        <div class="container mx-auto py-12 px-4 text-center">
             <p class="opacity-90">&copy; 2024 Learn Chinese. All rights reserved.</p>
         </div>
     </footer>
+
+    <!-- Enhanced Analytics Tracking -->
+    <script>
+        // Track category clicks
+        function trackCategoryClick(category) {
+            gtag('event', 'category_click', {
+                'event_category': 'navigation',
+                'event_label': category,
+                'value': 1
+            });
+        }
+
+        // Track outbound links
+        document.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', function(e) {
+                if (this.hostname !== window.location.hostname) {
+                    gtag('event', 'outbound_click', {
+                        'event_category': 'outbound',
+                        'event_label': this.href,
+                        'transport_type': 'beacon'
+                    });
+                }
+            });
+        });
+
+        // Track page scroll depth
+        window.addEventListener('scroll', function() {
+            const scrollPercent = Math.round((window.scrollY / (document.documentElement.scrollHeight - window.innerHeight)) * 100);
+            if (scrollPercent === 25 || scrollPercent === 50 || scrollPercent === 75 || scrollPercent === 100) {
+                gtag('event', 'scroll_depth', {
+                    'event_category': 'engagement',
+                    'event_label': scrollPercent + '%',
+                    'value': scrollPercent
+                });
+            }
+        });
+
+        // Track time spent on page
+        let startTime = Date.now();
+        window.addEventListener('beforeunload', function() {
+            const timeSpent = Math.round((Date.now() - startTime) / 1000);
+            gtag('event', 'time_spent', {
+                'event_category': 'engagement',
+                'event_label': 'time_on_page',
+                'value': timeSpent
+            });
+        });
+    </script>
 </body>
 </html> 

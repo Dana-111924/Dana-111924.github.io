@@ -1,0 +1,1192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chinese Dynasties - Chinese Learning Website</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link href="../css/styles.css" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #1a365d;  /* Deep blue */
+            --secondary-color: #4299e1; /* Light blue */
+            --accent-color: #2b6cb0;   /* Medium blue */
+            --text-color: #2d3748;     /* Dark gray */
+            --bg-color: #f7fafc;       /* Light gray background */
+            --hover-color: #63b3ed;    /* Light blue for hover effects */
+            --border-color: #e2e8f0;   /* Light gray for borders */
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            margin: 0;
+            padding: 0;
+            display: flex;
+            padding-top: 60px;
+        }
+
+        .timeline-nav {
+            position: fixed;
+            left: 0;
+            top: 60px;
+            height: calc(100vh - 60px);
+            width: 200px;
+            background-color: white;
+            box-shadow: 2px 0 5px rgba(0,0,0,0.1);
+            overflow-y: auto;
+            padding: 1rem 0.75rem;
+            z-index: 1000;
+            box-sizing: border-box;
+            border-right: 1px solid var(--border-color);
+        }
+
+        .timeline-nav h2 {
+            color: var(--primary-color);
+            font-size: 1.2rem;
+            margin-bottom: 1rem;
+            padding-bottom: 0.25rem;
+            border-bottom: 2px solid var(--secondary-color);
+        }
+
+        .timeline-nav ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .timeline-nav li {
+            margin-bottom: 0.25rem;
+        }
+
+        .timeline-nav a {
+            color: var(--text-color);
+            text-decoration: none;
+            display: block;
+            padding: 0.25rem 0.5rem;
+            border-radius: 4px;
+            transition: all 0.3s ease;
+            font-size: 0.9rem;
+            line-height: 1.2;
+        }
+
+        .timeline-nav a:hover {
+            background-color: var(--hover-color);
+            color: white;
+        }
+
+        .main-content {
+            flex: 1;
+            margin-left: 200px;
+            padding: 2rem;
+            max-width: calc(100% - 200px);
+            box-sizing: border-box;
+        }
+
+        .dynasty-card {
+            background-color: white;
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            margin-bottom: 2rem;
+            padding: 2rem;
+            width: 100%;
+            box-sizing: border-box;
+        }
+
+        .dynasty-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 15px rgba(0,0,0,0.1);
+            border-color: var(--secondary-color);
+            box-shadow: 0 4px 6px rgba(66, 153, 225, 0.1);
+        }
+
+        .dynasty-title {
+            margin-bottom: 2rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 2px solid var(--secondary-color);
+            width: 100%;
+        }
+
+        .dynasty-title .chinese {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: var(--accent-color);
+        }
+
+        .dynasty-title .english {
+            font-size: 1.2rem;
+            color: var(--primary-color);
+        }
+
+        .section-title {
+            color: var(--primary-color);
+            font-size: 1.2rem;
+            margin-top: 1.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .content-block {
+            background-color: var(--bg-color);
+            padding: 1rem;
+            border-radius: 6px;
+            margin-bottom: 1rem;
+            border: 1px solid var(--border-color);
+        }
+
+        /* Add container for better content organization */
+        .content-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            width: 100%;
+            box-sizing: border-box;
+        }
+
+        /* Ensure proper list alignment */
+        ul {
+            padding-left: 1.5rem;
+            margin: 0 0 1rem 0;
+        }
+
+        li {
+            margin-bottom: 0.5rem;
+        }
+
+        /* Adjust spacing for dynasty information */
+        .dynasty-info {
+            margin-bottom: 1.5rem;
+        }
+
+        .dynasty-period {
+            margin-top: 0.5rem;
+            color: var(--text-color);
+            font-size: 0.9rem;
+        }
+
+        .chinese-text {
+            color: var(--accent-color);
+            font-weight: bold;
+        }
+
+        .english-text {
+            color: var(--text-color);
+        }
+
+        .timeline-nav .dynasty-name {
+            display: block;
+            font-weight: bold;
+            color: var(--primary-color);
+        }
+
+        .timeline-nav .dynasty-period {
+            display: block;
+            font-size: 0.8rem;
+            color: var(--text-color);
+            opacity: 0.8;
+        }
+
+        @media (min-width: 1200px) {
+            .main-content {
+                padding: 2rem 4rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .timeline-nav {
+                display: none;
+            }
+            .main-content {
+                margin-left: 0;
+                max-width: 100%;
+            }
+            .content-container {
+                padding: 0 0.5rem;
+            }
+            .site-header {
+                padding: 0 1rem;
+            }
+            .site-header nav {
+                gap: 1rem;
+            }
+        }
+
+        /* Update active/selected state in navigation */
+        .timeline-nav a.bg-secondary-color {
+            background-color: var(--secondary-color);
+            color: white;
+        }
+
+        /* Update headings */
+        h1, h2, h3, h4, h5, h6 {
+            color: var(--primary-color);
+        }
+
+        /* Update links */
+        a {
+            color: var(--accent-color);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        a:hover {
+            color: var(--secondary-color);
+        }
+
+        /* Add these new styles */
+        .dynasty-subtitle {
+            color: var(--primary-color);
+            font-size: 1.5rem;
+            font-weight: bold;
+            margin-bottom: 1rem;
+        }
+
+        .dynasty-subtitle .chinese {
+            color: var(--accent-color);
+            margin-right: 0.5rem;
+        }
+
+        .dynasty-subtitle .english {
+            color: var(--primary-color);
+        }
+
+        /* Space between dynasty cards */
+        .space-y-8 > * {
+            margin-bottom: 2rem;
+        }
+
+        .space-y-8 > *:last-child {
+            margin-bottom: 0;
+        }
+
+        /* Consistent spacing for all sections */
+        .space-y-4 > * {
+            margin-bottom: 1rem;
+        }
+
+        .space-y-4 > *:last-child {
+            margin-bottom: 0;
+        }
+
+        /* Ensure lists are properly aligned */
+        ul.list-disc {
+            padding-left: 1.5rem;
+            margin-top: 0.5rem;
+        }
+
+        /* Consistent text alignment */
+        .text-gray-600 {
+            margin-top: 0.25rem;
+        }
+
+        /* Ensure proper spacing between sections */
+        .mt-8 {
+            margin-top: 2rem;
+        }
+
+        .pt-6 {
+            padding-top: 1.5rem;
+        }
+
+        /* Border between sections */
+        .border-t {
+            border-top: 1px solid var(--border-color);
+        }
+
+        /* Add header styles */
+        .site-header {
+            background-color: white;
+            border-bottom: 1px solid var(--border-color);
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1100;
+            height: 60px;
+            display: flex;
+            align-items: center;
+            padding: 0 2rem;
+        }
+
+        .site-header nav {
+            display: flex;
+            gap: 2rem;
+            align-items: center;
+        }
+
+        .site-header a {
+            color: var(--primary-color);
+            text-decoration: none;
+            font-weight: 500;
+            padding: 0.5rem 1rem;
+            border-radius: 4px;
+            transition: all 0.3s ease;
+        }
+
+        .site-header a:hover {
+            background-color: var(--bg-color);
+            color: var(--accent-color);
+        }
+
+        .site-header .logo {
+            font-size: 1.25rem;
+            font-weight: bold;
+            color: var(--primary-color);
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="site-header">
+        <nav>
+            <a href="/" class="logo">中文学习 Chinese Learning</a>
+            <a href="/pages/learn.html">Learn</a>
+            <a href="/pages/practice.html">Practice</a>
+            <a href="/pages/resources.html">Resources</a>
+            <a href="/pages/about.html">About</a>
+        </nav>
+    </header>
+
+    <!-- Timeline Navigation -->
+    <nav class="timeline-nav">
+        <h2>Timeline</h2>
+        <ul>
+            <li>
+                <a href="#xia">
+                    <span class="dynasty-name">夏朝 Xia</span>
+                    <span class="dynasty-period">2070-1600 BCE</span>
+                </a>
+            </li>
+            <li>
+                <a href="#shang">
+                    <span class="dynasty-name">商朝 Shang</span>
+                    <span class="dynasty-period">1600-1046 BCE</span>
+                </a>
+            </li>
+            <li>
+                <a href="#zhou">
+                    <span class="dynasty-name">周朝 Zhou</span>
+                    <span class="dynasty-period">1046-256 BCE</span>
+                </a>
+            </li>
+            <li>
+                <a href="#qin">
+                    <span class="dynasty-name">秦朝 Qin</span>
+                    <span class="dynasty-period">221-207 BCE</span>
+                </a>
+            </li>
+            <li>
+                <a href="#han">
+                    <span class="dynasty-name">汉朝 Han</span>
+                    <span class="dynasty-period">206 BCE-220 CE</span>
+                </a>
+            </li>
+            <li>
+                <a href="#three-kingdoms">
+                    <span class="dynasty-name">三国 Three Kingdoms</span>
+                    <span class="dynasty-period">220-280 CE</span>
+                </a>
+            </li>
+            <li>
+                <a href="#jin">
+                    <span class="dynasty-name">晋朝 Jin</span>
+                    <span class="dynasty-period">265-420 CE</span>
+                </a>
+            </li>
+            <li>
+                <a href="#north-south">
+                    <span class="dynasty-name">南北朝 N&S Dynasties</span>
+                    <span class="dynasty-period">420-589 CE</span>
+                </a>
+            </li>
+            <li>
+                <a href="#sui">
+                    <span class="dynasty-name">隋朝 Sui</span>
+                    <span class="dynasty-period">581-618 CE</span>
+                </a>
+            </li>
+            <li>
+                <a href="#tang">
+                    <span class="dynasty-name">唐朝 Tang</span>
+                    <span class="dynasty-period">618-907 CE</span>
+                </a>
+            </li>
+            <li>
+                <a href="#song">
+                    <span class="dynasty-name">宋朝 Song</span>
+                    <span class="dynasty-period">960-1279 CE</span>
+                </a>
+            </li>
+            <li>
+                <a href="#yuan">
+                    <span class="dynasty-name">元朝 Yuan</span>
+                    <span class="dynasty-period">1271-1368 CE</span>
+                </a>
+            </li>
+            <li>
+                <a href="#ming">
+                    <span class="dynasty-name">明朝 Ming</span>
+                    <span class="dynasty-period">1368-1644 CE</span>
+                </a>
+            </li>
+            <li>
+                <a href="#qing">
+                    <span class="dynasty-name">清朝 Qing</span>
+                    <span class="dynasty-period">1636-1912 CE</span>
+                </a>
+            </li>
+            <li>
+                <a href="#roc">
+                    <span class="dynasty-name">中华民国 ROC</span>
+                    <span class="dynasty-period">1912-1949</span>
+                </a>
+            </li>
+            <li>
+                <a href="#prc">
+                    <span class="dynasty-name">中华人民共和国 PRC</span>
+                    <span class="dynasty-period">1949-Present</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+
+    <!-- Main Content -->
+    <div class="main-content">
+        <div class="content-container">
+            <h1 class="text-4xl font-bold text-center mb-8" style="color: var(--primary-color);">中国朝代 Chinese Dynasties</h1>
+            
+            <!-- Timeline Introduction -->
+            <div class="dynasty-card">
+                <h2 class="text-2xl font-bold mb-4" style="color: var(--primary-color);">Historical Timeline</h2>
+                <p class="text-gray-600">China's history spans over 5,000 years, with numerous dynasties that have shaped its culture, politics, and society. Below is a comprehensive overview of China's major dynasties and their significant contributions.</p>
+            </div>
+
+            <!-- Dynasty Cards -->
+            <div class="space-y-8">
+                <!-- Xia Dynasty -->
+                <div id="xia" class="dynasty-card">
+                    <div class="dynasty-title">
+                        <span class="chinese">夏朝</span>
+                        <span class="english">Xia Dynasty (c. 2070 BCE – c. 1600 BCE)</span>
+                    </div>
+                    <div class="space-y-4">
+                        <div>
+                            <h3 class="text-xl font-semibold text-gray-700">Rulers (17)</h3>
+                            <p class="text-gray-600">Yu, Qi, Taikang, Zhongkang, Xiang, Shaokang, Zhu, Huai, Mang, Xie, Buxiang, Jiong, Jin, Kongjia, Gao, Fa, Jie</p>
+                        </div>
+                        <div>
+                            <h3 class="text-xl font-semibold text-gray-700">Major Events</h3>
+                            <ul class="list-disc list-inside text-gray-600 space-y-2">
+                                <li>Loss of state under Taikang (replaced by Hou Yi)</li>
+                                <li>Revival under Shaokang</li>
+                            </ul>
+                        </div>
+                        <div>
+                            <h3 class="text-xl font-semibold text-gray-700">Notable Figures</h3>
+                            <div class="space-y-2">
+                                <div>
+                                    <h4 class="font-medium text-gray-700">大禹 Yu</h4>
+                                    <p class="text-gray-600">Famous for controlling floods and uniting the tribes, founder of the first Chinese dynasty.</p>
+                                </div>
+                                <div>
+                                    <h4 class="font-medium text-gray-700">启 Qi</h4>
+                                    <p class="text-gray-600">Son of Yu, established hereditary rule, marking the transition from tribal confederation to dynasty.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Shang Dynasty -->
+                <div id="shang" class="dynasty-card">
+                    <div class="dynasty-title">
+                        <span class="chinese">商朝</span>
+                        <span class="english">Shang Dynasty (c. 1600 BCE – 1046 BCE)</span>
+                    </div>
+                    <div class="space-y-4">
+                        <div>
+                            <h3 class="text-xl font-semibold text-gray-700">Rulers (30)</h3>
+                            <p class="text-gray-600">Tang, Waibing, Zhongren, Taijia, Woding, Taigeng, Xiaojia, Taiwu, Yongji, Zhongding, ... up to Emperor Zhou (Di Xin)</p>
+                        </div>
+                        <div>
+                            <h3 class="text-xl font-semibold text-gray-700">Major Events</h3>
+                            <ul class="list-disc list-inside text-gray-600 space-y-2">
+                                <li>Capital moved to Yin (Anyang)</li>
+                                <li>Peak during Wu Ding's reign</li>
+                            </ul>
+                        </div>
+                        <div>
+                            <h3 class="text-xl font-semibold text-gray-700">Notable Figures</h3>
+                            <div class="space-y-2">
+                                <div>
+                                    <h4 class="font-medium text-gray-700">伊尹 Yi Yin</h4>
+                                    <p class="text-gray-600">Founding prime minister, strategist who helped establish Shang.</p>
+                                </div>
+                                <div>
+                                    <h4 class="font-medium text-gray-700">妇好 Fu Hao</h4>
+                                    <p class="text-gray-600">First recorded female military commander in China, wife of King Wu Ding.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Zhou Dynasty -->
+                <div id="zhou" class="dynasty-card">
+                    <div class="dynasty-title">
+                        <span class="chinese">周朝</span>
+                        <span class="english">Zhou Dynasty (1046 BCE – 256 BCE)</span>
+                    </div>
+                    <div class="space-y-4">
+                        <div>
+                            <h3 class="text-xl font-semibold text-gray-700">Rulers (12)</h3>
+                            <p class="text-gray-600">King Wu, King Cheng, King Kang, King Zhao, ... to King You</p>
+                        </div>
+                        <div>
+                            <h3 class="text-xl font-semibold text-gray-700">Major Events</h3>
+                            <ul class="list-disc list-inside text-gray-600 space-y-2">
+                                <li>Fall of Shang (Battle of Muye)</li>
+                                <li>Feudal system implemented</li>
+                            </ul>
+                        </div>
+                        <div>
+                            <h3 class="text-xl font-semibold text-gray-700">Notable Figures</h3>
+                            <div class="space-y-2">
+                                <div>
+                                    <h4 class="font-medium text-gray-700">周武王 King Wu</h4>
+                                    <p class="text-gray-600">Defeated Shang and established Zhou.</p>
+                                </div>
+                                <div>
+                                    <h4 class="font-medium text-gray-700">周公 Duke of Zhou</h4>
+                                    <p class="text-gray-600">Formulated the rites and music systems, solidified Zhou governance.</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Eastern Zhou Section -->
+                        <div class="mt-8 border-t pt-6">
+                            <div class="dynasty-subtitle">
+                                <span class="chinese">东周</span>
+                                <span class="english">Eastern Zhou (770 BCE – 256 BCE)</span>
+                            </div>
+                            
+                            <!-- Spring and Autumn Period -->
+                            <div class="mt-6">
+                                <h3 class="text-xl font-semibold text-gray-700">春秋时期 Spring and Autumn Period (770 BCE – 476 BCE)</h3>
+                                <div class="mt-4">
+                                    <h4 class="font-medium text-gray-700">Features</h4>
+                                    <p class="text-gray-600">Decline of Zhou central authority, emergence of regional hegemonies</p>
+                                </div>
+                                <div class="mt-4">
+                                    <h4 class="font-medium text-gray-700">Notable Figures</h4>
+                                    <ul class="list-disc list-inside text-gray-600 space-y-2">
+                                        <li>孔子 Confucius: Founder of Confucianism, advocate of "Ren" and "Li"</li>
+                                        <li>管仲 Guan Zhong: Prime minister of Qi, implemented economic and military reforms</li>
+                                    </ul>
+                                </div>
+                            </div>
+
+                            <!-- Warring States Period -->
+                            <div class="mt-6">
+                                <h3 class="text-xl font-semibold text-gray-700">战国时期 Warring States Period (475 BCE – 256 BCE)</h3>
+                                <div class="mt-4">
+                                    <h4 class="font-medium text-gray-700">Features</h4>
+                                    <p class="text-gray-600">Seven powerful states competed, widespread reforms</p>
+                                </div>
+                                <div class="mt-4">
+                                    <h4 class="font-medium text-gray-700">Notable Figures</h4>
+                                    <ul class="list-disc list-inside text-gray-600 space-y-2">
+                                        <li>商鞅 Shang Yang: Led Qin reforms; abolished feudalism, emphasized agriculture and military</li>
+                                        <li>孟子 Mencius: Confucian scholar advocating benevolent governance</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Qin Dynasty -->
+                <div class="dynasty-card bg-white rounded-lg shadow-lg p-8 max-w-4xl mx-auto">
+                    <h2 class="text-2xl font-bold text-primary mb-4">秦朝 Qin Dynasty (221 BCE – 207 BCE)</h2>
+                    <div class="space-y-4">
+                        <div>
+                            <h3 class="text-xl font-semibold text-gray-700">Rulers (3)</h3>
+                            <p class="text-gray-600">Qin Shi Huang, Huhai, Ziying</p>
+                        </div>
+                        <div>
+                            <h3 class="text-xl font-semibold text-gray-700">Major Events</h3>
+                            <ul class="list-disc list-inside text-gray-600 space-y-2">
+                                <li>Unified China</li>
+                                <li>Standardized currency, script, and measurements</li>
+                            </ul>
+                        </div>
+                        <div>
+                            <h3 class="text-xl font-semibold text-gray-700">Notable Figures</h3>
+                            <div class="space-y-2">
+                                <div>
+                                    <h4 class="font-medium text-gray-700">秦始皇 Qin Shi Huang</h4>
+                                    <p class="text-gray-600">First emperor; centralized power and began building the Great Wall</p>
+                                </div>
+                                <div>
+                                    <h4 class="font-medium text-gray-700">李斯 Li Si</h4>
+                                    <p class="text-gray-600">Prime minister, key legalist advisor and architect of administrative reform</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Han Dynasty -->
+                <div class="dynasty-card bg-white rounded-lg shadow-lg p-8 max-w-4xl mx-auto">
+                    <h2 class="text-2xl font-bold text-primary mb-4">汉朝 Han Dynasty</h2>
+                    
+                    <!-- Western Han -->
+                    <div class="mb-8">
+                        <h3 class="text-xl font-semibold text-gray-700">西汉 Western Han (206 BCE – 8 CE)</h3>
+                        <div class="space-y-4 mt-4">
+                            <div>
+                                <h4 class="font-medium text-gray-700">Emperors (15)</h4>
+                                <p class="text-gray-600">Emperor Gaozu (Liu Bang), Emperor Hui (Liu Ying), Former Emperor Liu Gong, Later Emperor Liu Hong, Emperor Wen (Liu Heng), Emperor Jing (Liu Qi), Emperor Wu (Liu Che), Emperor Zhao (Liu Fuling), Prince of Changyi (Liu He), Emperor Xuan (Liu Xun), Emperor Yuan (Liu Shi), Emperor Cheng (Liu Ao), Emperor Ai (Liu Xin), Emperor Ping (Liu Kan), Infant Emperor (Liu Ying)</p>
+                            </div>
+                            <div>
+                                <h4 class="font-medium text-gray-700">Major Historical Events</h4>
+                                <ul class="list-disc list-inside text-gray-600 space-y-2">
+                                    <li>Chu–Han Contention (Liu Bang defeats Xiang Yu to establish Han)</li>
+                                    <li>Rule of Wen and Jing (peaceful recovery and economic prosperity)</li>
+                                    <li>Emperor Wu's northern expeditions against the Xiongnu</li>
+                                    <li>Zhang Qian's mission to the Western Regions (opened Silk Road)</li>
+                                </ul>
+                            </div>
+                            <div>
+                                <h4 class="font-medium text-gray-700">Notable Figures</h4>
+                                <ul class="list-disc list-inside text-gray-600 space-y-2">
+                                    <li>刘邦 Liu Bang: Founder of the Han Dynasty, promoted peaceful recovery, and laid the foundation for 400 years of Han rule.</li>
+                                    <li>汉武帝 Emperor Wu: Strengthened central authority, promoted Confucianism as state ideology, defeated Xiongnu, opened up Silk Road.</li>
+                                    <li>司马迁 Sima Qian: Author of Records of the Grand Historian, the first comprehensive historical record in biographical form; both literary and historical in value.</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Eastern Han -->
+                    <div>
+                        <h3 class="text-xl font-semibold text-gray-700">东汉 Eastern Han (25 – 220 CE)</h3>
+                        <div class="space-y-4 mt-4">
+                            <div>
+                                <h4 class="font-medium text-gray-700">Emperors (14)</h4>
+                                <p class="text-gray-600">Emperor Guangwu (Liu Xiu), Emperor Ming (Liu Zhuang), Emperor Zhang (Liu Da), Emperor He (Liu Zhao), Emperor Shang (Liu Long), Emperor An (Liu Hu), Emperor Shun (Liu Bao), Emperor Chong (Liu Bing), Emperor Zhi (Liu Zuan), Emperor Huan (Liu Zhi), Emperor Ling (Liu Hong), Young Emperor (Liu Bian), Emperor Xian (Liu Xie)</p>
+                            </div>
+                            <div>
+                                <h4 class="font-medium text-gray-700">Major Historical Events</h4>
+                                <ul class="list-disc list-inside text-gray-600 space-y-2">
+                                    <li>Guangwu's restoration of the Han Dynasty</li>
+                                    <li>Partisan Prohibitions (struggles between officials and eunuchs)</li>
+                                    <li>Yellow Turban Rebellion (weakened imperial authority)</li>
+                                </ul>
+                            </div>
+                            <div>
+                                <h4 class="font-medium text-gray-700">Notable Figures</h4>
+                                <ul class="list-disc list-inside text-gray-600 space-y-2">
+                                    <li>刘秀 Liu Xiu: Rebuilt the Han, reduced taxes, improved governance, ushered in the "Guangwu Restoration."</li>
+                                    <li>班超 Ban Chao: Former scholar turned general, served in Western Regions for 31 years, reestablished Han influence and international exchange.</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Three Kingdoms -->
+                <div class="dynasty-card bg-white rounded-lg shadow-lg p-8 max-w-4xl mx-auto">
+                    <h2 class="text-2xl font-bold text-primary mb-4">三国 Three Kingdoms (220 – 280 CE)</h2>
+                    
+                    <!-- Wei -->
+                    <div class="mb-6">
+                        <h3 class="text-xl font-semibold text-gray-700">魏 Wei (220 – 265 CE, 5 Emperors)</h3>
+                        <div class="space-y-4 mt-4">
+                            <div>
+                                <h4 class="font-medium text-gray-700">Key Figures</h4>
+                                <div class="space-y-2">
+                                    <div>
+                                        <h5 class="font-medium text-gray-700">曹操 Cao Cao</h5>
+                                        <p class="text-gray-600">Founder of Wei, unified the north, introduced the Tuntian (military-agricultural) system, literary leader of the Jian'an period.</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Shu -->
+                    <div class="mb-6">
+                        <h3 class="text-xl font-semibold text-gray-700">蜀 Shu (221 – 263 CE, 2 Emperors)</h3>
+                        <div class="space-y-4 mt-4">
+                            <div>
+                                <h4 class="font-medium text-gray-700">Key Figures</h4>
+                                <div class="space-y-2">
+                                    <div>
+                                        <h5 class="font-medium text-gray-700">诸葛亮 Zhuge Liang</h5>
+                                        <p class="text-gray-600">Prime Minister of Shu, implemented legal and governance reforms, led five northern expeditions, author of Memorial of the Expedition, symbol of loyalty.</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Wu -->
+                    <div>
+                        <h3 class="text-xl font-semibold text-gray-700">吴 Wu (229 – 280 CE, 4 Emperors)</h3>
+                        <div class="space-y-4 mt-4">
+                            <div>
+                                <h4 class="font-medium text-gray-700">Key Figures</h4>
+                                <div class="space-y-2">
+                                    <div>
+                                        <h5 class="font-medium text-gray-700">孙权 Sun Quan</h5>
+                                        <p class="text-gray-600">Developed the South, dispatched Wei Wen to Taiwan, advanced economic and cultural growth in the southeast.</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Western Jin -->
+                <div class="dynasty-card bg-white rounded-lg shadow-lg p-8 max-w-4xl mx-auto">
+                    <h2 class="text-2xl font-bold text-primary mb-4">西晋 Western Jin (265 – 316 CE)</h2>
+                    <div class="space-y-4">
+                        <div>
+                            <h3 class="text-xl font-semibold text-gray-700">Emperors (4)</h3>
+                            <p class="text-gray-600">Sima Yan, Sima Zhong, Sima Chi, Sima Ye</p>
+                        </div>
+                        <div>
+                            <h3 class="text-xl font-semibold text-gray-700">Major Historical Events</h3>
+                            <ul class="list-disc list-inside text-gray-600 space-y-2">
+                                <li>Sima Yan's unification of China</li>
+                                <li>War of the Eight Princes (internal conflict that led to downfall)</li>
+                            </ul>
+                        </div>
+                        <div>
+                            <h3 class="text-xl font-semibold text-gray-700">Notable Figures</h3>
+                            <div class="space-y-2">
+                                <div>
+                                    <h4 class="font-medium text-gray-700">司马炎 Sima Yan</h4>
+                                    <p class="text-gray-600">Founded Western Jin, temporarily unified the country, implemented land reform (Equal-field system), but later neglected governance.</p>
+                                </div>
+                                <div>
+                                    <h4 class="font-medium text-gray-700">杜预 Du Yu</h4>
+                                    <p class="text-gray-600">General who conquered Wu, scholar known for his annotations on Zuo's Commentary on the Spring and Autumn Annals.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Eastern Jin -->
+                <div class="dynasty-card bg-white rounded-lg shadow-lg p-8 max-w-4xl mx-auto">
+                    <h2 class="text-2xl font-bold text-primary mb-4">东晋 Eastern Jin (317 – 420 CE)</h2>
+                    <div class="space-y-4">
+                        <div>
+                            <h3 class="text-xl font-semibold text-gray-700">Emperors (11)</h3>
+                            <p class="text-gray-600">Sima Rui, Sima Shao, Sima Yan, Sima Yue, Sima Dan, Sima Pi, Sima Yi, Sima Yu, Sima Yao, Sima Dezong, Sima Dewen</p>
+                        </div>
+                        <div>
+                            <h3 class="text-xl font-semibold text-gray-700">Major Historical Events</h3>
+                            <ul class="list-disc list-inside text-gray-600 space-y-2">
+                                <li>Southward migration of northern elites (cultural transfer and southern development)</li>
+                                <li>Battle of Fei River (Eastern Jin's victory over Former Qin)</li>
+                            </ul>
+                        </div>
+                        <div>
+                            <h3 class="text-xl font-semibold text-gray-700">Notable Figures</h3>
+                            <div class="space-y-2">
+                                <div>
+                                    <h4 class="font-medium text-gray-700">王羲之 Wang Xizhi</h4>
+                                    <p class="text-gray-600">Renowned calligrapher, creator of Preface to the Orchid Pavilion, redefined Chinese calligraphy.</p>
+                                </div>
+                                <div>
+                                    <h4 class="font-medium text-gray-700">谢安 Xie An</h4>
+                                    <p class="text-gray-600">Eminent statesman, led defense at Fei River, secured Eastern Jin's survival.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Northern and Southern Dynasties -->
+                <div class="dynasty-card bg-white rounded-lg shadow-lg p-8 max-w-4xl mx-auto">
+                    <h2 class="text-2xl font-bold text-primary mb-4">南北朝 Northern and Southern Dynasties (420 – 589 CE)</h2>
+                    <div class="space-y-4">
+                        <div>
+                            <h3 class="text-xl font-semibold text-gray-700">Southern Dynasties</h3>
+                            <p class="text-gray-600">Song, Qi, Liang, Chen</p>
+                            <div class="space-y-2 mt-4">
+                                <div>
+                                    <h4 class="font-medium text-gray-700">刘裕 Liu Yu (Song)</h4>
+                                    <p class="text-gray-600">Rose from humble origins, reformed politics.</p>
+                                </div>
+                                <div>
+                                    <h4 class="font-medium text-gray-700">萧统 Xiao Tong (Liang)</h4>
+                                    <p class="text-gray-600">Compiled Wen Xuan, China's first major literary anthology.</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div>
+                            <h3 class="text-xl font-semibold text-gray-700">Northern Dynasties</h3>
+                            <p class="text-gray-600">Northern Wei, Eastern Wei, Western Wei, Northern Qi, Northern Zhou</p>
+                            <div class="space-y-2 mt-4">
+                                <div>
+                                    <h4 class="font-medium text-gray-700">孝文帝 Emperor Xiaowen (Tuoba Hong)</h4>
+                                    <p class="text-gray-600">Led major Sinicization reforms, moved capital to Luoyang.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Sui Dynasty -->
+                <div class="dynasty-card bg-white rounded-lg shadow-lg p-8 max-w-4xl mx-auto">
+                    <h2 class="text-2xl font-bold text-primary mb-4">隋朝 Sui Dynasty (581 – 618 CE)</h2>
+                    <div class="space-y-4">
+                        <div>
+                            <h3 class="text-xl font-semibold text-gray-700">Emperors (3)</h3>
+                            <p class="text-gray-600">Emperor Wen (Yang Jian), Emperor Yang (Yang Guang), Emperor Gong (Yang You)</p>
+                        </div>
+                        <div>
+                            <h3 class="text-xl font-semibold text-gray-700">Major Historical Events</h3>
+                            <ul class="list-disc list-inside text-gray-600 space-y-2">
+                                <li>Reunification of North and South (ended 300 years of division)</li>
+                                <li>Initiated the imperial examination system</li>
+                                <li>Dug the Grand Canal (enhanced north-south connectivity)</li>
+                            </ul>
+                        </div>
+                        <div>
+                            <h3 class="text-xl font-semibold text-gray-700">Notable Figures</h3>
+                            <div class="space-y-2">
+                                <div>
+                                    <h4 class="font-medium text-gray-700">隋文帝 Emperor Wen (Yang Jian)</h4>
+                                    <p class="text-gray-600">Founded the Sui, implemented the Three Departments and Six Ministries system, reduced taxation, ushered in the "Kaihuang Golden Age."</p>
+                                </div>
+                                <div>
+                                    <h4 class="font-medium text-gray-700">李春 Li Chun</h4>
+                                    <p class="text-gray-600">Designed the Zhaozhou Bridge, the oldest surviving stone arch bridge in the world—masterpiece of ancient engineering.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Tang Dynasty -->
+                <div class="dynasty-card bg-white rounded-lg shadow-lg p-8 max-w-4xl mx-auto">
+                    <h2 class="text-2xl font-bold text-primary mb-4">唐朝 Tang Dynasty (618 – 907 CE)</h2>
+                    <div class="space-y-4">
+                        <div>
+                            <h3 class="text-xl font-semibold text-gray-700">Emperors (21)</h3>
+                            <p class="text-gray-600">Li Yuan, Li Shimin, Li Zhi, Wu Zetian, Li Longji, etc.</p>
+                        </div>
+                        <div>
+                            <h3 class="text-xl font-semibold text-gray-700">Major Historical Events</h3>
+                            <ul class="list-disc list-inside text-gray-600 space-y-2">
+                                <li>Xuanwu Gate Incident (Li Shimin seized power)</li>
+                                <li>Reign of Zhenguan (Golden Age of governance)</li>
+                                <li>Kaiyuan Prosperity (Peak of Tang dynasty)</li>
+                                <li>An Lushan Rebellion (start of decline)</li>
+                            </ul>
+                        </div>
+                        <div>
+                            <h3 class="text-xl font-semibold text-gray-700">Notable Figures</h3>
+                            <div class="space-y-2">
+                                <div>
+                                    <h4 class="font-medium text-gray-700">唐太宗 Emperor Taizong (Li Shimin)</h4>
+                                    <p class="text-gray-600">Welcomed criticism, valued meritocracy, created the "Reign of Zhenguan," solidified Tang's international stature.</p>
+                                </div>
+                                <div>
+                                    <h4 class="font-medium text-gray-700">武则天 Empress Wu Zetian</h4>
+                                    <p class="text-gray-600">Only female emperor in Chinese history, expanded the civil service exam, weakened aristocratic privilege, advanced social mobility.</p>
+                                </div>
+                                <div>
+                                    <h4 class="font-medium text-gray-700">李白 Li Bai & 杜甫 Du Fu</h4>
+                                    <p class="text-gray-600">"Immortal of Poetry" (romanticist) and "Poet Sage" (realist), respectively, their works defined Tang poetry and shaped Chinese literature.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Song Dynasty -->
+                <div class="dynasty-card bg-white rounded-lg shadow-lg p-8 max-w-4xl mx-auto">
+                    <h2 class="text-2xl font-bold text-primary mb-4">宋朝 Song Dynasty (960 – 1279 CE)</h2>
+                    
+                    <!-- Northern Song -->
+                    <div class="mb-8">
+                        <h3 class="text-xl font-semibold text-gray-700">北宋 Northern Song (960 – 1127 CE, 9 Emperors)</h3>
+                        <div class="space-y-4 mt-4">
+                            <div>
+                                <h4 class="font-medium text-gray-700">Key Events</h4>
+                                <ul class="list-disc list-inside text-gray-600 space-y-2">
+                                    <li>Chen Bridge Mutiny (Zhao Kuangyin founded Song)</li>
+                                    <li>Treaty of Chanyuan (peace with Liao)</li>
+                                    <li>Wang Anshi's Reforms (economic/military modernization attempt)</li>
+                                </ul>
+                            </div>
+                            <div>
+                                <h4 class="font-medium text-gray-700">Key Figures</h4>
+                                <ul class="list-disc list-inside text-gray-600 space-y-2">
+                                    <li>赵匡胤 Zhao Kuangyin: Ended Five Dynasties and Ten Kingdoms, disbanded military threats, centralized power.</li>
+                                    <li>包拯 Bao Zheng: Known for uprightness and fairness, a symbol of judicial justice—nicknamed "Justice Bao."</li>
+                                    <li>沈括 Shen Kuo: Author of Dream Pool Essays, documented inventions like movable type and geomagnetism—milestone in Chinese science history.</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Southern Song -->
+                    <div>
+                        <h3 class="text-xl font-semibold text-gray-700">南宋 Southern Song (1127 – 1279 CE, 9 Emperors)</h3>
+                        <div class="space-y-4 mt-4">
+                            <div>
+                                <h4 class="font-medium text-gray-700">Key Events</h4>
+                                <ul class="list-disc list-inside text-gray-600 space-y-2">
+                                    <li>Yue Fei's resistance against the Jurchens</li>
+                                    <li>Battle of Yamen (marked the dynasty's fall)</li>
+                                </ul>
+                            </div>
+                            <div>
+                                <h4 class="font-medium text-gray-700">Key Figures</h4>
+                                <ul class="list-disc list-inside text-gray-600 space-y-2">
+                                    <li>岳飞 Yue Fei: Famous general, fought to reclaim lost territory, revered for patriotism and loyalty.</li>
+                                    <li>朱熹 Zhu Xi: Neo-Confucian philosopher, emphasized "investigation of things" and became the ideological backbone of Yuan, Ming, and Qing official thought.</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Yuan Dynasty -->
+                <div class="dynasty-card bg-white rounded-lg shadow-lg p-8 max-w-4xl mx-auto">
+                    <h2 class="text-2xl font-bold text-primary mb-4">元朝 Yuan Dynasty (1271 – 1368 CE)</h2>
+                    <div class="space-y-4">
+                        <div>
+                            <h3 class="text-xl font-semibold text-gray-700">Emperors (11)</h3>
+                            <p class="text-gray-600">Kublai Khan, Temür, Külüg, etc.</p>
+                        </div>
+                        <div>
+                            <h3 class="text-xl font-semibold text-gray-700">Major Historical Events</h3>
+                            <ul class="list-disc list-inside text-gray-600 space-y-2">
+                                <li>Kublai unified China</li>
+                                <li>Introduced provincial administrative system</li>
+                                <li>Marco Polo's travels to China</li>
+                            </ul>
+                        </div>
+                        <div>
+                            <h3 class="text-xl font-semibold text-gray-700">Notable Figures</h3>
+                            <div class="space-y-2">
+                                <div>
+                                    <h4 class="font-medium text-gray-700">忽必烈 Kublai Khan</h4>
+                                    <p class="text-gray-600">Founded Yuan Dynasty, adopted Han governance, reopened the Grand Canal, fostered multiethnic unity.</p>
+                                </div>
+                                <div>
+                                    <h4 class="font-medium text-gray-700">郭守敬 Guo Shoujing</h4>
+                                    <p class="text-gray-600">Astronomer, compiled the Shoushi Calendar, as accurate as the Gregorian calendar, developed astronomical instruments.</p>
+                                </div>
+                                <div>
+                                    <h4 class="font-medium text-gray-700">关汉卿 Guan Hanqing</h4>
+                                    <p class="text-gray-600">Father of Yuan Drama, author of The Injustice to Dou E, exposed societal injustice and advanced dramatic literature.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Ming Dynasty -->
+                <div class="dynasty-card bg-white rounded-lg shadow-lg p-8 max-w-4xl mx-auto">
+                    <h2 class="text-2xl font-bold text-primary mb-4">明朝 Ming Dynasty (1368 – 1644 CE)</h2>
+                    <div class="space-y-4">
+                        <div>
+                            <h3 class="text-xl font-semibold text-gray-700">Emperors (16)</h3>
+                            <p class="text-gray-600">Zhu Yuanzhang, Zhu Di, Zhu Gaochi, Zhu Zhanji, etc.</p>
+                        </div>
+                        <div>
+                            <h3 class="text-xl font-semibold text-gray-700">Major Historical Events</h3>
+                            <ul class="list-disc list-inside text-gray-600 space-y-2">
+                                <li>Abolition of the Chancellor post</li>
+                                <li>Zheng He's seven maritime expeditions</li>
+                                <li>Zhang Juzheng's reforms (Single Whip Tax Law)</li>
+                                <li>Uprising led by Li Zicheng</li>
+                            </ul>
+                        </div>
+                        <div>
+                            <h3 class="text-xl font-semibold text-gray-700">Notable Figures</h3>
+                            <div class="space-y-2">
+                                <div>
+                                    <h4 class="font-medium text-gray-700">朱元璋 Zhu Yuanzhang</h4>
+                                    <p class="text-gray-600">Rose from poverty, founded Ming Dynasty, punished corruption, promoted peace and agriculture.</p>
+                                </div>
+                                <div>
+                                    <h4 class="font-medium text-gray-700">郑和 Zheng He</h4>
+                                    <p class="text-gray-600">Led seven voyages across Asia and Africa, boosted maritime trade and cross-cultural exchange, symbol of naval power.</p>
+                                </div>
+                                <div>
+                                    <h4 class="font-medium text-gray-700">李时珍 Li Shizhen</h4>
+                                    <p class="text-gray-600">Wrote Compendium of Materia Medica, recorded 1,892 medicinal substances, translated worldwide, influential in global medicine.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Qing Dynasty -->
+                <div class="dynasty-card bg-white rounded-lg shadow-lg p-8 max-w-4xl mx-auto">
+                    <h2 class="text-2xl font-bold text-primary mb-4">清朝 Qing Dynasty (1636 – 1912 CE)</h2>
+                    <div class="space-y-4">
+                        <div>
+                            <h3 class="text-xl font-semibold text-gray-700">Emperors (10)</h3>
+                            <p class="text-gray-600">Hong Taiji, Fulin, Xuanye, Yinzhen, Hongli, etc.</p>
+                        </div>
+                        <div>
+                            <h3 class="text-xl font-semibold text-gray-700">Major Historical Events</h3>
+                            <ul class="list-disc list-inside text-gray-600 space-y-2">
+                                <li>Reign of Kangxi and Qianlong (Golden Age)</li>
+                                <li>First Opium War (start of modern Chinese history)</li>
+                                <li>Hundred Days' Reform (failed modernization attempt)</li>
+                            </ul>
+                        </div>
+                        <div>
+                            <h3 class="text-xl font-semibold text-gray-700">Notable Figures</h3>
+                            <div class="space-y-2">
+                                <div>
+                                    <h4 class="font-medium text-gray-700">康熙 Emperor Kangxi</h4>
+                                    <p class="text-gray-600">Suppressed rebellions, reclaimed Taiwan, led campaigns in Mongolia, secured unity of the empire.</p>
+                                </div>
+                                <div>
+                                    <h4 class="font-medium text-gray-700">曹雪芹 Cao Xueqin</h4>
+                                    <p class="text-gray-600">Author of Dream of the Red Chamber, masterpiece of Chinese literature reflecting society through family decline.</p>
+                                </div>
+                                <div>
+                                    <h4 class="font-medium text-gray-700">林则徐 Lin Zexu</h4>
+                                    <p class="text-gray-600">Ordered the destruction of opium in 1839, symbol of resistance to British opium trade, pivotal in awakening modern Chinese consciousness.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Republic of China -->
+                <div class="dynasty-card bg-white rounded-lg shadow-lg p-8 max-w-4xl mx-auto">
+                    <h2 class="text-2xl font-bold text-primary mb-4">中华民国 Republic of China (1912 – 1949)</h2>
+                    <div class="space-y-4">
+                        <div>
+                            <h3 class="text-xl font-semibold text-gray-700">National Leaders</h3>
+                            <p class="text-gray-600">Over this 38-year period, there were 22 successive heads of state. Among the most well-known were Sun Yat-sen and Yuan Shikai.</p>
+                        </div>
+                        <div>
+                            <h3 class="text-xl font-semibold text-gray-700">Major Historical Events</h3>
+                            <ul class="list-disc list-inside text-gray-600 space-y-2">
+                                <li>Xinhai Revolution (1911): Overthrew the monarchy and established Asia's first democratic republic.</li>
+                                <li>May Fourth Movement (1919): A patriotic campaign against imperialism and feudalism; catalyzed the New Culture Movement.</li>
+                                <li>War of Resistance Against Japan (1937–1945): Nationwide resistance against Japanese invasion, safeguarding national sovereignty.</li>
+                                <li>Chinese Civil War (1945–1949): Culminated in the fall of the Nationalist government and the establishment of a new regime.</li>
+                            </ul>
+                        </div>
+                        <div>
+                            <h3 class="text-xl font-semibold text-gray-700">Notable Figures</h3>
+                            <div class="space-y-2">
+                                <div>
+                                    <h4 class="font-medium text-gray-700">孙中山 Sun Yat-sen</h4>
+                                    <p class="text-gray-600">Forefather of modern China, proposed the Three Principles of the People, led the 1911 revolution, and ended the imperial system.</p>
+                                </div>
+                                <div>
+                                    <h4 class="font-medium text-gray-700">鲁迅 Lu Xun</h4>
+                                    <p class="text-gray-600">Iconic writer and thinker; used powerful literature to critique the old system, awaken national consciousness, and lead the New Culture Movement.</p>
+                                </div>
+                                <div>
+                                    <h4 class="font-medium text-gray-700">毛泽东 Mao Zedong</h4>
+                                    <p class="text-gray-600">Led the Communist Party to victory in the civil war, pivotal in founding the new China and reshaping its trajectory.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- People's Republic of China -->
+                <div class="dynasty-card bg-white rounded-lg shadow-lg p-8 max-w-4xl mx-auto">
+                    <h2 class="text-2xl font-bold text-primary mb-4">中华人民共和国 People's Republic of China (1949 – Present)</h2>
+                    <div class="space-y-4">
+                        <div>
+                            <h3 class="text-xl font-semibold text-gray-700">National Leaders</h3>
+                            <p class="text-gray-600">Presidents of the PRC from 1949 to today include Mao Zedong, Liu Shaoqi, Soong Ching-ling (Honorary President), Li Xiannian, Yang Shangkun, Jiang Zemin, Hu Jintao, and Xi Jinping.</p>
+                        </div>
+                        <div>
+                            <h3 class="text-xl font-semibold text-gray-700">Major Historical Events</h3>
+                            <ul class="list-disc list-inside text-gray-600 space-y-2">
+                                <li>Founding of the PRC (1949): Marked the beginning of a new era where the people held political power.</li>
+                                <li>Reform and Opening Up (starting 1978): Unleashed rapid economic growth and opened China to the world.</li>
+                                <li>Return of Hong Kong and Macao (1997 & 1999): Key milestones in achieving national reunification.</li>
+                                <li>Poverty Alleviation Campaign: Historically resolved absolute poverty across the country.</li>
+                                <li>Completion of a Moderately Prosperous Society: Achieved the first centennial goal of national development.</li>
+                            </ul>
+                        </div>
+                        <div>
+                            <h3 class="text-xl font-semibold text-gray-700">Notable Figures</h3>
+                            <div class="space-y-2">
+                                <div>
+                                    <h4 class="font-medium text-gray-700">邓小平 Deng Xiaoping</h4>
+                                    <p class="text-gray-600">Architect of reform and opening up; proposed the concept of One Country, Two Systems; charted China's path toward socialism with Chinese characteristics.</p>
+                                </div>
+                                <div>
+                                    <h4 class="font-medium text-gray-700">袁隆平 Yuan Longping</h4>
+                                    <p class="text-gray-600">"Father of Hybrid Rice," developed high-yield rice strains, significantly contributing to global food security.</p>
+                                </div>
+                                <div>
+                                    <h4 class="font-medium text-gray-700">屠呦呦 Tu Youyou</h4>
+                                    <p class="text-gray-600">Pharmacologist who discovered artemisinin, reducing global malaria deaths; awarded the Nobel Prize in Physiology or Medicine, elevating traditional Chinese medicine on the global stage.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('.timeline-nav a').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const targetId = this.getAttribute('href');
+                const targetElement = document.querySelector(targetId);
+                if (targetElement) {
+                    const headerOffset = 100; // Adjust this value based on your header height
+                    const elementPosition = targetElement.getBoundingClientRect().top;
+                    const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+
+                    window.scrollTo({
+                        top: offsetPosition,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+
+        // Highlight current section in navigation
+        window.addEventListener('scroll', function() {
+            const sections = document.querySelectorAll('.dynasty-card');
+            const navLinks = document.querySelectorAll('.timeline-nav a');
+            
+            let currentSection = '';
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                const sectionHeight = section.clientHeight;
+                if (window.pageYOffset >= sectionTop - 100) { // Adjusted offset
+                    currentSection = section.getAttribute('id');
+                }
+            });
+
+            navLinks.forEach(link => {
+                link.classList.remove('bg-secondary-color');
+                if (link.getAttribute('href').slice(1) === currentSection) {
+                    link.classList.add('bg-secondary-color');
+                }
+            });
+        });
+    </script>
+</body>
+</html> 

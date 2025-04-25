@@ -1,39 +1,56 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="zh-CN">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sentence Patterns - Learn Chinese</title>
+    <!-- Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-XZKZVRHTKW"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-XZKZVRHTKW');
+    </script>
+    <!-- End Google Analytics -->
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="../css/styles.css">
-    <style>
-        .pattern-card {
-            cursor: pointer;
-            transition: all 0.2s ease;
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: {
+                            DEFAULT: '#20B2AA',
+                            dark: '#1A8F89',
+                        },
+                        secondary: {
+                            DEFAULT: '#4A5568',
+                            dark: '#2D3748',
+                        },
+                        background: {
+                            DEFAULT: '#F7FAFC',
+                            card: '#FFFFFF',
+                        },
+                    },
+                },
+            },
         }
-        .pattern-card:hover {
-            transform: scale(1.01);
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-        }
-        .pattern-card.playing {
-            background-color: #e3f2fd;
-        }
-    </style>
+    </script>
 </head>
-<body class="bg-gray-50">
+<body class="bg-background">
     <!-- Navigation -->
     <nav class="bg-white shadow">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex justify-between h-16">
                 <div class="flex">
                     <div class="flex-shrink-0 flex items-center">
-                        <a href="../" class="text-red-600 text-2xl font-bold">学中文</a>
+                        <a href="../../" class="text-primary text-2xl font-bold">学中文</a>
                     </div>
                     <div class="hidden sm:ml-6 sm:flex sm:space-x-8">
-                        <a href="../" class="text-gray-500 hover:text-gray-700 px-3 py-2 rounded-md">Home</a>
-                        <a href="../learn.html" class="text-red-600 border-red-600 border-b-2 px-3 py-2 rounded-md">Learn Chinese</a>
-                        <a href="../culture.html" class="text-gray-500 hover:text-gray-700 px-3 py-2 rounded-md">Culture</a>
-                        <a href="../travel.html" class="text-gray-500 hover:text-gray-700 px-3 py-2 rounded-md">Travel</a>
+                        <a href="/" class="text-gray-500 hover:text-gray-700 px-3 py-2 rounded-md">Home</a>
+                        <a href="/learn.html" class="text-primary border-primary border-b-2 px-3 py-2 rounded-md">Learn Chinese</a>
+                        <a href="/culture.html" class="text-gray-500 hover:text-gray-700 px-3 py-2 rounded-md">Culture</a>
+                        <a href="/travel.html" class="text-gray-500 hover:text-gray-700 px-3 py-2 rounded-md">Travel</a>
                     </div>
                 </div>
             </div>
@@ -43,88 +60,82 @@
     <!-- Main Content -->
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
         <div class="mb-8">
-            <a href="../learn.html" class="text-red-600 hover:text-red-700">← Back to Learn Chinese</a>
+            <a href="learn-chinese.html" class="text-primary hover:text-primary-dark">← Back to Learn Chinese</a>
         </div>
 
-        <h1 class="text-3xl font-bold text-gray-900 mb-8">Basic Chinese Sentence Patterns</h1>
+        <h1 class="text-3xl font-bold text-gray-900 mb-4">Basic Chinese Sentence Patterns</h1>
+        <p class="text-gray-600 mb-8">Learn these fundamental sentence patterns to start forming basic Chinese sentences. Click on any example to hear its pronunciation.</p>
 
-        <div class="bg-white rounded-lg shadow-md p-6 mb-8">
-            <h2 class="text-2xl font-bold text-gray-900 mb-4">Essential Sentence Structures</h2>
-            <p class="text-gray-600 mb-6">
-                Learn these fundamental sentence patterns to start forming basic Chinese sentences.
-                Click on any example to hear its pronunciation.
-            </p>
-
-            <!-- Subject + Verb Pattern -->
-            <div class="pattern-card bg-gray-50 rounded-lg p-6 mb-6" data-text="我吃饭">
-                <h3 class="text-xl font-semibold text-gray-900 mb-3">Subject + Verb</h3>
-                <div class="mb-4">
-                    <div class="text-lg font-medium">我吃饭</div>
-                    <div class="text-gray-600">Wǒ chī fàn</div>
-                    <div class="text-gray-500 text-sm">I eat (rice/food)</div>
-                </div>
-                <div class="text-gray-600 text-sm">
-                    Structure: Subject (我) + Verb (吃) + Object (饭)
+        <div class="space-y-8">
+            <!-- Subject + Verb -->
+            <div class="bg-background-card p-6 rounded-lg shadow-md">
+                <h3 class="text-xl font-semibold text-primary-dark mb-4">Subject + Verb</h3>
+                <div class="space-y-4">
+                    <div class="example-sentence cursor-pointer hover:bg-gray-50 p-4 rounded-md">
+                        <p class="text-xl mb-2">我吃饭</p>
+                        <p class="text-gray-600 mb-2">Wǒ chī fàn</p>
+                        <p class="text-gray-700">I eat (rice/food)</p>
+                        <p class="text-sm text-gray-500 mt-2">Structure: Subject (我) + Verb (吃) + Object (饭)</p>
+                    </div>
                 </div>
             </div>
 
-            <!-- Subject + 是 + Noun Pattern -->
-            <div class="pattern-card bg-gray-50 rounded-lg p-6 mb-6" data-text="我是学生">
-                <h3 class="text-xl font-semibold text-gray-900 mb-3">Subject + 是 + Noun</h3>
-                <div class="mb-4">
-                    <div class="text-lg font-medium">我是学生</div>
-                    <div class="text-gray-600">Wǒ shì xuéshēng</div>
-                    <div class="text-gray-500 text-sm">I am a student</div>
-                </div>
-                <div class="text-gray-600 text-sm">
-                    Structure: Subject (我) + 是 + Noun (学生)
-                </div>
-            </div>
-
-            <!-- Subject + Adjective Pattern -->
-            <div class="pattern-card bg-gray-50 rounded-lg p-6 mb-6" data-text="天气很好">
-                <h3 class="text-xl font-semibold text-gray-900 mb-3">Subject + Adjective</h3>
-                <div class="mb-4">
-                    <div class="text-lg font-medium">天气很好</div>
-                    <div class="text-gray-600">Tiānqì hěn hǎo</div>
-                    <div class="text-gray-500 text-sm">The weather is good</div>
-                </div>
-                <div class="text-gray-600 text-sm">
-                    Structure: Subject (天气) + 很 + Adjective (好)
+            <!-- Subject + 是 + Noun -->
+            <div class="bg-background-card p-6 rounded-lg shadow-md">
+                <h3 class="text-xl font-semibold text-primary-dark mb-4">Subject + 是 + Noun</h3>
+                <div class="space-y-4">
+                    <div class="example-sentence cursor-pointer hover:bg-gray-50 p-4 rounded-md">
+                        <p class="text-xl mb-2">我是学生</p>
+                        <p class="text-gray-600 mb-2">Wǒ shì xuéshēng</p>
+                        <p class="text-gray-700">I am a student</p>
+                        <p class="text-sm text-gray-500 mt-2">Structure: Subject (我) + 是 + Noun (学生)</p>
+                    </div>
                 </div>
             </div>
 
-            <!-- Question Pattern -->
-            <div class="pattern-card bg-gray-50 rounded-lg p-6 mb-6" data-text="你好吗">
-                <h3 class="text-xl font-semibold text-gray-900 mb-3">Question Pattern with 吗</h3>
-                <div class="mb-4">
-                    <div class="text-lg font-medium">你好吗</div>
-                    <div class="text-gray-600">Nǐ hǎo ma</div>
-                    <div class="text-gray-500 text-sm">How are you?</div>
-                </div>
-                <div class="text-gray-600 text-sm">
-                    Structure: Statement + 吗
+            <!-- Subject + Adjective -->
+            <div class="bg-background-card p-6 rounded-lg shadow-md">
+                <h3 class="text-xl font-semibold text-primary-dark mb-4">Subject + Adjective</h3>
+                <div class="space-y-4">
+                    <div class="example-sentence cursor-pointer hover:bg-gray-50 p-4 rounded-md">
+                        <p class="text-xl mb-2">天气很好</p>
+                        <p class="text-gray-600 mb-2">Tiānqì hěn hǎo</p>
+                        <p class="text-gray-700">The weather is good</p>
+                        <p class="text-sm text-gray-500 mt-2">Structure: Subject (天气) + 很 + Adjective (好)</p>
+                    </div>
                 </div>
             </div>
 
-            <!-- Negative Pattern -->
-            <div class="pattern-card bg-gray-50 rounded-lg p-6" data-text="我不喜欢">
-                <h3 class="text-xl font-semibold text-gray-900 mb-3">Negative Pattern with 不</h3>
-                <div class="mb-4">
-                    <div class="text-lg font-medium">我不喜欢</div>
-                    <div class="text-gray-600">Wǒ bù xǐhuān</div>
-                    <div class="text-gray-500 text-sm">I don't like</div>
+            <!-- Question Pattern with 吗 -->
+            <div class="bg-background-card p-6 rounded-lg shadow-md">
+                <h3 class="text-xl font-semibold text-primary-dark mb-4">Question Pattern with 吗</h3>
+                <div class="space-y-4">
+                    <div class="example-sentence cursor-pointer hover:bg-gray-50 p-4 rounded-md">
+                        <p class="text-xl mb-2">你好吗</p>
+                        <p class="text-gray-600 mb-2">Nǐ hǎo ma</p>
+                        <p class="text-gray-700">How are you?</p>
+                        <p class="text-sm text-gray-500 mt-2">Structure: Statement + 吗</p>
+                    </div>
                 </div>
-                <div class="text-gray-600 text-sm">
-                    Structure: Subject + 不 + Verb
+            </div>
+
+            <!-- Negative Pattern with 不 -->
+            <div class="bg-background-card p-6 rounded-lg shadow-md">
+                <h3 class="text-xl font-semibold text-primary-dark mb-4">Negative Pattern with 不</h3>
+                <div class="space-y-4">
+                    <div class="example-sentence cursor-pointer hover:bg-gray-50 p-4 rounded-md">
+                        <p class="text-xl mb-2">我不喜欢</p>
+                        <p class="text-gray-600 mb-2">Wǒ bù xǐhuān</p>
+                        <p class="text-gray-700">I don't like</p>
+                        <p class="text-sm text-gray-500 mt-2">Structure: Subject + 不 + Verb</p>
+                    </div>
                 </div>
             </div>
         </div>
 
-        <!-- Navigation Links -->
         <div class="flex justify-between items-center mt-8">
-            <a href="basic-characters.html" class="text-red-600 hover:text-red-700">← Basic Characters</a>
-            <a href="basic-conversations.html" class="text-red-600 hover:text-red-700">Basic Conversations →</a>
+            <a href="basic-characters.html" class="text-primary hover:text-primary-dark">← Basic Characters</a>
+            <a href="basic-conversations.html" class="text-primary hover:text-primary-dark">Basic Conversations →</a>
         </div>
     </div>
 
@@ -133,63 +144,19 @@
         <div class="max-w-7xl mx-auto py-12 px-4 sm:px-6 md:flex md:items-center md:justify-between lg:px-8">
             <div class="mt-8 md:mt-0 md:order-1">
                 <p class="text-center text-base text-gray-400">
-                    &copy; 2024 Learn Chinese. All rights reserved.
+                    © 2024 Learn Chinese. All rights reserved.
                 </p>
             </div>
         </div>
     </footer>
 
     <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            const patternCards = document.querySelectorAll('.pattern-card');
-            let currentAudio = null;
-
-            patternCards.forEach(card => {
-                card.addEventListener('click', async function() {
-                    const text = this.dataset.text;
-                    if (!text) return;
-
-                    // Stop any currently playing audio
-                    if (currentAudio) {
-                        currentAudio.pause();
-                        currentAudio = null;
-                    }
-
-                    // Remove playing class from all cards
-                    document.querySelectorAll('.pattern-card.playing').forEach(card => {
-                        card.classList.remove('playing');
-                    });
-
-                    try {
-                        // Add playing class to current card
-                        this.classList.add('playing');
-
-                        const response = await fetch('/api/tts', {
-                            method: 'POST',
-                            headers: {
-                                'Content-Type': 'application/json'
-                            },
-                            body: JSON.stringify({ text: text })
-                        });
-                        
-                        if (!response.ok) {
-                            throw new Error(`HTTP error! status: ${response.status}`);
-                        }
-                        
-                        const audioBlob = await response.blob();
-                        const audioUrl = URL.createObjectURL(audioBlob);
-                        
-                        currentAudio = new Audio(audioUrl);
-                        currentAudio.addEventListener('ended', () => {
-                            URL.revokeObjectURL(audioUrl);
-                            this.classList.remove('playing');
-                        });
-                        
-                        await currentAudio.play();
-                    } catch (error) {
-                        console.error('Error playing audio:', error);
-                        this.classList.remove('playing');
-                    }
+        document.querySelectorAll('.example-sentence').forEach(sentence => {
+            sentence.addEventListener('click', function() {
+                const chinese = this.querySelector('p:first-child').textContent;
+                const audio = new Audio(`https://chinese-learning-api.com/tts/${encodeURIComponent(chinese)}`);
+                audio.play().catch(error => {
+                    console.error('Error playing audio:', error);
                 });
             });
         });

@@ -5,37 +5,71 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Beginner's Guide - Learn Chinese</title>
     <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;500;700&display=swap" rel="stylesheet">
+    <!-- Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-XZKZVRHTKW"></script>
     <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    colors: {
-                        primary: {
-                            DEFAULT: '#4CB8B8',
-                            light: '#5EBFBF',
-                            dark: '#3A9999',
-                        },
-                        secondary: {
-                            DEFAULT: '#6B7280',
-                            light: '#9CA3AF',
-                            dark: '#4B5563',
-                        },
-                        accent: {
-                            DEFAULT: '#F87171',
-                            light: '#FCA5A5',
-                            dark: '#EF4444',
-                        },
-                        background: {
-                            DEFAULT: '#F3F4F6',
-                            card: '#FFFFFF',
-                            dark: '#1F2937',
-                        }
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-XZKZVRHTKW');
+        
+        // Enhanced tracking
+        document.addEventListener('DOMContentLoaded', function() {
+            // Track outbound link clicks
+            document.querySelectorAll('a').forEach(link => {
+                link.addEventListener('click', function(e) {
+                    if (this.href && this.href.startsWith('http') && !this.href.includes(window.location.hostname)) {
+                        gtag('event', 'outbound_click', {
+                            'event_category': 'outbound',
+                            'event_label': this.href,
+                            'transport_type': 'beacon'
+                        });
+                    }
+                });
+            });
+
+            // Track vocabulary card clicks
+            document.querySelectorAll('.vocab-card').forEach(card => {
+                card.addEventListener('click', function() {
+                    const word = this.querySelector('h3').textContent;
+                    gtag('event', 'vocab_card_click', {
+                        'event_category': 'vocabulary',
+                        'event_label': word
+                    });
+                });
+            });
+
+            // Track scroll depth
+            let maxScroll = 0;
+            window.addEventListener('scroll', function() {
+                const scrollPercent = (window.scrollY + window.innerHeight) / document.documentElement.scrollHeight * 100;
+                if (scrollPercent > maxScroll) {
+                    maxScroll = scrollPercent;
+                    if (maxScroll >= 25 && maxScroll < 50) {
+                        gtag('event', 'scroll', {'event_category': 'engagement', 'event_label': '25%'});
+                    } else if (maxScroll >= 50 && maxScroll < 75) {
+                        gtag('event', 'scroll', {'event_category': 'engagement', 'event_label': '50%'});
+                    } else if (maxScroll >= 75 && maxScroll < 100) {
+                        gtag('event', 'scroll', {'event_category': 'engagement', 'event_label': '75%'});
+                    } else if (maxScroll >= 100) {
+                        gtag('event', 'scroll', {'event_category': 'engagement', 'event_label': '100%'});
                     }
                 }
-            }
-        }
+            });
+
+            // Track time spent on page
+            let startTime = Date.now();
+            window.addEventListener('beforeunload', function() {
+                const timeSpent = Math.round((Date.now() - startTime) / 1000);
+                gtag('event', 'time_spent', {
+                    'event_category': 'engagement',
+                    'event_label': 'page_view',
+                    'value': timeSpent
+                });
+            });
+        });
     </script>
-    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;500;700&display=swap" rel="stylesheet">
     <style>
         body {
             font-family: 'Noto Sans SC', sans-serif;
@@ -51,6 +85,39 @@
         }
         .guide-section:hover {
             transform: translateY(-2px);
+        }
+        .primary-color {
+            background-color: #4CB8B8;
+        }
+        .primary-color-light {
+            background-color: #5EBFBF;
+        }
+        .primary-color-dark {
+            background-color: #3A9999;
+        }
+        .secondary-color {
+            color: #6B7280;
+        }
+        .secondary-color-light {
+            color: #9CA3AF;
+        }
+        .secondary-color-dark {
+            color: #4B5563;
+        }
+        .accent-color {
+            color: #F87171;
+        }
+        .accent-color-light {
+            color: #FCA5A5;
+        }
+        .accent-color-dark {
+            color: #EF4444;
+        }
+        .bg-gray-50 {
+            background-color: #F3F4F6;
+        }
+        .bg-gray-800 {
+            background-color: #1F2937;
         }
     </style>
 </head>
